@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\ComponentsTrait;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -9,9 +10,12 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Products;
 
 class SiteController extends Controller
 {
+    use ComponentsTrait;
+
     /**
      * {@inheritdoc}
      */
@@ -41,13 +45,24 @@ class SiteController extends Controller
 	
 	
 	
-	 public function actionQwe()
+	 public function actionProducts()
     {
-        return $this->render('qwe', ['qweContent' => time()]);
+		
+		
+		$productModel = \yii::$app->get('product');
 
+        $query = $productModel::find();
+
+        $products = $query->all();
+
+        return $this->render('products', ['products' => $products]);
+		
+		print_r(Yii::$app->request->getBodyParam('tab'));
 
     }
-
+	
+	
+	
     /**
      * {@inheritdoc}
      */
@@ -134,5 +149,45 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionCatalog()
+    {
+        $request = \yii::$app->request;
+
+        $colors = self::getColors();
+        $categories = self::getCategories();
+
+        $productModel = self::getProductModel();
+
+        $query = $productModel::find();
+
+        $rColors = $this->sanitizeIds($request->post('colors'));
+        if (!empty($rColors)) {
+            $query->where(['in', 'color', $rColors]);
+        }
+
+        $products = $query->all();
+
+        return $this->renderPartial('_products', ['products' => $products, 'colors' => $colors, 'categories' => $categories]);
+    }
+
+    /**
+     * @param array $ids
+     * @return array
+     */
+    private function sanitizeIds($ids)
+    {
+        if (!is_array($ids)) {
+            return [];
+        }
+
+        array_walk($ids, function(&$v) {
+            $v = (int)$v;
+        });
+
+        $ids = array_filter($ids);
+
+        return $ids;
     }
 }

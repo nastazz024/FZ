@@ -50,7 +50,18 @@ $config = [
             'rules' => [
             ],
         ],
-        
+
+
+        'product' => [
+            'class' => 'app\Models\Product'
+        ],
+        'productColor' => [
+            'class' => 'app\Models\ProductColor'
+        ],
+        'productCategory' => [
+            'class' => 'app\Models\ProductCategory'
+        ],
+
     ],
     'params' => $params,
 ];
