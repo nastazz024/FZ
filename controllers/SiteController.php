@@ -42,25 +42,11 @@ class SiteController extends Controller
         ];
     }
 
-	
-	
-	
-	 public function actionProducts()
+	 public function actionContacts()
     {
-		
-		
-		$productModel = \yii::$app->get('product');
-
-        $query = $productModel::find();
-
-        $products = $query->all();
-
-        return $this->render('products', ['products' => $products]);
-		
-		print_r(Yii::$app->request->getBodyParam('tab'));
-
+        return $this->render('contacts');
     }
-	
+
 	
 	
     /**
@@ -68,14 +54,14 @@ class SiteController extends Controller
      */
     public function actions()
     {
-        return [
+        return [/*
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
+            ],*/
         ];
     }
 
@@ -86,59 +72,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'catalog';
         return $this->render('index');
-    }
-
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
     }
 
     /**
@@ -151,7 +86,7 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
-    public function actionCatalog()
+    public function actionShirt()
     {
         $request = \yii::$app->request;
 
@@ -161,15 +96,43 @@ class SiteController extends Controller
         $productModel = self::getProductModel();
 
         $query = $productModel::find();
+        $query->where('1=1');
 
         $rColors = $this->sanitizeIds($request->post('colors'));
         if (!empty($rColors)) {
-            $query->where(['in', 'color', $rColors]);
+            $query->andWhere(['in', 'color', $rColors]);
         }
 
-        $products = $query->all();
+        $rCost = $this->sanitizeIds($request->post('cost'));
+        if (!empty($rCost['min']) || !empty($rCost['max'])) {
+            if (!isset($rCost['min'])) {
+                $rCost['min'] = 0;
+            }
+            if (!isset($rCost['max'])) {
+                $rCost['max'] = PHP_INT_MAX;
+            }
+            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        }
 
-        return $this->renderPartial('_products', ['products' => $products, 'colors' => $colors, 'categories' => $categories]);
+
+        $sort = [];
+        $rSort = $request->post('sort');
+        if ($rSort && is_array($rSort) && !empty($rSort['field']) && isset($rSort['dir'])) {
+            /// todo check values
+            // format "<field> <asc|desc>"
+            $sort[$rSort['field']] = $rSort['dir'];
+        }
+        $sort['name'] = 'asc';
+        $query->orderby($sort);
+
+        $products = $query->all();
+        //print_r($query->createCommand()->getRawSql());         
+        return $this->renderPartial('_products', [
+            'products' => $products, 
+            'colors' => $colors, 
+            'categories' => $categories,
+            'view' => $request->post('view', 'grid'),
+        ]);
     }
 
     /**

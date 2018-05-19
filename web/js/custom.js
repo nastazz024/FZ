@@ -34,7 +34,7 @@ $(function(){
 		range: true,
 		min: 0,
 		max: 500,
-		values: [ 75, 300 ],
+		values: [ 0, 300 ],
 		slide: function( event, ui ) {
 			$( "#amount" ).val( "$" + ui.values[ 0 ] );
 			$( "#amount1" ).val( "$" + ui.values[ 1 ] );
@@ -43,6 +43,43 @@ $(function(){
     $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) );
     $( "#amount1" ).val( "$" + $( "#slider-range" ).slider( "values", 1 ) );
 	
+	/*let sortItem = document.getElementsByClassName('sort__item'),
+		sortWrap = document.getElementsByClassName('sort')[0],
+		sortInput = sortWrap.getElementsByTagName('input');
+
+		for(let i = 0; i < sortInput.length; i++) {
+			let sortArrow = sortItem[i].getElementsByClassName('icon-arrow-up-down')[0];
+
+			sortInput[i].addEventListener('change', function() {
+				
+				if( sortInput[i].checked) {
+					sortArrow.style.transform = 'rotateX(0deg)';
+				} else {
+					sortArrow.style.transform = 'rotateX(180deg)';
+				}
+				this.addEventListener('click', function() {
+					console.log(this);
+				})
+
+
+			});
+		}*/
+
+		$(function () {
+			$('.menu__sort').hover(
+				function () { 
+					$(this).addClass('active');
+		
+					$('.active').click(function () {
+						$('.active .arrow-up').toggleClass('blue'); 
+						$('.active .arrow-down').toggleClass('gray');
+					});           
+				}, 
+		
+				function () { $(this).removeClass('active')                    
+			});
+		
+		});
 
 });
 
