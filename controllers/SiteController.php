@@ -120,13 +120,16 @@ class SiteController extends Controller
         if ($rSort && is_array($rSort) && !empty($rSort['field']) && isset($rSort['dir'])) {
             /// todo check values
             // format "<field> <asc|desc>"
-            $sort[$rSort['field']] = $rSort['dir'];
+            $sort[$rSort['field']] = (strtolower($rSort['dir']) == 'asc' ? SORT_ASC : SORT_DESC);
         }
-        $sort['name'] = 'asc';
+        if (!isset($sort['name'])) {
+            $sort['name'] = 'asc';
+        }
         $query->orderby($sort);
 
         $products = $query->all();
-        //print_r($query->createCommand()->getRawSql());         
+        
+        // print_r($query->createCommand()->getRawSql());         
         return $this->renderPartial('_products', [
             'products' => $products, 
             'colors' => $colors, 

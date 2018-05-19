@@ -28,7 +28,13 @@ $(function () {
         payload.view = $('.filter-list__item.active a').data('type');
 
         /// сортировка
-        payload.sort = {field: 'price', dir: 'asc'};
+        payload.sort = {
+            field: $('.menu__sort.active').data('type'), 
+            dir: $('.menu__sort.active').find('.arrow-down.gray').length ? 'desc' : 'asc'
+        };
+        
+        //arrow-down gray
+
 
         var csrfParam = yii.getCsrfParam();
         payload[csrfParam] = yii.getCsrfToken();
@@ -76,10 +82,8 @@ $(function () {
         addShirt($(ev.target).data('id'), 'X');
     });
 
-    $('sort__item').on('click', function (){
-        $('.sort__item span').addClass('d-none');
-        // $(".icon-arrow-up2").toggleClass(".d-flex");
-    
+    $('.menu__sort').click(function (ev) {
+        loadPr();
     });
 
     $items.on('change', loadPr);

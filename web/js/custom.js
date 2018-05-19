@@ -65,21 +65,12 @@ $(function(){
 			});
 		}*/
 
-		$(function () {
-			$('.menu__sort').hover(
-				function () { 
-					$(this).addClass('active');
-		
-					$('.active').click(function () {
-						$('.active .arrow-up').toggleClass('blue'); 
-						$('.active .arrow-down').toggleClass('gray');
-					});           
-				}, 
-		
-				function () { $(this).removeClass('active')                    
-			});
-		
-		});
+		$('.menu__sort').click(function (ev) {
+			$('.menu__sort').removeClass('active');
+			$(this).addClass('active');
+			$('.arrow-up', this).toggleClass('blue'); 
+			$('.arrow-down',this).toggleClass('gray');
+		});    
 
 });
 

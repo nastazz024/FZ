@@ -277,15 +277,15 @@ AppAsset::register($this);
                 <div class="filter-content">
                     <span class="filter__title">Сортировать по:</span>
                     <div class="sort">  
-					<label class="menu__sort">
+					<label class="menu__sort active" data-type="price">
                         Цене
                         <span class="arrow-up"><i class="fas fa-long-arrow-alt-up"></i></span>      
                         <span class="arrow-down"><i class="fas fa-long-arrow-alt-down"></i></span>
                     </label>
-                    <label class="menu__sort">
+                    <label class="menu__sort" data-type="name">
                         Наименованию
-                        <span class="arrow-up white"><i class="fas fa-long-arrow-alt-up"></i></span>
-                        <span class="arrow-down black"><i class="fas fa-long-arrow-alt-down"></i></span>
+                        <span class="arrow-up"><i class="fas fa-long-arrow-alt-up"></i></span>
+                        <span class="arrow-down"><i class="fas fa-long-arrow-alt-down"></i></span>
                     </label> 
                     
                         
