@@ -52,11 +52,14 @@ $config = [
         ],
 
 
-        'product' => [
-            'class' => 'app\Models\Product'
+        'shirt' => [
+            'class' => 'app\Models\Shirt'
         ],
         'productColor' => [
             'class' => 'app\Models\ProductColor'
+        ],
+        'shirtSize' => [
+            'class' => 'app\Models\ShirtSize'
         ],
         'productCategory' => [
             'class' => 'app\Models\ProductCategory'

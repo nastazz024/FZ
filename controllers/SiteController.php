@@ -42,13 +42,7 @@ class SiteController extends Controller
         ];
     }
 
-	 public function actionContacts()
-    {
-        return $this->render('contacts');
-    }
 
-	
-	
     /**
      * {@inheritdoc}
      */
@@ -91,9 +85,10 @@ class SiteController extends Controller
         $request = \yii::$app->request;
 
         $colors = self::getColors();
+        
         $categories = self::getCategories();
 
-        $productModel = self::getProductModel();
+        $productModel = self::getShirtModel();
 
         $query = $productModel::find();
         $query->where('1=1');
@@ -102,6 +97,16 @@ class SiteController extends Controller
         if (!empty($rColors)) {
             $query->andWhere(['in', 'color', $rColors]);
         }
+
+        $rSize = $this->sanitizeIds($request->post('size'));
+        if (!empty($rSize)) {
+            // $query->andWhere(['in', 'size', $rSize]);
+            $query->join('inner join', 'shirt_count', 'shirt.id = shirt_count.shirt_id');
+            $query->andWhere(['in', 'shirt_count.shirt_size_id', $rSize]);
+            $query->andWhere('shirt_count.count > 0');
+        }
+
+
 
         $rCost = $this->sanitizeIds($request->post('cost'));
         if (!empty($rCost['min']) || !empty($rCost['max'])) {
@@ -127,9 +132,11 @@ class SiteController extends Controller
         }
         $query->orderby($sort);
 
+        // print_r($query->createCommand()->getRawSql());  
+
         $products = $query->all();
         
-        // print_r($query->createCommand()->getRawSql());         
+               
         return $this->renderPartial('_products', [
             'products' => $products, 
             'colors' => $colors, 

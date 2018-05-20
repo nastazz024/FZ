@@ -6,12 +6,12 @@ trait ComponentsTrait
 {
 
     /**
-     * @return \app\models\Product
+     * @return \app\models\Shirt
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getProductModel()
+    public static function getShirtModel()
     {
-        return \yii::$app->get('product');
+        return \yii::$app->get('shirt');
     }
 
     /**

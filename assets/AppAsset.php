@@ -26,6 +26,7 @@ class AppAsset extends AssetBundle
         "https://use.fontawesome.com/releases/v5.0.10/css/all.css",
         "css/icomoon.css",
         "css/jquery.formstyler.css",
+		"css/jquery.custom-scroll.css",
         "css/jquery.formstyler.theme.css",
         "https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css",
         "css/style.css"		
@@ -37,7 +38,8 @@ class AppAsset extends AssetBundle
         
         "js/jquery-3.2.1.min.js",
         "https://code.jquery.com/ui/1.12.1/jquery-ui.js",
-        "js/jquery.formstyler.min.js",
+        "js/jquery.custom-scroll.min",
+		"js/jquery.formstyler.min.js",
         "js/custom.js",
         "js/catalog.js",
 		

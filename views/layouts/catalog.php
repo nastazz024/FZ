@@ -339,33 +339,25 @@ AppAsset::register($this);
                         <div class="accordion__head">
                             <h5 class="accordion__title">Размер</h5>
                             <span class="icon-minus"></span>
-                        </div>
-                        <div class="accordion__body" style="display: none;">
-                            <ul class="check-list check-list--column">
-                                <li class="check-list__item">
-                                    <input type="checkbox" class="styler" id="check-list13">
-                                    <label for="check-list13" class="check-list__text">XS</label>
-                                </li>
-                                <li class="check-list__item">
-                                    <input type="checkbox" class="styler" id="check-list14">
-                                    <label for="check-list14" class="check-list__text">S</label>
-                                </li>
-                                <li class="check-list__item">
-                                    <input type="checkbox" class="styler" id="check-list15">
-                                    <label for="check-list15" class="check-list__text">M</label>
-                                </li>
-                                <li class="check-list__item">
-                                    <input type="checkbox" class="styler" id="check-list16">
-                                    <label for="check-list16" class="check-list__text">L</label>
-                                </li>
-                                <li class="check-list__item">
-                                    <input type="checkbox" class="styler" id="check-list17">
-                                    <label for="check-list17" class="check-list__text">XL</label>
-                                </li>
-                                <li class="check-list__item">
-                                    <input type="checkbox" class="styler" id="check-list18">
-                                    <label for="check-list18" class="check-list__text">XXL</label>
-                                </li>
+						</div>
+						
+                        <div class="accordion__body" id="size-filter">
+                            <ul class="check-list check-list--column ">
+							<?php
+                                /*@var \app\models\ShirtSize $psModel */
+                                $psModel = \yii::$app->get('shirtSize');
+                                foreach ($psModel::find()->orderBy('norder', 'asc')->all() as $item) {
+                                    ?>
+                                    <li class="check-list__item">
+                                        <input type="checkbox" class="styler" id="check-list_<?php echo $item->id ?>" value="<?php echo $item->id ?>">
+                                        <label for="check-list_<?php echo $item->id ?>"
+                                               class="check-list__text"><?php echo $item->name ?></label>
+                                    </li>
+                                    <?php
+                                }
+                                
+                                ?>
+                               
 
 
                             </ul>

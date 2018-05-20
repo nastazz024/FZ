@@ -1,9 +1,11 @@
 $(function () {
     'use strict';
     var $filters = $('#colors-filter');
+    var $filter = $('#size-filter');
     var $container = $('div.content');
     var $cart = $('#cart-container');
     var $items = $filters.find('input[type="checkbox"]');
+    var $items_ = $filter.find('input[type="checkbox"]'); /// bad naming
   
 
     var loadPr = function () {
@@ -16,9 +18,14 @@ $(function () {
         });
         payload.colors = colors;
 
+
         // todo filter by size
-
-
+        var size = [];
+        $.each($filter.find('input[type="checkbox"]:checked'), function(pos, el) {
+            size.push($(el).val());
+        });
+        payload.size = size;
+        
         payload.cost = {};
         payload.cost.min = $("#slider-range").slider("values", 0);
         payload.cost.max = $("#slider-range").slider("values", 1);
@@ -65,7 +72,20 @@ $(function () {
         });
     }
 
+   /* var delShirt = function(id){
+        
+        var payload = {};
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
 
+        payload.id = id;
+       
+
+        $.delete('/cart/add', payload, function(resp) {
+            $cart.html(resp);
+        });
+    }
+*/
 
     // переключение вида списка
     $('.filter-list__item a').on('click', function(ev) {
@@ -87,12 +107,10 @@ $(function () {
     });
 
     $items.on('change', loadPr);
+    $items_.on('change', loadPr);
 
     loadPr();
     loadCart();
 
-    
-   
-          
-
+  
 });

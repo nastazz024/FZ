@@ -66,6 +66,11 @@ $(function(){
 			});
 		}*/
 
+		
+		
+
+   
+   
 		$('.menu__sort').click(function (ev) {
 			$('.menu__sort').removeClass('active');
 			$(this).addClass('active');
@@ -73,12 +78,25 @@ $(function(){
 			$('.arrow-down',this).toggleClass('gray');
 		});    
 		
-		
 	
 });
 
    
+$(function(){
 
+	// скролл в корзине после 3 товара start 
+	if ($('.cart-list').children().length >3) {
+		var heightCart1 = $('.cart-list__item:nth-child(1)').outerHeight();
+		var heightCart2 = $('.cart-list__item:nth-child(2)').outerHeight();
+		var heightCart3 = $('.cart-list__item:nth-child(3)').outerHeight();
+		var height = heightCart1 + heightCart2 + heightCart3;
+		$('.scroll-content').css('height', height); // высота окна скролла всегда будет равна высоте первых трех товаров
+		$('.scroll-content').customScroll(); // инициализации скролла
+	}
+	// скролл в корзине end
+	// Класс cart-scroll в html и весь его css можно удалить. В html должно остаться <ul class="cart-list scroll-content">
+
+});
 
 
    

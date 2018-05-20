@@ -24,7 +24,7 @@
             <option value="">L</option>
             <option value="">M</option>
         </select>
-        <a href="#" class="btn add-cart-item" data-id='.$product->id.'>Заказать</a>
+        <a href="#" class="btn add-cart-item" data-id='.$product->id.'>В корзину</a>
         <br>
 
     </div>
@@ -45,7 +45,7 @@ else { echo '
 												<option value="">XL</option>
 												<option value="">XXL</option>
 											</select>
-											<a href="#" class="btn add-cart-item" data-id='.$product->id.' >Заказать</a>
+											<a href="#" class="btn add-cart-item" data-id='.$product->id.' >В корзину</a>
 											</div>
 										</div>
 										<div class="product__footer">

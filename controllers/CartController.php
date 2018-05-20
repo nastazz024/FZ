@@ -101,12 +101,13 @@ class CartController extends Controller
         $qty = 1;
         $size = 'X';
 
-        $key =  $id . $type . '.' . $qty . '.' . $size;
+        $key = $type .  $id . '.' . $size;
         if (!isset($list[$key])) {
             $list[$key] = [
-                'type' => 'shirt',
+                'type' => $type,
                 'id' => $id,
                 'qty' => 1,
+                'size' => $size,
             ];
         } else {
             $list[$key]['qty']++;
