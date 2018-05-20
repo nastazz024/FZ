@@ -91,6 +91,8 @@ $(function () {
     loadPr();
     loadCart();
 
-        
+    
+   
+          
 
 });

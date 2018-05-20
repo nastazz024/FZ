@@ -1,3 +1,4 @@
+
 <?php
 
 $total = 0;
@@ -47,7 +48,6 @@ $total = 0;
 						</div>
 					</div>
 				</div>
-<?php
 
 
 

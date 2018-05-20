@@ -19,7 +19,7 @@
     </div>
     <div class="product__card">
         <select class="styler jq-selectbox__select">
-            <option value="">size</option>
+            <option value="">Размер</option>
             <option value="">S</option>
             <option value="">L</option>
             <option value="">M</option>

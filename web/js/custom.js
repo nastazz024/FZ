@@ -1,5 +1,6 @@
 $(function(){
 
+
 	$('.tabs a').click(function(){
 		$(this).parents('.tab-wrap').find('.tab-cont').addClass('hide');
 		$(this).parent().siblings().removeClass('active');
@@ -71,7 +72,9 @@ $(function(){
 			$('.arrow-up', this).toggleClass('blue'); 
 			$('.arrow-down',this).toggleClass('gray');
 		});    
-
+		
+		
+	
 });
 
    
