@@ -99,11 +99,10 @@ class SiteController extends Controller
         }
 
         $rSize = $this->sanitizeIds($request->post('size'));
+        $query->join('inner join', 'shirt_count', 'shirt.id = shirt_count.shirt_id');
+        $query->andWhere('shirt_count.count > 0');
         if (!empty($rSize)) {
-            // $query->andWhere(['in', 'size', $rSize]);
-            $query->join('inner join', 'shirt_count', 'shirt.id = shirt_count.shirt_id');
             $query->andWhere(['in', 'shirt_count.shirt_size_id', $rSize]);
-            $query->andWhere('shirt_count.count > 0');
         }
 
 
@@ -118,6 +117,8 @@ class SiteController extends Controller
             }
             $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
         }
+
+        // todo add filter by category  ("cat" parameter)
 
 
         $sort = [];

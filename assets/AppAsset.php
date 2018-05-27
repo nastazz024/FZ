@@ -38,7 +38,7 @@ class AppAsset extends AssetBundle
         
         "js/jquery-3.2.1.min.js",
         "https://code.jquery.com/ui/1.12.1/jquery-ui.js",
-        "js/jquery.custom-scroll.min",
+        "js/jquery.custom-scroll.min.js",
 		"js/jquery.formstyler.min.js",
         "js/custom.js",
         "js/catalog.js",

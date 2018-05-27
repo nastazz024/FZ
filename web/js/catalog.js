@@ -39,9 +39,9 @@ $(function () {
             field: $('.menu__sort.active').data('type'), 
             dir: $('.menu__sort.active').find('.arrow-down.gray').length ? 'desc' : 'asc'
         };
-        
-        //arrow-down gray
 
+        payload.cat = getUrlParameter('cat');
+        
 
         var csrfParam = yii.getCsrfParam();
         payload[csrfParam] = yii.getCsrfToken();
@@ -57,7 +57,7 @@ $(function () {
         $.post('/cart', payload, function(resp) {
             $cart.html(resp);
         });
-    }
+    };
 
     var addShirt = function(id, size) {
         var payload = {};
@@ -70,22 +70,22 @@ $(function () {
         $.post('/cart/add', payload, function(resp) {
             $cart.html(resp);
         });
-    }
+    };
 
-   /* var delShirt = function(id){
+    var delShirt = function(id, size) {
         
         var payload = {};
         var csrfParam = yii.getCsrfParam();
         payload[csrfParam] = yii.getCsrfToken();
 
         payload.id = id;
-       
+        // todo add size
 
-        $.delete('/cart/add', payload, function(resp) {
+        $.post('/cart/del', payload, function(resp) {
             $cart.html(resp);
         });
     }
-*/
+
 
     // переключение вида списка
     $('.filter-list__item a').on('click', function(ev) {
@@ -99,7 +99,7 @@ $(function () {
 
     $container.on('click', '.add-cart-item', function(ev) {
         ev.preventDefault();
-        addShirt($(ev.target).data('id'), 'X');
+        addShirt($(ev.target).data('id'), 1); /// todo
     });
 
     $('.menu__sort').click(function (ev) {

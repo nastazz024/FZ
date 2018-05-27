@@ -64,7 +64,6 @@ $config = [
         'productCategory' => [
             'class' => 'app\Models\ProductCategory'
         ],
-
     ],
     'params' => $params,
 ];

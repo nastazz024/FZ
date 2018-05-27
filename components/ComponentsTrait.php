@@ -24,6 +24,15 @@ trait ComponentsTrait
     }
 
     /**
+     * @return \app\models\ShirtSize
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShirtSizeModel()
+    {
+        return \yii::$app->get('shirtSize');
+    }
+
+    /**
      * @return \app\models\ProductCategory
      * @throws \yii\base\InvalidConfigException
      */
@@ -41,6 +50,21 @@ trait ComponentsTrait
         $list = [];
 
         foreach (self::getProductColorModel()->find()->orderBy('color')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\ShirtSize[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getSizes()
+    {
+        $list = [];
+
+        foreach (self::getShirtSizeModel()->find()->orderBy('norder')->all() as $item) {
             $list[$item->id] = $item;
         }
 
