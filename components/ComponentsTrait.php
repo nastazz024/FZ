@@ -18,9 +18,9 @@ trait ComponentsTrait
      * @return \app\models\ProductColor
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getProductColorModel()
+    public static function getShirtColorModel()
     {
-        return \yii::$app->get('productColor');
+        return \yii::$app->get('shirtColor');
     }
 
     /**
@@ -36,20 +36,20 @@ trait ComponentsTrait
      * @return \app\models\ProductCategory
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getProductCategoryModel()
+    public static function getShirtCategoryModel()
     {
-        return \yii::$app->get('productCategory');
+        return \yii::$app->get('shirtCategory');
     }
 
     /**
-     * @return \app\models\ProductColor[]
+     * @return \app\models\ShirtColor[]
      * @throws \yii\base\InvalidConfigException
      */
     public static function getColors()
     {
         $list = [];
 
-        foreach (self::getProductColorModel()->find()->orderBy('color')->all() as $item) {
+        foreach (self::getShirtColorModel()->find()->orderBy('color')->all() as $item) {
             $list[$item->id] = $item;
         }
 
@@ -79,7 +79,7 @@ trait ComponentsTrait
     {
         $list = [];
 
-        foreach (self::getProductCategoryModel()->find()->orderBy('category')->all() as $item) {
+        foreach (self::getShirtCategoryModel()->find()->orderBy('category')->all() as $item) {
             $list[$item->id] = $item;
         }
 

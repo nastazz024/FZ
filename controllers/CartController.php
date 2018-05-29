@@ -147,7 +147,7 @@ class CartController extends Controller
     // $list = $session['list'];   $key = $type .  $id . '.' . $size;   unset($list[$key]);
     // $session['list'] = $list;
     //  return $this->actionIndex();
-    public function actionDel()
+    /*public function actionDel()
     {
         $request = \yii::$app->request;
 
@@ -161,16 +161,21 @@ class CartController extends Controller
         }
         $list = $session['list'];
 
-        $id = $request->post('id');
-        $type = 'shirt';
-        $qty = 1;
-        $size = 'X';
+        $id = $request->post('id')
+        $type = 'shirt'; // todo
+        $qty = 1; // todo
+        $size = 1; // todo
 
-        $key = $type . $id . '.' . $size;
+        $key = $type . $id . $qty . $size;
         unset($list[$key]);
+        $list[$key] = [
+            'type' => $type,
+            'id' => $id,
+            'qty' => $qty,
+            'size' => $size];
 
         $session['list'] = $list;
 
         return $this->actionIndex();
-    }
+    }*/
 }

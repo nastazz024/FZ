@@ -55,14 +55,14 @@ $config = [
         'shirt' => [
             'class' => 'app\Models\Shirt'
         ],
-        'productColor' => [
-            'class' => 'app\Models\ProductColor'
+        'shirtColor' => [
+            'class' => 'app\Models\ShirtColor'
         ],
         'shirtSize' => [
             'class' => 'app\Models\ShirtSize'
         ],
-        'productCategory' => [
-            'class' => 'app\Models\ProductCategory'
+        'shirtCategory' => [
+            'class' => 'app\Models\ShirtCategory'
         ],
     ],
     'params' => $params,

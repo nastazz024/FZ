@@ -27,9 +27,9 @@ $total = 0;
                                 continue; /// todo remove
                             }
                             $shirt = $shirts[$item['id']];
-                            $size = $sizes[(int)$item['size']];
+							$size = $sizes[(int)$item['size']];
+                            $color = $colors[(int)$item['color']];
                             // $colors
-
                             ?>
 							<li class="cart-list__item">
 								<div class="cart-list__img">
@@ -41,7 +41,7 @@ $total = 0;
 										<span class="price"><?php echo $shirt->price ?> Br</span>
 										<span class="product__details">
 											<span><?php echo $size->name ?></span> •
-											<span>Голубой</span> • 
+											<span><?php echo $color->color ?></span> • 
 											<span><?php echo $item['qty'] ?> шт.</span>
 										</span>
 									</div>

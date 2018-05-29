@@ -318,8 +318,8 @@ AppAsset::register($this);
                                 </li>-->
 
                                 <?php
-                                /** @var \app\models\ProductColor $pcModel */
-                                $pcModel = \yii::$app->get('productColor');
+                                /** @var \app\models\ShirtColor $pcModel */
+                                $pcModel = \yii::$app->get('shirtColor');
                                 foreach ($pcModel::find()->orderBy('color')->all() as $item) {
                                     ?>
                                     <li class="check-list__item">
