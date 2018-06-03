@@ -12,7 +12,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Products;
 
-class SiteController extends Controller
+class ProductController extends Controller
 {
     use ComponentsTrait;
 
@@ -59,39 +59,17 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex()
-    {
-        $request = \yii::$app->request;
-        $this->layout = $request->get('layout');
-        return $this->render('index');
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
-
-   /* public function actionShirt()
+    public function actionShirts()
     {
         $request = \yii::$app->request;
 
         $colors = self::getColors();
-        
+
         $categories = self::getCategories();
 
-        $productModel = self::getShirtModel();
+        $shirtModel = self::getShirtModel();
 
-        $query = $productModel::find();
+        $query = $shirtModel::find();
         $query->where('1=1');
 
         $rColors = $this->sanitizeIds($request->post('colors'));
@@ -134,17 +112,82 @@ class SiteController extends Controller
         }
         $query->orderby($sort);
 
-        // print_r($query->createCommand()->getRawSql());  
+        // print_r($query->createCommand()->getRawSql());
 
         $products = $query->all();
-        
-               
-        return $this->renderPartial('_products', [
-            'products' => $products, 
-            'colors' => $colors, 
+
+
+        return $this->renderAjax('//product/_shirts', [
+            'shirts' => $products,
+            'colors' => $colors,
             'categories' => $categories,
             'view' => $request->post('view', 'grid'),
         ]);
-    }*/
+    }
+
+    public function actionShirt()
+    {
+        $request = \yii::$app->request;
+
+        $colors = self::getColors();
+
+        $categories = self::getCategories();
+
+        $shirtModel = self::getShirtModel();
+
+        $shirt = $shirtModel::findOne($request->get('id'));
+
+        $this->layout = 'catalog';
+        return $this->render('//product/shirt-details', [
+            'shirt' => $shirt,
+            'colors' => $colors,
+            'categories' => $categories,
+        ]);
+    }
+
+
+    public function actionRackets()
+    {
+        $request = \yii::$app->request;
+
+        $racketModel = self::getRacketModel();
+
+        $query = $racketModel::find();
+        $query->where('1=1');
+
+
+        $rCost = $this->sanitizeIds($request->post('cost'));
+        if (!empty($rCost['min']) || !empty($rCost['max'])) {
+            if (!isset($rCost['min'])) {
+                $rCost['min'] = 0;
+            }
+            if (!isset($rCost['max'])) {
+                $rCost['max'] = PHP_INT_MAX;
+            }
+            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        }
+
+        $sort = [];
+        $rSort = $request->post('sort');
+        if ($rSort && is_array($rSort) && !empty($rSort['field']) && isset($rSort['dir'])) {
+            /// todo check values
+            // format "<field> <asc|desc>"
+            $sort[$rSort['field']] = (strtolower($rSort['dir']) == 'asc' ? SORT_ASC : SORT_DESC);
+        }
+        if (!isset($sort['name'])) {
+            $sort['name'] = 'asc';
+        }
+        $query->orderby($sort);
+
+        // print_r($query->createCommand()->getRawSql());
+
+        $products = $query->all();
+
+
+        return $this->renderAjax('//product/_rackets', [
+            'rackets' => $products,
+            'view' => $request->post('view', 'grid'),
+        ]);
+    }
 
 }

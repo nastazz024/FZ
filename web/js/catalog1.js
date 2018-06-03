@@ -28,7 +28,7 @@ $(function () {
             size.push($(el).val());
         });
         payload.size = size;
-
+        
         payload.cost = {};
         payload.cost.min = $("#slider-range").slider("values", 0);
         payload.cost.max = $("#slider-range").slider("values", 1);
@@ -39,16 +39,16 @@ $(function () {
 
         /// сортировка
         payload.sort = {
-            field: $('.menu__sort.active').data('type'),
+            field: $('.menu__sort.active').data('type'), 
             dir: $('.menu__sort.active').find('.arrow-down.gray').length ? 'desc' : 'asc'
         };
 
         payload.cat = getUrlParameter('cat');
-
+        
 
         var csrfParam = yii.getCsrfParam();
         payload[csrfParam] = yii.getCsrfToken();
-        $.post('/product/shirts', payload, function(resp) {
+        $.post('/product/shirt', payload, function(resp) {
             $container.html(resp);
         });
     };
@@ -69,7 +69,7 @@ $(function () {
 
         var csrfParam = yii.getCsrfParam();
         payload[csrfParam] = yii.getCsrfToken();
-        $.post('/product/rackets', payload, function(resp) {
+        $.post('/product/racket', payload, function(resp) {
             $container.html(resp);
         });
     };
@@ -90,37 +90,25 @@ $(function () {
 
         payload.id = id;
         payload.size = size;
-        payload.type = 'shirt';
 
         $.post('/cart/add', payload, function(resp) {
             $cart.html(resp);
         });
     };
 
-    var addRacket = function(id) {
+    var delShirt = function(id, size) {
+        
         var payload = {};
         var csrfParam = yii.getCsrfParam();
         payload[csrfParam] = yii.getCsrfToken();
 
         payload.id = id;
-        payload.type = 'racket';
-
-        $.post('/cart/add', payload, function(resp) {
-            $cart.html(resp);
-        });
-    };
-
-    var delItem = function(key) {
-        var payload = {};
-        var csrfParam = yii.getCsrfParam();
-        payload[csrfParam] = yii.getCsrfToken();
-
-        payload.key = key;
+        // todo add size
 
         $.post('/cart/del', payload, function(resp) {
             $cart.html(resp);
         });
-    };
+    }
 
 
     var loadFn = function() {console.error('unknown kind')};
@@ -153,22 +141,9 @@ $(function () {
         loadFn();
     });
 
-    $container.on('click', '.add-cart-item.shirt', function(ev) {
+    $container.on('click', '.add-cart-item', function(ev) {
         ev.preventDefault();
-        addShirt($(ev.target).data('id'), 1);
-        loadCart();
-    });
-
-    $container.on('click', '.add-cart-item.racket', function(ev) {
-        ev.preventDefault();
-        addRacket($(ev.target).data('id'));
-        // loadCart();
-    });
-
-    $cart.on('click', '.js-remove-cart', function(ev) {
-        ev.preventDefault();
-        delItem($(ev.target).closest('a').data('key'));
-        // loadCart();
+        addShirt($(ev.target).data('id'), 1); /// todo
     });
 
     $('.menu__sort').click(function () {

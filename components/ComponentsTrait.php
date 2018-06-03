@@ -6,7 +6,7 @@ trait ComponentsTrait
 {
 
     /**
-     * @return \app\models\Shirt
+     * @return \app\models\Shirt|object
      * @throws \yii\base\InvalidConfigException
      */
     public static function getShirtModel()
@@ -15,7 +15,7 @@ trait ComponentsTrait
     }
 
     /**
-     * @return \app\models\ProductColor
+     * @return \app\models\ShirtColor|object
      * @throws \yii\base\InvalidConfigException
      */
     public static function getShirtColorModel()
@@ -24,7 +24,7 @@ trait ComponentsTrait
     }
 
     /**
-     * @return \app\models\ShirtSize
+     * @return \app\models\ShirtSize|object
      * @throws \yii\base\InvalidConfigException
      */
     public static function getShirtSizeModel()
@@ -33,7 +33,16 @@ trait ComponentsTrait
     }
 
     /**
-     * @return \app\models\ProductCategory
+     * @return \app\models\Racket|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getRacketModel()
+    {
+        return \yii::$app->get('racket');
+    }
+
+    /**
+     * @return \app\models\ShirtCategory|object
      * @throws \yii\base\InvalidConfigException
      */
     public static function getShirtCategoryModel()
@@ -72,7 +81,7 @@ trait ComponentsTrait
     }
 
     /**
-     * @return \app\models\ProductCategory[]
+     * @return \app\models\ShirtCategory[]
      * @throws \yii\base\InvalidConfigException
      */
     public static function getCategories()
@@ -86,4 +95,23 @@ trait ComponentsTrait
         return $list;
     }
 
+
+    /**
+     * @param array $ids
+     * @return array
+     */
+    public static function sanitizeIds($ids)
+    {
+        if (!is_array($ids)) {
+            return [];
+        }
+
+        array_walk($ids, function(&$v) {
+            $v = (int)$v;
+        });
+
+        $ids = array_filter($ids);
+
+        return $ids;
+    }
 }

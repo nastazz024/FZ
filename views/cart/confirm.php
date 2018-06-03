@@ -10,15 +10,6 @@ $total = 0;
 ?>
 
 
-<a href="#" class="profile-menu__link">
-					<span class="basket">
-						<span class="icon-bag"></span>
-						<span class="badge"><?php echo count($items); ?></span>
-					</span>
-					<span class="b-price">165 руб.</span>
-				</a>
-				<div class="dropdown-content">
-					<div class="cart">
 						<ul class="cart-list scroll-content">
                         <?php 
                         foreach ($items as $key => $item) { ?>
@@ -46,15 +37,10 @@ $total = 0;
 
                          } ?>
 						</ul>
-						<div class="cart-footer">
-							<span class="total">Итого</span>
-							<span class="price">210 руб.</span>
+
+
+
 							<a href="#" class="btn">Оформить</a>
-						</div>
-					</div>
-				</div>
-
-
 
 
 

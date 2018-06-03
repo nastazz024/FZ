@@ -43,13 +43,30 @@ $config = [
             ],
         ],
         'db' => $db,
-        
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'enableStrictParsing' => false,
             'rules' => [
+                [
+                    'pattern' => 'catalog/<layout:\w+>/<kind:\w+>',
+                    'route' => 'site/index',
+                    'defaults' => ['layout' => 'shirt', 'kind' => 'man'],
+                ],
+                [
+                    'pattern' => 'details/<action:\w+>/<id:\d+>',
+                    'route' => 'product/<action>',
+                    'defaults' => [],
+                ],
+                [
+                    'pattern' => '',
+                    'route' => 'site/index',
+                    'defaults' => ['layout' => 'shirt', 'kind' => 'man'],
+                ],
             ],
         ],
+
 
 
         'shirt' => [
@@ -63,6 +80,10 @@ $config = [
         ],
         'shirtCategory' => [
             'class' => 'app\Models\ShirtCategory'
+        ],
+
+        'racket' => [
+            'class' => 'app\Models\Racket'
         ],
     ],
     'params' => $params,
