@@ -1,4 +1,4 @@
-
+!!!
 <?php
 
 $total = 0;
@@ -26,6 +26,15 @@ $total = 0;
                                     break;
 
                                 case 'racket':
+                                    echo $this->render('_racket', [
+                                        'racket' => $rackets[$item['id']],
+                                        'item' => $item,
+                                        'key' => $key,
+                                    ]);
+                                    break;
+
+                                case 'shoes': /// TODO
+                                      break;
                                     echo $this->render('_racket', [
                                         'racket' => $rackets[$item['id']],
                                         'item' => $item,

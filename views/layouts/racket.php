@@ -51,7 +51,78 @@
 
     <div class="box-main">
         <aside class="sidebar">
-            todo
+            <div class="accordion">
+                <div class="accordion__head open">
+                    <h5 class="accordion__title">Баланс</h5>
+                    <span class="icon-minus"></span>
+                </div>
+                <div class="accordion__body">
+                    <ul class="check-list" id="colors-filter">
+                        <!--<li class="check-list__item">
+                            <input type="checkbox" class="styler" id="check-list1">
+                            <label for="check-list1" class="check-list__text">Черный</label>
+                        </li>-->
+
+                        <?php
+                        /*@var \app\models\racketBalance $psModel */
+                        $psModel = \yii::$app->get('racketBalance');
+                        foreach ($psModel::find()->orderBy('norder', 'asc')->all() as $item) {
+                            ?>
+                            <li class="check-list__item">
+                                <input type="checkbox" class="styler" id="check-list<?php echo $item->id ?>"
+                                       value="<?php echo $item->id ?>">
+                                <label for="check-list<?php echo $item->id ?>"
+                                       class="check-list__text"><?php echo $item->balance ?></label>
+                            </li>
+                            <?php
+                        }
+                        ?>
+
+
+                    </ul>
+
+                </div>
+
+                <div class="accordion__head">
+                    <h5 class="accordion__title">Жесткость</h5>
+                    <span class="icon-minus"></span>
+                </div>
+
+                <div class="accordion__body" id="size-filter">
+                    <ul class="check-list check-list--column ">
+                        <?php
+                        /*@var \app\models\RacketWeight $psModel */
+                        $psModel = \yii::$app->get('racketWeight');
+                        foreach ($psModel::find()->orderBy('norder', 'asc')->all() as $item) {
+                            ?>
+                            <li class="check-list__item">
+                                <input type="checkbox" class="styler" id="check-list_<?php echo $item->id ?>"
+                                       value="<?php echo $item->id ?>">
+                                <label for="check-list_<?php echo $item->id ?>"
+                                       class="check-list__text"><?php echo $item->name ?></label>
+                            </li>
+                            <?php
+                        }
+
+                        ?>
+
+
+                    </ul>
+                </div>
+                <div class="accordion__head">
+                    <h5 class="accordion__title">Цена</h5>
+                    <span class="icon-minus"></span>
+                </div>
+                <div class="accordion__body" style="display: none;">
+
+                    <div id="slider-range"></div>
+                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="text" id="amount1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+
+                </div>
+
+
+            </div>
         </aside>
         <div class="content">
 

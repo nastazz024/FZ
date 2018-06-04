@@ -60,6 +60,8 @@ $(function () {
         //вид
         payload.view = $('.filter-list__item.active a').data('type');
 
+        //
+
         /// сортировка
         payload.sort = {
             field: $('.menu__sort.active').data('type'),
@@ -73,6 +75,30 @@ $(function () {
             $container.html(resp);
         });
     };
+
+    var loadShoes = function () {
+        var payload = {};
+
+        // сбор данных фильтра
+        //вид
+        payload.view = $('.filter-list__item.active a').data('type');
+
+        //
+
+        /// сортировка
+        payload.sort = {
+            field: $('.menu__sort.active').data('type'),
+            dir: $('.menu__sort.active').find('.arrow-down.gray').length ? 'desc' : 'asc'
+        };
+
+
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
+        $.post('/product/shoeses', payload, function(resp) {
+            $container.html(resp);
+        });
+    };
+
 
     var loadCart = function() {
         var payload = {};
@@ -110,6 +136,19 @@ $(function () {
         });
     };
 
+    var addShoes = function(id) {
+        var payload = {};
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
+
+        payload.id = id;
+        payload.type = 'shoes';
+
+        $.post('/cart/add', payload, function(resp) {
+            $cart.html(resp);
+        });
+    };
+
     var delItem = function(key) {
         var payload = {};
         var csrfParam = yii.getCsrfParam();
@@ -124,21 +163,42 @@ $(function () {
 
 
     var loadFn = function() {console.error('unknown kind')};
+    /// init catalog page
     switch (_layout) {
         case 'shirt':
             var $colorFiltersContainer = $('#colors-filter');
             var $sizeFiltersContainer = $('#size-filter');
             var $colorItems = $colorFiltersContainer.find('input[type="checkbox"]');
-            var $sizeItems = $sizeFiltersContainer.find('input[type="checkbox"]'); /// bad naming
+            var $sizeItems = $sizeFiltersContainer.find('input[type="checkbox"]');
+
+            loadFn = loadShirts;
 
             $colorItems.on('change', loadFn);
             $sizeItems.on('change', loadFn);
-
-            loadFn = loadShirts;
             break;
 
         case 'racket':
+            var $colorFiltersContainer = $('#colors-filter');
+            var $sizeFiltersContainer = $('#size-filter');
+            var $colorItems = $colorFiltersContainer.find('input[type="checkbox"]');
+            var $sizeItems = $sizeFiltersContainer.find('input[type="checkbox"]'); /// bad naming
+
             loadFn = loadRackets;
+
+            $colorItems.on('change', loadFn);
+            $sizeItems.on('change', loadFn);
+            break;
+
+        case 'shoes':
+ /*           var $colorFiltersContainer = $('#colors-filter');
+            var $sizeFiltersContainer = $('#size-filter');
+            var $colorItems = $colorFiltersContainer.find('input[type="checkbox"]');
+            var $sizeItems = $sizeFiltersContainer.find('input[type="checkbox"]'); /// bad naming*/
+
+            loadFn = loadShoes;
+
+            // $colorItems.on('change', loadFn);
+            // $sizeItems.on('change', loadFn);
             break;
     }
 
@@ -156,13 +216,16 @@ $(function () {
     $container.on('click', '.add-cart-item.shirt', function(ev) {
         ev.preventDefault();
         addShirt($(ev.target).data('id'), 1);
-        loadCart();
     });
 
     $container.on('click', '.add-cart-item.racket', function(ev) {
         ev.preventDefault();
         addRacket($(ev.target).data('id'));
-        // loadCart();
+    });
+
+    $container.on('click', '.add-cart-item.shoes', function(ev) {
+        ev.preventDefault();
+        addShoes($(ev.target).data('id'));
     });
 
     $cart.on('click', '.js-remove-cart', function(ev) {

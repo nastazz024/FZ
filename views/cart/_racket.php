@@ -9,7 +9,7 @@
         <a href="#"><img src="/img/<?php echo $racket->image?>" alt=""></a>
     </div>
     <div class="cart-list__info">
-        <h6 class="product__title"><a href="#"><b><?php echo $racket->name ?></b>!!!!!!!</a></h6>
+        <h6 class="product__title"><a href="#"><?php echo $racket->name ?></a></h6>
         <div class="cart-list__details">
             <span class="price"><?php echo $racket->price ?> Br</span>
             <span class="product__details">

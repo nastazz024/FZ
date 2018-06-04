@@ -46,7 +46,7 @@ AppAsset::register($this);
 					<h4 class="dropdown-content__title">Мужское</h4>
 					<ul class="dropdown-menu">
 						<li class="dropdown-menu__item">
-							<a href="catalog.php" class="dropdown-menu__link">Майки</a>
+							<a href="#" class="dropdown-menu__link">Майки</a>
 						</li>
 						<li class="dropdown-menu__item">
 							<a href="#" class="dropdown-menu__link">Шорты и брюки</a>
@@ -183,7 +183,7 @@ AppAsset::register($this);
 				<div class="dropdown-content">
 					<ul class="dropdown-menu">
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Мужская</a>
+							<a href="/catalog/shoes" class="dropdown-menu__link">Мужская</a>
 						</li>
 						<li class="dropdown-menu__item">
 							<a href="#" class="dropdown-menu__link">Женская</a>

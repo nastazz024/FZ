@@ -42,12 +42,31 @@ trait ComponentsTrait
     }
 
     /**
+     * @return \app\models\Racket|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShoesModel()
+    {
+        return \yii::$app->get('shoes');
+    }
+
+
+    /**
      * @return \app\models\ShirtCategory|object
      * @throws \yii\base\InvalidConfigException
      */
     public static function getShirtCategoryModel()
     {
         return \yii::$app->get('shirtCategory');
+    }
+
+    /**
+     * @return \app\models\ShirtCategory|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShoeCategoryModel()
+    {
+        return \yii::$app->get('shoeCategory');
     }
 
     /**
@@ -84,11 +103,26 @@ trait ComponentsTrait
      * @return \app\models\ShirtCategory[]
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getCategories()
+    public static function getShirtCategories()
     {
         $list = [];
 
         foreach (self::getShirtCategoryModel()->find()->orderBy('category')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\ShirtCategory[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShoeCategories()
+    {
+        $list = [];
+
+        foreach (self::getShoeCategoryModel()->find()->orderBy('category')->all() as $item) {
             $list[$item->id] = $item;
         }
 

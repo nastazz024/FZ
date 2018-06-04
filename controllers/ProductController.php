@@ -65,7 +65,7 @@ class ProductController extends Controller
 
         $colors = self::getColors();
 
-        $categories = self::getCategories();
+        $categories = self::getShirtCategories();
 
         $shirtModel = self::getShirtModel();
 
@@ -131,7 +131,7 @@ class ProductController extends Controller
 
         $colors = self::getColors();
 
-        $categories = self::getCategories();
+        $categories = self::getShirtCategories();
 
         $shirtModel = self::getShirtModel();
 
@@ -155,6 +155,7 @@ class ProductController extends Controller
         $query = $racketModel::find();
         $query->where('1=1');
 
+        // todo add filter
 
         $rCost = $this->sanitizeIds($request->post('cost'));
         if (!empty($rCost['min']) || !empty($rCost['max'])) {
@@ -190,4 +191,53 @@ class ProductController extends Controller
         ]);
     }
 
+
+    public function actionShoeses()
+    {
+        $request = \yii::$app->request;
+
+        $shoesModel = self::getShoesModel();
+
+
+
+        $categories = self::getShirtCategories();
+
+        $query = $shoesModel::find();
+        $query->where('1=1');
+
+
+        $rCost = $this->sanitizeIds($request->post('cost'));
+        if (!empty($rCost['min']) || !empty($rCost['max'])) {
+            if (!isset($rCost['min'])) {
+                $rCost['min'] = 0;
+            }
+            if (!isset($rCost['max'])) {
+                $rCost['max'] = PHP_INT_MAX;
+            }
+            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        }
+
+        $sort = [];
+        $rSort = $request->post('sort');
+        if ($rSort && is_array($rSort) && !empty($rSort['field']) && isset($rSort['dir'])) {
+            /// todo check values
+            // format "<field> <asc|desc>"
+            $sort[$rSort['field']] = (strtolower($rSort['dir']) == 'asc' ? SORT_ASC : SORT_DESC);
+        }
+        if (!isset($sort['name'])) {
+            $sort['name'] = 'asc';
+        }
+        $query->orderby($sort);
+
+        // print_r($query->createCommand()->getRawSql());
+
+        $products = $query->all();
+
+
+        return $this->renderAjax('//product/_shoeses', [
+            'shoeses' => $products,
+            'categories' => $categories,
+            'view' => $request->post('view', 'grid'),
+        ]);
+    }
 }

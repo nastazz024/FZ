@@ -69,7 +69,7 @@ class CartController extends Controller
         }
 
         $colors = self::getColors();
-        $categories = self::getCategories();
+        $categories = self::getShirtCategories();
         $sizes = self::getSizes();
 
         $shirts = $this->readObjects($shirtIds, self::getShirtModel());
@@ -102,6 +102,7 @@ class CartController extends Controller
 
         $shirtIds = [];
         $racketIds = [];
+        $shoesIds = [];
         foreach ($session['list'] as $item) {
             switch ($item['type']) {
                 case 'shirt':
@@ -111,15 +112,20 @@ class CartController extends Controller
                 case 'racket':
                     $racketIds[] = (int)$item['id'];
                     break;
+
+                case 'shoes':
+                    $shoesIds[] = (int)$item['id'];
+                    break;
             }
         }
 
         $colors = self::getColors();
-        $categories = self::getCategories();
+        $categories = self::getShirtCategories();
         $sizes = self::getSizes();
 
         $shirts = $this->readObjects($shirtIds, self::getShirtModel());
         $rackets = $this->readObjects($racketIds, self::getRacketModel());
+        $shoeses = $this->readObjects($shoesIds, self::getShoesModel());
 
 //        echo '<pre>'; print_r($session['list']); exit;
 
@@ -129,6 +135,7 @@ class CartController extends Controller
                 'items' => $session['list'],
                 'shirts' => $shirts,
                 'rackets' => $rackets,
+                'shoeses' => $shoeses,
                 'colors' => $colors,
                 'categories' => $categories,
                 'sizes' => $sizes,

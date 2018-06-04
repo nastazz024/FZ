@@ -42,6 +42,15 @@ $total = 0;
                                     ]);
                                     break;
 
+                                case 'shoes': // TODO
+                                              break;
+                                    echo $this->render('_racket', [
+                                        'racket' => $rackets[$item['id']],
+                                        'item' => $item,
+                                        'key' => $key,
+                                    ]);
+                                    break;
+
                             }
 
                          } ?>

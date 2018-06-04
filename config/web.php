@@ -85,6 +85,22 @@ $config = [
         'racket' => [
             'class' => 'app\Models\Racket'
         ],
+
+        'racketWeight' => [
+            'class' => 'app\Models\RacketWeight'
+        ],
+
+        'shoes' => [
+            'class' => 'app\Models\Shoes'
+        ],
+
+        'shoeCategory' => [
+            'class' => 'app\Models\ShoeCategory'
+        ],
+
+        'racketBalance' => [
+            'class' => 'app\Models\RacketBalance'
+        ],
     ],
     'params' => $params,
 ];
