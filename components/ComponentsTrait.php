@@ -4,7 +4,6 @@ namespace app\components;
 
 trait ComponentsTrait
 {
-
     /**
      * @return \app\models\Shirt|object
      * @throws \yii\base\InvalidConfigException
@@ -96,11 +95,26 @@ trait ComponentsTrait
      * @return \app\models\ShirtSize[]
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getSizes()
+    public static function getShirtSizes()
     {
         $list = [];
 
         foreach (self::getShirtSizeModel()->find()->orderBy('norder')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\ShirtSize[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getJacketSizes()
+    {
+        $list = [];
+
+        foreach (self::getJacketSizeModel()->find()->orderBy('norder')->all() as $item) {
             $list[$item->id] = $item;
         }
 
@@ -136,26 +150,6 @@ trait ComponentsTrait
 
         return $list;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -274,4 +268,78 @@ trait ComponentsTrait
 
         return $ids;
     }
+
+
+
+
+
+
+    /**
+     * @return \app\models\Jacket|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getJacketModel()
+    {
+        return \yii::$app->get('jacket');
+    }
+
+    /**
+     * @return \app\models\JacketColor|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getJacketColorModel()
+    {
+        return \yii::$app->get('jacketColor');
+    }
+
+    /**
+     * @return \app\models\JacketSize|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getJacketSizeModel()
+    {
+        return \yii::$app->get('jacketSize');
+    }
+
+
+    /**
+     * @return \app\models\ShirtCategory|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getJacketCategoryModel()
+    {
+        return \yii::$app->get('jacketCategory');
+    }
+
+    /**
+     * @return \app\models\ShirtColor[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getJacketColors()
+    {
+        $list = [];
+
+        foreach (self::getJacketColorModel()->find()->orderBy('color')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\JacketCategory[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getJacketCategories()
+    {
+        $list = [];
+
+        foreach (self::getJacketCategoryModel()->find()->orderBy('category')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+
 }

@@ -155,7 +155,7 @@ AppAsset::register($this);
 							<a href="/catalog/short/woman" class="dropdown-menu__link">Шорты, брюки, юбки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Куртки и толстовки</a>
+							<a href="/catalog/jacket/woman" class="dropdown-menu__link">Куртки и толстовки</a>
 						</li>
                         <li class="dropdown-menu__item">
                             <a href="#" class="dropdown-menu__link">Обувь</a>
@@ -177,7 +177,7 @@ AppAsset::register($this);
 							<a href="/catalog/short/man" class="dropdown-menu__link">Шорты и брюки</a>
 						</li>
                         <li class="dropdown-menu__item">
-                            <a href="#" class="dropdown-menu__link">Куртки и толстовки</a>
+                            <a href="/catalog/jacket/man" class="dropdown-menu__link">Куртки и толстовки</a>
                         </li>
                         <li class="dropdown-menu__item">
                             <a href="/catalog/shoes" class="dropdown-menu__link">Обувь</a>
@@ -197,7 +197,7 @@ AppAsset::register($this);
 							<a href="/catalog/short/kids" class="dropdown-menu__link">Шорты, брюки, юбки</a>
 						</li>
                         <li class="dropdown-menu__item">
-                            <a href="#" class="dropdown-menu__link">Куртки и толстовки</a>
+                            <a href="/catalog/jacket/kids" class="dropdown-menu__link">Куртки и толстовки</a>
                         </li>
                         <li class="dropdown-menu__item">
                             <a href="#" class="dropdown-menu__link">Обувь</a>

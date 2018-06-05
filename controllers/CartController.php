@@ -75,7 +75,6 @@ class CartController extends Controller
 
         $colors = self::getColors();
         $categories = self::getShirtCategories();
-        $sizes = self::getSizes();
         $categorie = self::getShortCategories();
 
         $shirts = $this->readObjects($shirtIds, self::getShirtModel());
@@ -91,7 +90,8 @@ class CartController extends Controller
                 'shorts' => $shorts,
                 'colors' => $colors,
                 'categories' => $categories,
-                'sizes' => $sizes,
+                'sizes' => self::getShirtSizes(), // remane to shirtSizes
+                'jacketSizes' => self::getJacketSizes(),
             ]
         );
     }
@@ -134,14 +134,14 @@ class CartController extends Controller
 
         $colors = self::getColors();
         $categories = self::getShirtCategories();
-        $sizes = self::getSizes();
+        $sizes = self::getShirtSizes();
         $categorie = self::getShortCategories();
 
         $shirts = $this->readObjects($shirtIds, self::getShirtModel());
         $shorts = $this->readObjects($shortIds, self::getShortModel());
         $rackets = $this->readObjects($racketIds, self::getRacketModel());
         $shoeses = $this->readObjects($shoesIds, self::getShoesModel());
-
+        $jackets = $this->readObjects($jacketIds, self::getJacketModel());
 //        echo '<pre>'; print_r($session['list']); exit;
 
         $this->layout = 'catalog';
@@ -151,6 +151,7 @@ class CartController extends Controller
                 'shirts' => $shirts,
                 'shorts' => $shorts,
                 'bags' => $bags,
+                'jackets' => $jackets,
                 'shuttles' => $shuttles,
                 'rackets' => $rackets,
                 'shoeses' => $shoeses,
@@ -252,6 +253,12 @@ class CartController extends Controller
 
         switch ($type) {
             case 'short':
+                $list[$key]['size'] = $size;
+                break;
+        }
+
+        switch ($type) {
+            case 'jacket':
                 $list[$key]['size'] = $size;
                 break;
         }

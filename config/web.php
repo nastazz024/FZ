@@ -124,6 +124,19 @@ $config = [
         'racketBalance' => [
             'class' => 'app\Models\RacketBalance'
         ],
+
+        'jacket' => [
+            'class' => 'app\Models\Jacket'
+        ],
+        'jacketColor' => [
+            'class' => 'app\Models\JacketColor'
+        ],
+        'jacketSize' => [
+            'class' => 'app\Models\JacketSize'
+        ],
+        'jacketCategory' => [
+            'class' => 'app\Models\JacketCategory'
+        ],
     ],
     'params' => $params,
 ];

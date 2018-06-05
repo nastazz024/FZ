@@ -11,7 +11,7 @@ class Short extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSizes()
+    public function getShirtSizes()
     {
         $model= self::getShortSizeModel();
         $query = $model::find();

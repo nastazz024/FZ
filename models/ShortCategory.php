@@ -4,6 +4,6 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class ShortCategory extends ActiveRecord
+class ShortCategory extends AbstractCategory
 {
 }

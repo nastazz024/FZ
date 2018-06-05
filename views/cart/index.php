@@ -42,8 +42,7 @@ $total = 0;
                                     ]);
                                     break;
 
-                                case 'shoes': // TODO
-                                              break;
+                                case 'shoes':
                                     echo $this->render('_shoes', [
                                         'shoes' => $shoeses[$item['id']],
                                         'size' => $sizes[(int)$item['size']],
@@ -52,8 +51,7 @@ $total = 0;
                                     ]);
                                     break;
 
-                                case 'shuttle': // TODO
-                                    break;
+                                case 'shuttle':
                                     echo $this->render('_shuttle', [
                                         'shuttle' => $shuttles[$item['id']],
                                         'item' => $item,
@@ -61,20 +59,18 @@ $total = 0;
                                     ]);
                                     break;
 
-                                case 'short': // TODO
-                                    break;
+                                case 'short':
                                     echo $this->render('_short', [
-                                        'short' => shorts[$item['id']],
+                                        'short' => $shorts[$item['id']],
                                         'size' => $sizes[(int)$item['size']],
                                         'item' => $item,
                                         'key' => $key,
                                     ]);
                                     break;
 
-                                case 'bag': // TODO
-                                    break;
+                                case 'bag':
                                     echo $this->render('_bag', [
-                                        'bag' => bags[$item['id']],
+                                        'bag' => $bags[$item['id']],
                                         'size' => $sizes[(int)$item['size']],
                                         'item' => $item,
                                         'key' => $key,
@@ -86,7 +82,7 @@ $total = 0;
 						</ul>
 						<div class="cart-footer">
 							<span class="total">Итого</span>
-							<span class="price">210 руб.</span>
+							<span class="price"><?php echo $total ?> руб.</span>
 							<a href="#" class="btn">Оформить</a>
 						</div>
 					</div>

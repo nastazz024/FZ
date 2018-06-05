@@ -3,7 +3,7 @@
 
 
     <span class="category"><?php echo \yii::$app->get('request')->get('kind') ?></span>
-    <h1 class="header-inner__title">ОДЕЖДА</h1>
+    <h1 class="header-inner__title">КУРТКИ И ТОЛСТОВКИ</h1>
 </section>
 <div class="tab-wrap">
     <div class="filter">
@@ -64,8 +64,8 @@
                         </li>-->
 
                         <?php
-                        /** @var \app\models\ShirtColor $pcModel */
-                        $pcModel = \yii::$app->get('shirtColor');
+                        /** @var \app\models\JacketColor $pcModel */
+                        $pcModel = \yii::$app->get('jacketColor');
                         foreach ($pcModel::find()->orderBy('color')->all() as $item) {
                             ?>
                             <li class="check-list__item">
@@ -91,10 +91,9 @@
                 <div class="accordion__body" id="size-filter">
                     <ul class="check-list check-list--column ">
                         <?php
-                        /*@var \app\models\ShirtSize $psModel */
-                        $psModel = \yii::$app->get('shirtSize');
+                        /*@var \app\models\JacketSize $psModel */
+                        $psModel = \yii::$app->get('jacketSize');
                         foreach ($psModel::find()->orderBy('norder', 'asc')->all() as $item) {
-                            // if $kind == 'man' && $item->name == 'XS'   continue;
                             ?>
                             <li class="check-list__item">
                                 <input type="checkbox" class="styler" id="check-list_<?php echo $item->id ?>"

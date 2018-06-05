@@ -4,6 +4,6 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class ShirtCategory extends AbstractCategory
+class JacketColor extends ActiveRecord
 {
 }

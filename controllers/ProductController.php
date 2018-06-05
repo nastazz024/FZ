@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\ComponentsTrait;
+use app\models\AbstractCategory;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -10,7 +11,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-use app\models\Products;
+
 
 class ProductController extends Controller
 {
@@ -71,6 +72,12 @@ class ProductController extends Controller
 
         $query = $shirtModel::find();
         $query->where('1=1');
+
+        $kind = AbstractCategory::getCategoryId($request->post('kind'));
+        if ($kind) {
+            $query->andWhere('category = ' . $kind);
+        }
+
 
         $rColors = $this->sanitizeIds($request->post('colors'));
         if (!empty($rColors)) {
@@ -158,6 +165,12 @@ class ProductController extends Controller
         $query = $shortModel::find();
         $query->where('1=1');
 
+        $kind = AbstractCategory::getCategoryId($request->post('kind'));
+        if ($kind) {
+            $query->andWhere('category = ' . $kind);
+        }
+
+
         $rColors = $this->sanitizeIds($request->post('colors'));
         if (!empty($rColors)) {
             $query->andWhere(['in', 'color', $rColors]);
@@ -223,7 +236,6 @@ class ProductController extends Controller
         $query = $racketModel::find();
         $query->where('1=1');
 
-        // todo add filter
 
         $rCost = $this->sanitizeIds($request->post('cost'));
         if (!empty($rCost['min']) || !empty($rCost['max'])) {
@@ -269,7 +281,6 @@ class ProductController extends Controller
         $query = $bagModel::find();
         $query->where('1=1');
 
-        // todo add filter
 
         $rCost = $this->sanitizeIds($request->post('cost'));
         if (!empty($rCost['min']) || !empty($rCost['max'])) {
@@ -312,6 +323,13 @@ class ProductController extends Controller
         $categories = self::getShirtCategories();
         $query = $shoesModel::find();
         $query->where('1=1');
+
+        $kind = AbstractCategory::getCategoryId($request->post('kind'));
+        if ($kind) {
+            $query->andWhere('category = ' . $kind);
+        }
+
+
         $rCost = $this->sanitizeIds($request->post('cost'));
         if (!empty($rCost['min']) || !empty($rCost['max'])) {
             if (!isset($rCost['min'])) {
@@ -383,6 +401,78 @@ class ProductController extends Controller
 
         return $this->renderAjax('//product/_shuttles', [
             'shuttles' => $products,
+            'view' => $request->post('view', 'grid'),
+        ]);
+    }
+
+
+    public function actionJackets()
+    {
+        $request = \yii::$app->request;
+
+        $colors = self::getColors();
+
+        $categories = self::getJacketCategories();
+
+        $jacketModel = self::getJacketModel();
+
+        $query = $jacketModel::find();
+        $query->where('1=1');
+
+        $kind = AbstractCategory::getCategoryId($request->post('kind'));
+        if ($kind) {
+            $query->andWhere('category = ' . $kind);
+        }
+
+        $rColors = $this->sanitizeIds($request->post('colors'));
+        if (!empty($rColors)) {
+            $query->andWhere(['in', 'color', $rColors]);
+        }
+
+        $rSize = $this->sanitizeIds($request->post('size'));
+        $query->join('inner join', 'jacket_count', 'jacket.id = jacket_count.jacket_id');
+        $query->andWhere('jacket_count.count > 0');
+        if (!empty($rSize)) {
+            $query->andWhere(['in', 'jacket_count.jacket_size_id', $rSize]);
+        }
+
+
+
+        $rCost = $this->sanitizeIds($request->post('cost'));
+        if (!empty($rCost['min']) || !empty($rCost['max'])) {
+            if (!isset($rCost['min'])) {
+                $rCost['min'] = 0;
+            }
+            if (!isset($rCost['max'])) {
+                $rCost['max'] = PHP_INT_MAX;
+            }
+            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        }
+
+        // todo add filter by category  ("cat" parameter)
+
+
+        $sort = [];
+        $rSort = $request->post('sort');
+        if ($rSort && is_array($rSort) && !empty($rSort['field']) && isset($rSort['dir'])) {
+            /// todo check values
+            // format "<field> <asc|desc>"
+            $sort[$rSort['field']] = (strtolower($rSort['dir']) == 'asc' ? SORT_ASC : SORT_DESC);
+        }
+        if (!isset($sort['name'])) {
+            $sort['name'] = 'asc';
+        }
+        $query->orderby($sort);
+
+        // print_r($query->createCommand()->getRawSql());
+
+        $products = $query->all();
+
+
+        return $this->renderAjax('//product/_jackets', [
+            'jackets' => $products,
+            'colors' => $colors,
+            'categories' => $categories,
             'view' => $request->post('view', 'grid'),
         ]);
     }
