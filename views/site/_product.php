@@ -24,6 +24,7 @@
             <option value="">L</option>
             <option value="">M</option>
         </select>
+        
         <a href="#" class="btn add-cart-item" data-id='.$product->id.'>В корзину</a>
         <br>
 

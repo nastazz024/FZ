@@ -35,8 +35,8 @@ $total = 0;
 
                                 case 'shoes': /// TODO
                                       break;
-                                    echo $this->render('_racket', [
-                                        'racket' => $rackets[$item['id']],
+                                    echo $this->render('_shoes', [
+                                        'shoes' => $shoeses[$item['id']],
                                         'item' => $item,
                                         'key' => $key,
                                     ]);

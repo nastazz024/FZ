@@ -32,6 +32,7 @@ $config = [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => true,
+            //
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -86,6 +87,24 @@ $config = [
             'class' => 'app\Models\Racket'
         ],
 
+        'shuttle' => [
+            'class' => 'app\Models\Shuttle'
+        ],
+
+        'short' => [
+            'class' => 'app\Models\Short'
+        ],
+
+        'shortColor' => [
+            'class' => 'app\Models\ShortColor'
+        ],
+        'shortSize' => [
+            'class' => 'app\Models\ShortSize'
+        ],
+        'shortCategory' => [
+            'class' => 'app\Models\ShortCategory'
+        ],
+
         'racketWeight' => [
             'class' => 'app\Models\RacketWeight'
         ],
@@ -94,8 +113,12 @@ $config = [
             'class' => 'app\Models\Shoes'
         ],
 
-        'shoeCategory' => [
-            'class' => 'app\Models\ShoeCategory'
+        'bag' => [
+            'class' => 'app\Models\Bag'
+        ],
+
+        'shoesCategory' => [
+            'class' => 'app\Models\ShoesCategory'
         ],
 
         'racketBalance' => [

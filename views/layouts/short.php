@@ -1,9 +1,9 @@
 <?php $this->beginContent('@app/views/layouts/catalog.php'); ?>
-<section class="header-inner" style="background-image: url('/img/menu-banner_2.jpg');">
+<section class="header-inner" style="background-image: url('/img/header-inner.png');">
 
 
     <span class="category"><?php echo \yii::$app->get('request')->get('kind') ?></span>
-    <h1 class="header-inner__title">РАКЕТКИ</h1>
+    <h1 class="header-inner__title">Шорты и брюки</h1>
 </section>
 <div class="tab-wrap">
     <div class="filter">
@@ -53,24 +53,30 @@
         <aside class="sidebar">
             <div class="accordion">
                 <div class="accordion__head open">
-                    <h5 class="accordion__title">Баланс</h5>
+                    <h5 class="accordion__title">Цвет:</h5>
                     <span class="icon-minus"></span>
                 </div>
                 <div class="accordion__body">
-                    <ul class="check-list" id="racket-filter">
+                    <ul class="check-list" id="colors-filter">
                         <!--<li class="check-list__item">
                             <input type="checkbox" class="styler" id="check-list1">
                             <label for="check-list1" class="check-list__text">Черный</label>
                         </li>-->
 
-
+                        <?php
+                        /** @var \app\models\ShortColor $pcModel */
+                        $pcModel = \yii::$app->get('shortColor');
+                        foreach ($pcModel::find()->orderBy('color')->all() as $item) {
+                            ?>
                             <li class="check-list__item">
-                                <input type="checkbox" class="styler" id="check-list"
-                                       value="">
-                                <label for="check-list"
-                                       class="check-list__text"></label>
+                                <input type="checkbox" class="styler" id="check-list<?php echo $item->id ?>"
+                                       value="<?php echo $item->id ?>">
+                                <label for="check-list<?php echo $item->id ?>"
+                                       class="check-list__text"><?php echo $item->color ?></label>
                             </li>
-
+                            <?php
+                        }
+                        ?>
 
 
                     </ul>
@@ -78,20 +84,27 @@
                 </div>
 
                 <div class="accordion__head">
-                    <h5 class="accordion__title">Жесткость</h5>
+                    <h5 class="accordion__title">Размер</h5>
                     <span class="icon-minus"></span>
                 </div>
 
-                <div class="accordion__body" id="racket-filter">
+                <div class="accordion__body" id="size-filter">
                     <ul class="check-list check-list--column ">
-
+                        <?php
+                        /*@var \app\models\ShortSize $psModel */
+                        $psModel = \yii::$app->get('shortSize');
+                        foreach ($psModel::find()->orderBy('norder', 'asc')->all() as $item) {
+                            ?>
                             <li class="check-list__item">
-                                <input type="checkbox" class="styler" id="check-list_"
-                                       value="">
-                                <label for="check-list_"
-                                       class="check-list__text"></label>
+                                <input type="checkbox" class="styler" id="check-list_<?php echo $item->id ?>"
+                                       value="<?php echo $item->id ?>">
+                                <label for="check-list_<?php echo $item->id ?>"
+                                       class="check-list__text"><?php echo $item->name ?></label>
                             </li>
+                            <?php
+                        }
 
+                        ?>
 
 
                     </ul>

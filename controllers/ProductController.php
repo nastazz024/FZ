@@ -145,6 +145,74 @@ class ProductController extends Controller
         ]);
     }
 
+    public function actionShorts()
+    {
+        $request = \yii::$app->request;
+
+        $colors = self::getColors();
+
+        $categories = self::getShortCategories();
+
+        $shortModel = self::getShortModel();
+
+        $query = $shortModel::find();
+        $query->where('1=1');
+
+        $rColors = $this->sanitizeIds($request->post('colors'));
+        if (!empty($rColors)) {
+            $query->andWhere(['in', 'color', $rColors]);
+        }
+
+        $rSize = $this->sanitizeIds($request->post('size'));
+        $query->join('inner join', 'short_count', 'short.id = short_count.short_id');
+        $query->andWhere('short_count.count > 0');
+        if (!empty($rSize)) {
+            $query->andWhere(['in', 'short_count.short_size_id', $rSize]);
+        }
+
+
+
+        $rCost = $this->sanitizeIds($request->post('cost'));
+        if (!empty($rCost['min']) || !empty($rCost['max'])) {
+            if (!isset($rCost['min'])) {
+                $rCost['min'] = 0;
+            }
+            if (!isset($rCost['max'])) {
+                $rCost['max'] = PHP_INT_MAX;
+            }
+            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        }
+
+        // todo add filter by category  ("cat" parameter)
+
+
+        $sort = [];
+        $rSort = $request->post('sort');
+        if ($rSort && is_array($rSort) && !empty($rSort['field']) && isset($rSort['dir'])) {
+            /// todo check values
+            // format "<field> <asc|desc>"
+            $sort[$rSort['field']] = (strtolower($rSort['dir']) == 'asc' ? SORT_ASC : SORT_DESC);
+        }
+        if (!isset($sort['name'])) {
+            $sort['name'] = 'asc';
+        }
+        $query->orderby($sort);
+
+        // print_r($query->createCommand()->getRawSql());
+
+        $products = $query->all();
+
+
+        return $this->renderAjax('//product/_shorts', [
+            'shorts' => $products,
+            'colors' => $colors,
+            'categories' => $categories,
+            'view' => $request->post('view', 'grid'),
+        ]);
+
+    }
+
+
 
     public function actionRackets()
     {
@@ -192,19 +260,16 @@ class ProductController extends Controller
     }
 
 
-    public function actionShoeses()
+    public function actionBags()
     {
         $request = \yii::$app->request;
 
-        $shoesModel = self::getShoesModel();
+        $bagModel = self::getBagModel();
 
-
-
-        $categories = self::getShirtCategories();
-
-        $query = $shoesModel::find();
+        $query = $bagModel::find();
         $query->where('1=1');
 
+        // todo add filter
 
         $rCost = $this->sanitizeIds($request->post('cost'));
         if (!empty($rCost['min']) || !empty($rCost['max'])) {
@@ -234,10 +299,92 @@ class ProductController extends Controller
         $products = $query->all();
 
 
+        return $this->renderAjax('//product/_bags', [
+            'bags' => $products,
+            'view' => $request->post('view', 'grid'),
+        ]);
+    }
+
+    public function actionShoeses()
+    {
+        $request = \yii::$app->request;
+        $shoesModel = self::getShoesModel();
+        $categories = self::getShirtCategories();
+        $query = $shoesModel::find();
+        $query->where('1=1');
+        $rCost = $this->sanitizeIds($request->post('cost'));
+        if (!empty($rCost['min']) || !empty($rCost['max'])) {
+            if (!isset($rCost['min'])) {
+                $rCost['min'] = 0;
+            }
+            if (!isset($rCost['max'])) {
+                $rCost['max'] = PHP_INT_MAX;
+            }
+            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        }
+        $sort = [];
+        $rSort = $request->post('sort');
+        if ($rSort && is_array($rSort) && !empty($rSort['field']) && isset($rSort['dir'])) {
+            /// todo check values
+            // format "<field> <asc|desc>"
+            $sort[$rSort['field']] = (strtolower($rSort['dir']) == 'asc' ? SORT_ASC : SORT_DESC);
+        }
+        if (!isset($sort['name'])) {
+            $sort['name'] = 'asc';
+        }
+        $query->orderby($sort);
+        // print_r($query->createCommand()->getRawSql());
+        $products = $query->all();
         return $this->renderAjax('//product/_shoeses', [
             'shoeses' => $products,
             'categories' => $categories,
             'view' => $request->post('view', 'grid'),
         ]);
     }
+
+    public function actionShuttles()
+    {
+        $request = \yii::$app->request;
+
+        $shuttleModel = self::getShuttleModel();
+
+        $query = $shuttleModel::find();
+        $query->where('1=1');
+
+        // todo add filter
+
+        $rCost = $this->sanitizeIds($request->post('cost'));
+        if (!empty($rCost['min']) || !empty($rCost['max'])) {
+            if (!isset($rCost['min'])) {
+                $rCost['min'] = 0;
+            }
+            if (!isset($rCost['max'])) {
+                $rCost['max'] = PHP_INT_MAX;
+            }
+            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        }
+
+        $sort = [];
+        $rSort = $request->post('sort');
+        if ($rSort && is_array($rSort) && !empty($rSort['field']) && isset($rSort['dir'])) {
+            /// todo check values
+            // format "<field> <asc|desc>"
+            $sort[$rSort['field']] = (strtolower($rSort['dir']) == 'asc' ? SORT_ASC : SORT_DESC);
+        }
+        if (!isset($sort['name'])) {
+            $sort['name'] = 'asc';
+        }
+        $query->orderby($sort);
+
+        // print_r($query->createCommand()->getRawSql());
+
+        $products = $query->all();
+
+
+        return $this->renderAjax('//product/_shuttles', [
+            'shuttles' => $products,
+            'view' => $request->post('view', 'grid'),
+        ]);
+    }
+
 }

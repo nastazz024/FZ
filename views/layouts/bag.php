@@ -1,9 +1,9 @@
 <?php $this->beginContent('@app/views/layouts/catalog.php'); ?>
-<section class="header-inner" style="background-image: url('/img/menu-banner_2.jpg');">
+<section class="header-inner" style="background-image: url('/img/bag_menu_1.jpg');">
 
 
     <span class="category"><?php echo \yii::$app->get('request')->get('kind') ?></span>
-    <h1 class="header-inner__title">РАКЕТКИ</h1>
+    <h1 class="header-inner__title">Сумки</h1>
 </section>
 <div class="tab-wrap">
     <div class="filter">
@@ -53,11 +53,11 @@
         <aside class="sidebar">
             <div class="accordion">
                 <div class="accordion__head open">
-                    <h5 class="accordion__title">Баланс</h5>
+                    <h5 class="accordion__title">Цвет:</h5>
                     <span class="icon-minus"></span>
                 </div>
                 <div class="accordion__body">
-                    <ul class="check-list" id="racket-filter">
+                    <ul class="check-list" id="colors-filter">
                         <!--<li class="check-list__item">
                             <input type="checkbox" class="styler" id="check-list1">
                             <label for="check-list1" class="check-list__text">Черный</label>
@@ -78,13 +78,13 @@
                 </div>
 
                 <div class="accordion__head">
-                    <h5 class="accordion__title">Жесткость</h5>
+                    <h5 class="accordion__title">Размер</h5>
                     <span class="icon-minus"></span>
                 </div>
 
-                <div class="accordion__body" id="racket-filter">
+                <div class="accordion__body" id="size-filter">
                     <ul class="check-list check-list--column ">
-
+                        
                             <li class="check-list__item">
                                 <input type="checkbox" class="styler" id="check-list_"
                                        value="">

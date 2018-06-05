@@ -144,84 +144,112 @@ AppAsset::register($this);
 
 		<ul class="main-menu main-menu-static">
 			<li class="main-menu__item dropdown">
-				<a href="#" class="main-menu__link">Одежда <span class="icon-caret"></span></a>
+				<a href="#" class="main-menu__link">Женское <span class="icon-caret"></span></a>
 				<div class="dropdown-content">
 					<ul class="dropdown-menu">
 						<li class="dropdown-menu__item">
-							<a href="/catalog/shirt/man" class="dropdown-menu__link">Мужская</a>
+							<a href="/catalog/shirt/woman" class="dropdown-menu__link">Майки</a>
 							
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="/catalog/shirt/woman" class="dropdown-menu__link">Женская</a>
+							<a href="/catalog/short/woman" class="dropdown-menu__link">Шорты, брюки, юбки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="/catalog/shirt/kids" class="dropdown-menu__link">Детская</a>
+							<a href="#" class="dropdown-menu__link">Куртки и толстовки</a>
 						</li>
-						
+                        <li class="dropdown-menu__item">
+                            <a href="#" class="dropdown-menu__link">Обувь</a>
+                        </li>
+					</ul>
+
+				</div>
+			</li>
+
+			<li class="main-menu__item dropdown">
+				<a href="#" class="main-menu__link">Мужское<span class="icon-caret"></span></a>
+				<div class="dropdown-content">
+					<ul class="dropdown-menu">
+
+						<li class="dropdown-menu__item">
+							<a href="/catalog/shirt/man" class="dropdown-menu__link">Майки</a>
+						</li>
+						<li class="dropdown-menu__item">
+							<a href="/catalog/short/man" class="dropdown-menu__link">Шорты и брюки</a>
+						</li>
+                        <li class="dropdown-menu__item">
+                            <a href="#" class="dropdown-menu__link">Куртки и толстовки</a>
+                        </li>
+                        <li class="dropdown-menu__item">
+                            <a href="/catalog/shoes" class="dropdown-menu__link">Обувь</a>
+                        </li>
 					</ul>
 
 				</div>
 			</li>
 			<li class="main-menu__item dropdown">
-				<a href="#" class="main-menu__link">Ракетки <span class="icon-caret"></span></a>
+				<a href="#" class="main-menu__link">Детское <span class="icon-caret"></span></a>
 				<div class="dropdown-content">
 					<ul class="dropdown-menu">
 						<li class="dropdown-menu__item">
-							<a href="/catalog/racket" class="dropdown-menu__link">Ракетки</a>
+							<a href="/catalog/shirt/kids" class="dropdown-menu__link">Майки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Аксессуары для ракетки</a>
+							<a href="/catalog/short/kids" class="dropdown-menu__link">Шорты, брюки, юбки</a>
 						</li>
-						
-					</ul>
-
-
-				</div>
-			</li>
-			<li class="main-menu__item dropdown">
-				<a href="#" class="main-menu__link">Обувь <span class="icon-caret"></span></a>
-				<div class="dropdown-content">
-					<ul class="dropdown-menu">
-						<li class="dropdown-menu__item">
-							<a href="/catalog/shoes" class="dropdown-menu__link">Мужская</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Женская</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Детская</a>
-						</li>
-						
+                        <li class="dropdown-menu__item">
+                            <a href="#" class="dropdown-menu__link">Куртки и толстовки</a>
+                        </li>
+                        <li class="dropdown-menu__item">
+                            <a href="#" class="dropdown-menu__link">Обувь</a>
+                        </li>
 					</ul>
 
 				</div>
 			</li>
-			<li class="main-menu__item dropdown">
-				<a href="#" class="main-menu__link">Сумки и аксессуары <span class="icon-caret"></span></a>
-				<div class="dropdown-content">
-					<ul class="dropdown-menu">
-						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Сумки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Аксессуары</a>
-						</li>
-						
-					</ul>
+            <li class="main-menu__item dropdown">
+                <a href="#" class="main-menu__link">Ракетки <span class="icon-caret"></span></a>
+                <div class="dropdown-content">
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-menu__item">
+                            <a href="/catalog/racket" class="dropdown-menu__link">Ракетки</a>
+                        </li>
+                        <li class="dropdown-menu__item">
+                            <a href="#" class="dropdown-menu__link">Аксессуары для ракетки</a>
+                        </li>
 
-				</div>
-			</li>
-			<li class="main-menu__item">
-				<a href="#" class="main-menu__link">Контакты</a>
-			</li>
+                    </ul>
+
+
+                </div>
+            </li>
+            <li class="main-menu__item dropdown">
+                <a href="#" class="main-menu__link">Сумки и аксессуары<span class="icon-caret"></span></a>
+                <div class="dropdown-content">
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-menu__item">
+                            <a href="/catalog/bag" class="dropdown-menu__link">Сумки</a>
+                        </li>
+                        <li class="dropdown-menu__item">
+                            <a href="#" class="dropdown-menu__link">Аксессуары</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </li>
+            <li class="main-menu__item dropdown">
+                <a href="/catalog/shuttle" class="main-menu__link">Воланы</a>
+
+            </li>
+
 			
 		</ul>
 
-		<div class="search">
-			<form action="#">
-				<input type="text" class="form-control search__input" placeholder="Поиск" />
-				<input type="submit" value="&#xe90b;" class="search__button"/>
-			</form>
+        <div class="search">
+            <form action="#">
+                <input type="text" class="form-control search__input" placeholder="Поиск" />
+                <input type="submit" value="&#xe90b;" class="search__button"/>
+            </form>
 		</div>
 
 		

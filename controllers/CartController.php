@@ -56,10 +56,15 @@ class CartController extends Controller
 
         $shirtIds = [];
         $racketIds = [];
+        $shortIds = [];
         foreach ($session['list'] as $item) {
             switch ($item['type']) {
                 case 'shirt':
                     $shirtIds[] = (int)$item['id'];
+                    break;
+
+                case 'short':
+                    $shortIds[] = (int)$item['id'];
                     break;
 
                 case 'racket':
@@ -71,9 +76,11 @@ class CartController extends Controller
         $colors = self::getColors();
         $categories = self::getShirtCategories();
         $sizes = self::getSizes();
+        $categorie = self::getShortCategories();
 
         $shirts = $this->readObjects($shirtIds, self::getShirtModel());
         $rackets = $this->readObjects($racketIds, self::getRacketModel());
+        $shorts = $this->readObjects($shortIds, self::getShortModel());
 
 //        echo '<pre>'; print_r($session['list']); exit;
 
@@ -81,6 +88,7 @@ class CartController extends Controller
                 'items' => $session['list'],
                 'shirts' => $shirts,
                 'rackets' => $rackets,
+                'shorts' => $shorts,
                 'colors' => $colors,
                 'categories' => $categories,
                 'sizes' => $sizes,
@@ -101,12 +109,17 @@ class CartController extends Controller
         }
 
         $shirtIds = [];
+        $shortIds = [];
         $racketIds = [];
         $shoesIds = [];
         foreach ($session['list'] as $item) {
             switch ($item['type']) {
                 case 'shirt':
-                    $shirtIds[] = (int)$item['id'];
+                $shirtIds[] = (int)$item['id'];
+                break;
+
+                case 'short':
+                    $shortIds[] = (int)$item['id'];
                     break;
 
                 case 'racket':
@@ -122,8 +135,10 @@ class CartController extends Controller
         $colors = self::getColors();
         $categories = self::getShirtCategories();
         $sizes = self::getSizes();
+        $categorie = self::getShortCategories();
 
         $shirts = $this->readObjects($shirtIds, self::getShirtModel());
+        $shorts = $this->readObjects($shortIds, self::getShortModel());
         $rackets = $this->readObjects($racketIds, self::getRacketModel());
         $shoeses = $this->readObjects($shoesIds, self::getShoesModel());
 
@@ -134,6 +149,9 @@ class CartController extends Controller
         return $this->render('confirm', [
                 'items' => $session['list'],
                 'shirts' => $shirts,
+                'shorts' => $shorts,
+                'bags' => $bags,
+                'shuttles' => $shuttles,
                 'rackets' => $rackets,
                 'shoeses' => $shoeses,
                 'colors' => $colors,
@@ -195,6 +213,26 @@ class CartController extends Controller
                 $key = $type . '.' . $id;
         }
 
+        switch ($type) {
+            case 'short':
+                $size =  $size = $request->post('size');
+                $key = $type . '.' . $id . '.' . $size;
+                break;
+
+            default:
+                $key = $type . '.' . $id;
+        }
+
+        switch ($type) {
+            case 'shoes':
+                $size =  $size = $request->post('size');
+                $key = $type . '.' . $id . '.' . $size;
+                break;
+
+            default:
+                $key = $type . '.' . $id;
+        }
+
 
         if (!isset($list[$key])) {
             $list[$key] = [
@@ -208,6 +246,18 @@ class CartController extends Controller
 
         switch ($type) {
             case 'shirt':
+                $list[$key]['size'] = $size;
+                break;
+        }
+
+        switch ($type) {
+            case 'short':
+                $list[$key]['size'] = $size;
+                break;
+        }
+
+        switch ($type) {
+            case 'shoes':
                 $list[$key]['size'] = $size;
                 break;
         }

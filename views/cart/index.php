@@ -44,13 +44,42 @@ $total = 0;
 
                                 case 'shoes': // TODO
                                               break;
-                                    echo $this->render('_racket', [
-                                        'racket' => $rackets[$item['id']],
+                                    echo $this->render('_shoes', [
+                                        'shoes' => $shoeses[$item['id']],
+                                        'size' => $sizes[(int)$item['size']],
                                         'item' => $item,
                                         'key' => $key,
                                     ]);
                                     break;
 
+                                case 'shuttle': // TODO
+                                    break;
+                                    echo $this->render('_shuttle', [
+                                        'shuttle' => $shuttles[$item['id']],
+                                        'item' => $item,
+                                        'key' => $key,
+                                    ]);
+                                    break;
+
+                                case 'short': // TODO
+                                    break;
+                                    echo $this->render('_short', [
+                                        'short' => shorts[$item['id']],
+                                        'size' => $sizes[(int)$item['size']],
+                                        'item' => $item,
+                                        'key' => $key,
+                                    ]);
+                                    break;
+
+                                case 'bag': // TODO
+                                    break;
+                                    echo $this->render('_bag', [
+                                        'bag' => bags[$item['id']],
+                                        'size' => $sizes[(int)$item['size']],
+                                        'item' => $item,
+                                        'key' => $key,
+                                    ]);
+                                    break;
                             }
 
                          } ?>

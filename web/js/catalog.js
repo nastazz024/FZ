@@ -4,6 +4,55 @@ $(function () {
     var $cart = $('#cart-container');
     var $container = $('div.content');
 
+    var loadShorts = function () {
+        var $colorFiltersContainer = $('#colors-filter');
+        var $sizeFiltersContainer = $('#size-filter');
+        var $colorItems = $colorFiltersContainer.find('input[type="checkbox"]');
+        var $sizeItems = $sizeFiltersContainer.find('input[type="checkbox"]'); /// bad naming
+
+
+        var payload = {};
+
+        // сбор данных фильтра
+        var colors = [];
+        $.each($colorFiltersContainer.find('input[type="checkbox"]:checked'), function(pos, el) {
+            colors.push($(el).val());
+        });
+        payload.colors = colors;
+
+
+        // todo filter by size
+        var size = [];
+        $.each($sizeFiltersContainer.find('input[type="checkbox"]:checked'), function(pos, el) {
+            size.push($(el).val());
+        });
+        payload.size = size;
+
+        payload.cost = {};
+        payload.cost.min = $("#slider-range").slider("values", 0);
+        payload.cost.max = $("#slider-range").slider("values", 1);
+
+
+        //вид
+        payload.view = $('.filter-list__item.active a').data('type');
+
+        /// сортировка
+        payload.sort = {
+            field: $('.menu__sort.active').data('type'),
+            dir: $('.menu__sort.active').find('.arrow-down.gray').length ? 'desc' : 'asc'
+        };
+
+        payload.cat = getUrlParameter('cat');
+
+
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
+        $.post('/product/shorts', payload, function(resp) {
+            $container.html(resp);
+        });
+    };
+
+
 
     var loadShirts = function () {
         var $colorFiltersContainer = $('#colors-filter');
@@ -76,6 +125,29 @@ $(function () {
         });
     };
 
+    var loadShuttles = function () {
+        var payload = {};
+
+        // сбор данных фильтра
+        //вид
+        payload.view = $('.filter-list__item.active a').data('type');
+
+        //
+
+        /// сортировка
+        payload.sort = {
+            field: $('.menu__sort.active').data('type'),
+            dir: $('.menu__sort.active').find('.arrow-down.gray').length ? 'desc' : 'asc'
+        };
+
+
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
+        $.post('/product/shuttles', payload, function(resp) {
+            $container.html(resp);
+        });
+    };
+
     var loadShoes = function () {
         var payload = {};
 
@@ -134,7 +206,37 @@ $(function () {
         $.post('/cart/add', payload, function(resp) {
             $cart.html(resp);
         });
+
     };
+
+    var addShuttle = function(id) {
+        var payload = {};
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
+
+        payload.id = id;
+        payload.type = 'shuttle';
+
+        $.post('/cart/add', payload, function(resp) {
+            $cart.html(resp);
+        });
+
+    };
+
+    var addShort = function(id) {
+        var payload = {};
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
+
+        payload.id = id;
+        payload.type = 'short';
+
+        $.post('/cart/add', payload, function(resp) {
+            $cart.html(resp);
+        });
+
+    };
+
 
     var addShoes = function(id) {
         var payload = {};
@@ -200,6 +302,25 @@ $(function () {
             // $colorItems.on('change', loadFn);
             // $sizeItems.on('change', loadFn);
             break;
+
+       case 'short':
+            var $colorFiltersContainer = $('#colors-filter');
+            var $sizeFiltersContainer = $('#size-filter');
+            var $colorItems = $colorFiltersContainer.find('input[type="checkbox"]');
+            var $sizeItems = $sizeFiltersContainer.find('input[type="checkbox"]');
+
+            loadFn = loadShorts;
+
+            $colorItems.on('change', loadFn);
+            $sizeItems.on('change', loadFn);
+            break;
+
+        case 'shuttle':
+
+            loadFn = loadShuttles;
+
+
+            break;
     }
 
 
@@ -221,6 +342,16 @@ $(function () {
     $container.on('click', '.add-cart-item.racket', function(ev) {
         ev.preventDefault();
         addRacket($(ev.target).data('id'));
+    });
+
+    $container.on('click', '.add-cart-item.shuttle', function(ev) {
+        ev.preventDefault();
+        addShuttle($(ev.target).data('id'));
+    });
+
+    $container.on('click', '.add-cart-item.short', function(ev) {
+        ev.preventDefault();
+        addShort($(ev.target).data('id'));
     });
 
     $container.on('click', '.add-cart-item.shoes', function(ev) {

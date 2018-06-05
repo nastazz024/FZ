@@ -42,7 +42,7 @@ trait ComponentsTrait
     }
 
     /**
-     * @return \app\models\Racket|object
+     * @return \app\models\Shoes|object
      * @throws \yii\base\InvalidConfigException
      */
     public static function getShoesModel()
@@ -50,6 +50,23 @@ trait ComponentsTrait
         return \yii::$app->get('shoes');
     }
 
+    /**
+     * @return \app\models\Shuttle|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShuttleModel()
+    {
+        return \yii::$app->get('shuttle');
+    }
+
+    /**
+     * @return \app\models\Bag|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getBagModel()
+    {
+        return \yii::$app->get('bag');
+    }
 
     /**
      * @return \app\models\ShirtCategory|object
@@ -58,15 +75,6 @@ trait ComponentsTrait
     public static function getShirtCategoryModel()
     {
         return \yii::$app->get('shirtCategory');
-    }
-
-    /**
-     * @return \app\models\ShirtCategory|object
-     * @throws \yii\base\InvalidConfigException
-     */
-    public static function getShoeCategoryModel()
-    {
-        return \yii::$app->get('shoeCategory');
     }
 
     /**
@@ -118,17 +126,135 @@ trait ComponentsTrait
      * @return \app\models\ShirtCategory[]
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getShoeCategories()
+    public static function getCategories()
     {
         $list = [];
 
-        foreach (self::getShoeCategoryModel()->find()->orderBy('category')->all() as $item) {
+        foreach (self::getShirtCategoryModel()->find()->orderBy('category')->all() as $item) {
             $list[$item->id] = $item;
         }
 
         return $list;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * @return \app\models\Short|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShortModel()
+    {
+        return \yii::$app->get('short');
+    }
+
+    /**
+     * @return \app\models\ShortColor|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShortColorModel()
+    {
+        return \yii::$app->get('shortColor');
+    }
+
+    /**
+     * @return \app\models\ShortSize|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShortSizeModel()
+    {
+        return \yii::$app->get('shortSize');
+    }
+
+
+    /**
+     * @return \app\models\ShortCategory|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShortCategoryModel()
+    {
+        return \yii::$app->get('shortCategory');
+    }
+
+    /**
+     * @return \app\models\ShortColor[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getColor()
+    {
+        $list = [];
+
+        foreach (self::getShortColorModel()->find()->orderBy('color')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\ShortSize[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getSize()
+    {
+        $list = [];
+
+        foreach (self::getShortSizeModel()->find()->orderBy('norder')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\ShirtCategory[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShortCategories()
+    {
+        $list = [];
+
+        foreach (self::getShortCategoryModel()->find()->orderBy('category')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\ShortCategory[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getCategory()
+    {
+        $list = [];
+
+        foreach (self::getShortCategoryModel()->find()->orderBy('category')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
 
     /**
      * @param array $ids
