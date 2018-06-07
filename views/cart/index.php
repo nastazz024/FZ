@@ -20,15 +20,21 @@ $total = 0;
 				<div class="dropdown-content">
 					<div class="cart">
 						<ul class="cart-list scroll-content">
-                        <?php 
-                        foreach ($items as $key => $item) { ?>
-                            <?php
+                        <?php
+
+                        $sizePlaceholder = new stdClass();
+                        $sizePlaceholder->name = '---';
+
+                        foreach ($items as $key => $item) {
+                            if (!isset($item['size'])) {
+                                $item['size'] = 0;
+                            }
 
                             switch ($item['type']) {
                                 case 'shirt':
                                     echo $this->render('_shirt', [
                                         'shirt' => $shirts[$item['id']],
-                                        'size' => $sizes[(int)$item['size']],
+                                        'size' => isset($sizes[(int)$item['size']]) ? $sizes[(int)$item['size']] : $sizePlaceholder,
                                         'item' => $item,
                                         'key' => $key,
                                     ]);
@@ -45,7 +51,7 @@ $total = 0;
                                 case 'shoes':
                                     echo $this->render('_shoes', [
                                         'shoes' => $shoeses[$item['id']],
-                                        'size' => $sizes[(int)$item['size']],
+                                        'size' => isset($sizes[(int)$item['size']]) ? $sizes[(int)$item['size']] : $sizePlaceholder,
                                         'item' => $item,
                                         'key' => $key,
                                     ]);
@@ -62,7 +68,7 @@ $total = 0;
                                 case 'short':
                                     echo $this->render('_short', [
                                         'short' => $shorts[$item['id']],
-                                        'size' => $sizes[(int)$item['size']],
+                                        'size' => isset($sizes[(int)$item['size']]) ? $sizes[(int)$item['size']] : $sizePlaceholder,
                                         'item' => $item,
                                         'key' => $key,
                                     ]);
@@ -71,7 +77,7 @@ $total = 0;
                                 case 'bag':
                                     echo $this->render('_bag', [
                                         'bag' => $bags[$item['id']],
-                                        'size' => $sizes[(int)$item['size']],
+                                        'size' => isset($sizes[(int)$item['size']]) ? $sizes[(int)$item['size']] : $sizePlaceholder,
                                         'item' => $item,
                                         'key' => $key,
                                     ]);

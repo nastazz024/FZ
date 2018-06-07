@@ -187,7 +187,9 @@ $(function () {
         });
     };
 
-    var loadShoes = function () {
+    var loadShoeses = function () {
+        var $sizeFiltersContainer = $('#size-filter');
+        var $sizeItems = $sizeFiltersContainer.find('input[type="checkbox"]'); /// bad naming
         var payload = {};
 
         // сбор данных фильтра
@@ -204,9 +206,9 @@ $(function () {
 
         payload.kind = _kind;
 
-        payload.cost = {};
+       /* payload.cost = {};
         payload.cost.min = $("#slider-range").slider("values", 0);
-        payload.cost.max = $("#slider-range").slider("values", 1);
+        payload.cost.max = $("#slider-range").slider("values", 1);*/
 
 
         var csrfParam = yii.getCsrfParam();
@@ -425,12 +427,12 @@ $(function () {
             break;
 
         case 'shoes':
- /*           var $colorFiltersContainer = $('#colors-filter');
+            /* var $colorFiltersContainer = $('#colors-filter');*/
             var $sizeFiltersContainer = $('#size-filter');
-            var $colorItems = $colorFiltersContainer.find('input[type="checkbox"]');
+            /* var $colorItems = $colorFiltersContainer.find('input[type="checkbox"]');*/
             var $sizeItems = $sizeFiltersContainer.find('input[type="checkbox"]'); /// bad naming*/
 
-            loadFn = loadShoes;
+            loadFn = loadShoeses;
 
             // $colorItems.on('change', loadFn);
             // $sizeItems.on('change', loadFn);
@@ -524,4 +526,25 @@ $(function () {
     loadFn();
     loadCart();
 
+    var dropdownTitle = document.getElementsByClassName("dropdown-content__title");
+
+    for(var i = 0; i < dropdownTitle.length; i++) {
+        dropdownTitle[i].addEventListener('click', function() {
+            dropdownTitle[i].next().addClass('dNone');
+        })
+    }
+
+    $(document).ready(function(){
+        $('.product__photo img').click(function () {
+            $('.product__active').toggleClass('d-none');
+        });
+
+        $( "#accordion" ).accordion();
+
+        $('#tabs').tabs();
+
+    });
 });
+
+
+

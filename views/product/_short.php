@@ -9,7 +9,7 @@
     </div>
 
     <div class="product__content">
-        <h6 class="product__title"><a href="#">'.$short->name.'</a></h6>
+        <h6 class="product__title"><a href="'.$short->id.'">'.$short->name.'</a></h6>
         <span class="product__category">'.$category->category .'</span>
     </div>
 
@@ -31,7 +31,7 @@
 </div>';}
 else { echo '
     <div class="product">
-									<h2 class="product__title"><a href="#">'. $short->name .'</a></h2>
+									<h2 class="product__title"><a href="'.$short->id.'">'. $short->name .'</a></h2>
 									<div class="product__img">
 										<img src="/img/'.$short->image .'" alt="">
 										<p class="description">'.$short->description .'</p>

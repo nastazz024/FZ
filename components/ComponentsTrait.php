@@ -13,6 +13,11 @@ trait ComponentsTrait
         return \yii::$app->get('shirt');
     }
 
+    public static function getShuttleModel()
+    {
+        return \yii::$app->get('shuttle');
+    }
+
     /**
      * @return \app\models\ShirtColor|object
      * @throws \yii\base\InvalidConfigException
@@ -21,6 +26,7 @@ trait ComponentsTrait
     {
         return \yii::$app->get('shirtColor');
     }
+
 
     /**
      * @return \app\models\ShirtSize|object
@@ -50,12 +56,30 @@ trait ComponentsTrait
     }
 
     /**
-     * @return \app\models\Shuttle|object
+     * @return \app\models\ShoesSize|object
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getShuttleModel()
+    public static function getShoesSizeModel()
     {
-        return \yii::$app->get('shuttle');
+        return \yii::$app->get('shoesSize');
+    }
+
+    /**
+     * @return \app\models\ShuttleSize|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShuttleSizeModel()
+    {
+        return \yii::$app->get('shuttleSize');
+    }
+
+    /**
+     * @return \app\models\ShoesCategory|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShoesCategoryModel()
+    {
+        return \yii::$app->get('shoesCategory');
     }
 
     /**
@@ -80,7 +104,7 @@ trait ComponentsTrait
      * @return \app\models\ShirtColor[]
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getColors()
+    public static function getShirtColors()
     {
         $list = [];
 
@@ -100,6 +124,32 @@ trait ComponentsTrait
         $list = [];
 
         foreach (self::getShirtSizeModel()->find()->orderBy('norder')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    public static function getShuttleSizes()
+    {
+        $list = [];
+
+        foreach (self::getShuttleSizeModel()->find()->orderBy('norder')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\ShoesSize[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getShoesSizes()
+    {
+        $list = [];
+
+        foreach (self::getShoesSizeModel()->find()->orderBy('norder')->all() as $item) {
             $list[$item->id] = $item;
         }
 
@@ -151,7 +201,31 @@ trait ComponentsTrait
         return $list;
     }
 
+    public static function getShoesCategories()
+    {
+        $list = [];
 
+        foreach (self::getShoesCategoryModel()->find()->orderBy('category')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\ShirtCategory[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getCategorie()
+    {
+        $list = [];
+
+        foreach (self::getShoesCategoryModel()->find()->orderBy('category')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
 
     /**
      * @return \app\models\Short|object
@@ -219,6 +293,8 @@ trait ComponentsTrait
 
         return $list;
     }
+
+
 
     /**
      * @return \app\models\ShirtCategory[]
@@ -340,6 +416,7 @@ trait ComponentsTrait
 
         return $list;
     }
+
 
 
 }

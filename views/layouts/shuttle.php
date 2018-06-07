@@ -1,11 +1,11 @@
 <?php $this->beginContent('@app/views/layouts/catalog.php'); ?>
-<section class="header-inner" style="background-image: url('/img/header-inner.png');">
+    <section class="header-inner" style="background-image: url('/img/menu-banner_2.jpg');">
 
 
-    <span class="category"><?php echo \yii::$app->get('request')->get('kind') ?></span>
-    <h1 class="header-inner__title">ВОЛАНЫ</h1>
-</section>
-<div class="tab-wrap">
+        <span class="category"><?php echo \yii::$app->get('request')->get('kind') ?></span>
+        <h1 class="header-inner__title">ВОЛАНЫ</h1>
+    </section>
+    <div class="tab-wrap">
     <div class="filter">
         <div class="filter-sidebar">
             <button class="toggle-filter">
@@ -52,41 +52,9 @@
     <div class="box-main">
         <aside class="sidebar">
             <div class="accordion">
-                <div class="accordion__head open">
-                    <h5 class="accordion__title">Количество</h5>
-                    <span class="icon-minus"></span>
-                </div>
-                <div class="accordion__body">
-                    <ul class="check-list" id="shuttle-filter">
-                        <!--<li class="check-list__item">
-                            <input type="checkbox" class="styler" id="check-list1">
-                            <label for="check-list1" class="check-list__text">Черный</label>
-                        </li>-->
 
 
 
-
-
-                    </ul>
-
-                </div>
-
-
-
-                <div class="accordion__body" id="shuttle-filter">
-                    <ul class="check-list check-list--column ">
-
-                            <li class="check-list__item">
-                                <input type="checkbox" class="styler" id="check-list_"
-                                       value="">
-                                <label for="check-list_"
-                                       class="check-list__text"></label>
-                            </li>
-
-
-
-                    </ul>
-                </div>
                 <div class="accordion__head">
                     <h5 class="accordion__title">Цена</h5>
                     <span class="icon-minus"></span>

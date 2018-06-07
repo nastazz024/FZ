@@ -64,7 +64,7 @@ class ProductController extends Controller
     {
         $request = \yii::$app->request;
 
-        $colors = self::getColors();
+        $colors = self::getShirtColors();
 
         $categories = self::getShirtCategories();
 
@@ -132,11 +132,13 @@ class ProductController extends Controller
         ]);
     }
 
+
+
     public function actionShirt()
     {
         $request = \yii::$app->request;
 
-        $colors = self::getColors();
+        $colors = self::getShirtColors();
 
         $categories = self::getShirtCategories();
 
@@ -152,11 +154,62 @@ class ProductController extends Controller
         ]);
     }
 
+
+    public function actionProductDetails()
+    {
+        $request = \yii::$app->request;
+
+        $colors = null;
+        $categories = null;
+        $sizes = null;
+        switch ($request->get('type')) {
+            case 'shirt':
+                $model = self::getShirtModel();
+                $item = $model::findOne($request->get('id'));
+                $sizes = $item->getSizes();
+                $colors = self::getShirtColors();
+                $categories = self::getShirtCategories();
+                break;
+
+            case 'short':
+                break;
+
+            case 'jacket':
+                break;
+
+            case 'shoes':
+                break;
+
+            case 'shuttle':
+                break;
+
+            case 'bag':
+                break;
+
+            case 'racket':
+                $model = self::getRacketModel();
+                $item = $model::findOne($request->get('id'));
+                break;
+        }
+
+
+
+        $this->layout = 'catalog';
+        return $this->render('//product/product-details', [
+            'item' => $item,
+            'colors' => $colors,
+            'categories' => $categories,
+            'sizes' => $sizes,
+        ]);
+    }
+
+
+
     public function actionShorts()
     {
         $request = \yii::$app->request;
 
-        $colors = self::getColors();
+        $colors = self::getShirtColors();
 
         $categories = self::getShortCategories();
 
@@ -320,7 +373,7 @@ class ProductController extends Controller
     {
         $request = \yii::$app->request;
         $shoesModel = self::getShoesModel();
-        $categories = self::getShirtCategories();
+        $categories = self::getShoesCategories();
         $query = $shoesModel::find();
         $query->where('1=1');
 
@@ -329,6 +382,16 @@ class ProductController extends Controller
             $query->andWhere('category = ' . $kind);
         }
 
+
+        /*
+
+        TODO finish this block
+        $rSize = $this->sanitizeIds($request->post('size'));
+        $query->join('inner join', 'shirt_count', 'shirt.id = shirt_count.shirt_id');
+        $query->andWhere('shirt_count.count > 0');
+        if (!empty($rSize)) {
+            $query->andWhere(['in', 'shirt_count.shirt_size_id', $rSize]);
+        }*/
 
         $rCost = $this->sanitizeIds($request->post('cost'));
         if (!empty($rCost['min']) || !empty($rCost['max'])) {
@@ -410,7 +473,7 @@ class ProductController extends Controller
     {
         $request = \yii::$app->request;
 
-        $colors = self::getColors();
+        $colors = self::getShirtColors();
 
         $categories = self::getJacketCategories();
 

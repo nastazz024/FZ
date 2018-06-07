@@ -57,6 +57,10 @@ class CartController extends Controller
         $shirtIds = [];
         $racketIds = [];
         $shortIds = [];
+        $shoesIds = [];
+        $jacketIds = [];
+        $bagIds = [];
+        $shuttleIds = [];
         foreach ($session['list'] as $item) {
             switch ($item['type']) {
                 case 'shirt':
@@ -70,16 +74,36 @@ class CartController extends Controller
                 case 'racket':
                     $racketIds[] = (int)$item['id'];
                     break;
+
+                case 'shuttle':
+                    $shuttleIds[] = (int)$item['id'];
+                    break;
+
+                case 'bag':
+                    $bagIds[] = (int)$item['id'];
+                    break;
+
+                case 'jacket':
+                    $jacketIds[] = (int)$item['id'];
+                    break;
+
+                case 'shoes':
+                    $shoesIds[] = (int)$item['id'];
+                    break;
             }
         }
 
-        $colors = self::getColors();
+        $colors = self::getShirtColors();
         $categories = self::getShirtCategories();
         $categorie = self::getShortCategories();
 
         $shirts = $this->readObjects($shirtIds, self::getShirtModel());
         $rackets = $this->readObjects($racketIds, self::getRacketModel());
         $shorts = $this->readObjects($shortIds, self::getShortModel());
+        $shuttles = $this->readObjects($shuttleIds, self::getShuttleModel());
+        $jackets = $this->readObjects($jacketIds, self::getJacketModel());
+        $bags = $this->readObjects($bagIds, self::getBagModel());
+        $shoeses = $this->readObjects($shoesIds, self::getShoesModel());
 
 //        echo '<pre>'; print_r($session['list']); exit;
 
@@ -88,6 +112,10 @@ class CartController extends Controller
                 'shirts' => $shirts,
                 'rackets' => $rackets,
                 'shorts' => $shorts,
+                'colors' => $colors,
+                'shuttles' => $shuttles,
+                'bags' => $bags,
+                'shoeses' => $shoeses,
                 'colors' => $colors,
                 'categories' => $categories,
                 'sizes' => self::getShirtSizes(), // remane to shirtSizes
@@ -112,6 +140,9 @@ class CartController extends Controller
         $shortIds = [];
         $racketIds = [];
         $shoesIds = [];
+        $shuttleIds = [];
+        $bagIds = [];
+        $jacketIds = [];
         foreach ($session['list'] as $item) {
             switch ($item['type']) {
                 case 'shirt':
@@ -129,10 +160,20 @@ class CartController extends Controller
                 case 'shoes':
                     $shoesIds[] = (int)$item['id'];
                     break;
+                case 'bag':
+                    $bagIds[] = (int)$item['id'];
+                    break;
+
+                case 'shuttle':
+                    $shuttleIds[] = (int)$item['id'];
+                    break;
+                case 'jacket':
+                    $jacketIds[] = (int)$item['id'];
+                    break;
             }
         }
 
-        $colors = self::getColors();
+        $colors = self::getShirtColors();
         $categories = self::getShirtCategories();
         $sizes = self::getShirtSizes();
         $categorie = self::getShortCategories();
@@ -142,6 +183,8 @@ class CartController extends Controller
         $rackets = $this->readObjects($racketIds, self::getRacketModel());
         $shoeses = $this->readObjects($shoesIds, self::getShoesModel());
         $jackets = $this->readObjects($jacketIds, self::getJacketModel());
+        $bags = $this->readObjects($bagIds, self::getBsgModel());
+        $shuttles = $this->readObjects($shuttleIds, self::getShuttleModel());
 //        echo '<pre>'; print_r($session['list']); exit;
 
         $this->layout = 'catalog';
@@ -206,30 +249,19 @@ class CartController extends Controller
 
         switch ($type) {
             case 'shirt':
-                $size =  $size = $request->post('size');
-                $key = $type . '.' . $id . '.' . $size;
-                break;
-
-            default:
-                $key = $type . '.' . $id;
-        }
-
-        switch ($type) {
             case 'short':
-                $size =  $size = $request->post('size');
-                $key = $type . '.' . $id . '.' . $size;
-                break;
-
-            default:
-                $key = $type . '.' . $id;
-        }
-
-        switch ($type) {
             case 'shoes':
-                $size =  $size = $request->post('size');
+            case 'shuttle':
+            case 'bag':
+            case 'jacket':
+                $size = $request->post('size');
+                if (empty($size)) {
+                    return 'empty size';
+                }
                 $key = $type . '.' . $id . '.' . $size;
                 break;
 
+            case 'racket':
             default:
                 $key = $type . '.' . $id;
         }
@@ -247,24 +279,11 @@ class CartController extends Controller
 
         switch ($type) {
             case 'shirt':
-                $list[$key]['size'] = $size;
-                break;
-        }
-
-        switch ($type) {
             case 'short':
-                $list[$key]['size'] = $size;
-                break;
-        }
-
-        switch ($type) {
             case 'jacket':
-                $list[$key]['size'] = $size;
-                break;
-        }
-
-        switch ($type) {
             case 'shoes':
+            case 'shuttle':
+            case 'bag':
                 $list[$key]['size'] = $size;
                 break;
         }

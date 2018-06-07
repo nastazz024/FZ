@@ -1,5 +1,5 @@
 
-        <?php if ($view == 'list') { 
+        <?php if ($view == 'list') {
             echo ' 
             
 	 <div class="product product--horizontal">

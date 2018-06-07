@@ -46,48 +46,48 @@ AppAsset::register($this);
 					<h4 class="dropdown-content__title">Мужское</h4>
 					<ul class="dropdown-menu">
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Майки</a>
+							<a href="/catalog/shirt/man" class="dropdown-menu__link">Майки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Шорты и брюки</a>
+							<a href="/catalog/short/man" class="dropdown-menu__link">Шорты и брюки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Куртки и толстовки</a>
+							<a href="/catalog/jacket/man" class="dropdown-menu__link">Куртки и толстовки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Обувь</a>
+							<a href="/catalog/shoes/man" class="dropdown-menu__link">Обувь</a>
 						</li>
 					</ul>
 				
 					<h4 class="dropdown-content__title">Женское</h4>
 					<ul class="dropdown-menu">
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Майки</a>
+							<a href="/catalog/shirt/woman" class="dropdown-menu__link">Майки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Шорты, брюки, юбки</a>
+							<a href="/catalog/short/woman" class="dropdown-menu__link">Шорты, брюки, юбки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Куртки и толстовки</a>
+							<a href="/catalog/jacket/woman" class="dropdown-menu__link">Куртки и толстовки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Обувь</a>
+							<a href="/catalog/shoes/woman" class="dropdown-menu__link">Обувь</a>
 						</li>
 					</ul>
 				
 					<h4 class="dropdown-content__title">Детское</h4>
 					<ul class="dropdown-menu">
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Майки</a>
+							<a href="/catalog/shirt/kids" class="dropdown-menu__link">Майки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Шорты, брюки, юбки</a>
+							<a href="/catalog/short/kids" class="dropdown-menu__link">Шорты, брюки, юбки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Куртки и толстовки</a>
+							<a href="/catalog/jacket/kids" class="dropdown-menu__link">Куртки и толстовки</a>
 						</li>
 						<li class="dropdown-menu__item">
-							<a href="#" class="dropdown-menu__link">Обувь</a>
+							<a href="/catalog/shoes/kids" class="dropdown-menu__link">Обувь</a>
 						</li>
 					</ul>
 				
@@ -98,7 +98,7 @@ AppAsset::register($this);
 				<h4 class="dropdown-content__title">Ракетки</h4>
 				<ul class="dropdown-menu">
 					<li class="dropdown-menu__item">
-						<a href="#" class="dropdown-menu__link">Ракетки</a>
+						<a href="/catalog/racket" class="dropdown-menu__link">Ракетки</a>
 					</li>
 					<li class="dropdown-menu__item">
 						<a href="#" class="dropdown-menu__link">Аксессуары для ракетки</a>
@@ -107,7 +107,7 @@ AppAsset::register($this);
 				<h4 class="dropdown-content__title">Сумки и аксессуары</h4>
 				<ul class="dropdown-menu">
 					<li class="dropdown-menu__item">
-						<a href="#" class="dropdown-menu__link">Сумки</a>
+						<a href="/catalog/bag" class="dropdown-menu__link">Сумки</a>
 					</li>
 					<li class="dropdown-menu__item">
 						<a href="#" class="dropdown-menu__link">Аксессуары</a>
@@ -139,7 +139,7 @@ AppAsset::register($this);
 
 		</div>
 		<div class="logo">
-			<a href="#"><img src="/img/logo.png" alt="" class="logo-img"></a>
+			<a href="/site"><img src="/img/logo.png" alt="" class="logo-img"></a>
 		</div>
 
 		<ul class="main-menu main-menu-static">
@@ -158,7 +158,7 @@ AppAsset::register($this);
 							<a href="/catalog/jacket/woman" class="dropdown-menu__link">Куртки и толстовки</a>
 						</li>
                         <li class="dropdown-menu__item">
-                            <a href="#" class="dropdown-menu__link">Обувь</a>
+                            <a href="/catalog/shoes/woman" class="dropdown-menu__link">Обувь</a>
                         </li>
 					</ul>
 
@@ -180,7 +180,7 @@ AppAsset::register($this);
                             <a href="/catalog/jacket/man" class="dropdown-menu__link">Куртки и толстовки</a>
                         </li>
                         <li class="dropdown-menu__item">
-                            <a href="/catalog/shoes" class="dropdown-menu__link">Обувь</a>
+                            <a href="/catalog/shoes/man" class="dropdown-menu__link">Обувь</a>
                         </li>
 					</ul>
 
@@ -200,7 +200,7 @@ AppAsset::register($this);
                             <a href="/catalog/jacket/kids" class="dropdown-menu__link">Куртки и толстовки</a>
                         </li>
                         <li class="dropdown-menu__item">
-                            <a href="#" class="dropdown-menu__link">Обувь</a>
+                            <a href="/catalog/shoes/kids" class="dropdown-menu__link">Обувь</a>
                         </li>
 					</ul>
 

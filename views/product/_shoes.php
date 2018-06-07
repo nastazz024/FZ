@@ -6,7 +6,7 @@
         <img src="/img/'.$shoes->image .'" alt="" class="mini-img">
     </div>
     <div class="product__content">
-        <h6 class="product__title"><a href="#">'.$shoes->name.'</a></h6>
+        <h6 class="product__title"><a href="'.$shoes->id.'">'.$shoes->name.'</a></h6>
         <span class="product__category">'.$category->category .'</span>
     </div>
     <div class="product__footer hit">
@@ -25,7 +25,7 @@
 </div>';}
 else { echo '
     <div class="product">
-									<h2 class="product__title"><a href="#">'. $shoes->name .'</a></h2>
+									<h2 class="product__title"><a href="'.$shoes->id.'">'. $shoes->name .'</a></h2>
 									<div class="product__img">
 										<img src="/img/'.$shoes->image .'" alt="">
 										<p class="description">'.$shoes->description .'</p>

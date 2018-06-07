@@ -52,12 +52,12 @@ $config = [
             'rules' => [
                 [
                     'pattern' => 'catalog/<layout:\w+>/<kind:\w+>',
-                    'route' => 'site/index',
+                    'route' => 'site/products-catalog',
                     'defaults' => ['layout' => 'shirt', 'kind' => 'man'],
                 ],
                 [
-                    'pattern' => 'details/<action:\w+>/<id:\d+>',
-                    'route' => 'product/<action>',
+                    'pattern' => 'details/<type:\w+>/<id:\d+>',
+                    'route' => 'product/product-details',
                     'defaults' => [],
                 ],
                 [
@@ -119,6 +119,10 @@ $config = [
 
         'shoesCategory' => [
             'class' => 'app\Models\ShoesCategory'
+        ],
+
+        'shoesSize' => [
+            'class' => 'app\Models\ShoesSize'
         ],
 
         'racketBalance' => [
