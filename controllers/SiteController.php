@@ -67,9 +67,11 @@ class SiteController extends Controller
     public function actionIndex()
     {
 //        $request = \yii::$app->request;
-        $this->layout = 'catalog';
+        $this->layout = 'home';
         return $this->render('index');
     }
+
+
 
     /**
      * Displays homepage.

@@ -9,11 +9,11 @@
 echo '
     <section id="card" class="card">
 		<div class="container">
-			<div class="product d-flex">
-				<!-- <div class="product__photo">
+			<!--<div class="product d-flex">
+				&lt;!&ndash; <div class="product__photo">
 					<img src="img/1.jpg">
 					<img src="img/2.jpg">
-				</div> -->
+				</div> &ndash;&gt;
 				<div class="product__photo_active">				
 					<div class="product__active">
 						<img src="img/1.jpg">			
@@ -72,7 +72,7 @@ echo '
 						
 					</div>
 				</div>	
-			</div>
+			</div>-->
 			
 			<div id="tabs">
 				<ul class="tab-title">
@@ -84,13 +84,12 @@ echo '
 				<div id="tabs_container">
 					<div id="tabs-1">
 						<p>
-							Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris.
-Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris.Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris.							
+							'.$item->description .'
 						</p>
 					</div>
 					<div id="tabs-2">
 						<p>
-							Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. 
+						    '.$item->description .'	
 						</p>
 					</div>
 					<div id="tabs-3">

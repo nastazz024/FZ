@@ -53,8 +53,7 @@
         <aside class="sidebar">
             <div class="accordion">
                 <div class="accordion__head open">
-                    <h5 class="accordion__title">Цвет:</h5>
-                    <span class="icon-minus"></span>
+
                 </div>
                 <div class="accordion__body">
                     <ul class="check-list" id="colors-filter">

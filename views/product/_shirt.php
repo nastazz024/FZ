@@ -9,7 +9,7 @@
     </div>
 
     <div class="product__content">
-        <h6 class="product__title"><a href="//details/shirt/'.$shirt->id.'">'.$shirt->name.'</a></h6>
+        <h6 class="product__title"><a href="/details/shirt/'.$shirt->id.'">'.$shirt->name.'</a></h6>
         <span class="product__category">'.$category->category .'</span>
     </div>
 

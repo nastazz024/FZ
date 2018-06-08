@@ -32,15 +32,9 @@ else { echo '
 										<div class="product__card">
 											<select class="styler jq-selectbox__select">
 												<option value="">Размер</option>';
-    /*                                                foreach ($shoes->getSizes() as $size) {
-                                                        echo sprintf('<option value="%d">%s</option>', $size->id, $size->name);
-                                                    }*/
-//												<option value="">XS</option>
-//												<option value="">S</option>
-//												<option value="">M</option>
-//												<option value="">L</option>
-//												<option value="">XL</option>
-//												<option value="">XXL</option>
+                                                 foreach ($shoes->getSizes() as $size) {
+                                                    echo sprintf('<option value="%d">%s</option>', $size->id, $size->name);
+                                                }
     echo '</select>
 											<a href="#" class="btn add-cart-item shoes" data-id='.$shoes->id.' >В корзину</a>
 											</div>

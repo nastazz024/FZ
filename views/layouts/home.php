@@ -43,7 +43,7 @@ AppAsset::register($this);
 		<div class="dropdown-content dropdown-content--menu">
 			<div class="dropdown-content__item">
 				
-					<h4 class="dropdown-content__title">Мужское</h4>
+					<h4 class="dropdown-content__title">Магазин</h4>
 					<ul class="dropdown-menu">
 						<li class="dropdown-menu__item">
 							<a href="/catalog/shirt/man" class="dropdown-menu__link">Майки</a>
@@ -59,7 +59,7 @@ AppAsset::register($this);
 						</li>
 					</ul>
 				
-					<h4 class="dropdown-content__title">Женское</h4>
+					<h4 class="dropdown-content__title">Магазин</h4>
 					<ul class="dropdown-menu">
 						<li class="dropdown-menu__item">
 							<a href="/catalog/shirt/woman" class="dropdown-menu__link">Майки</a>
@@ -139,12 +139,12 @@ AppAsset::register($this);
 
 		</div>
 		<div class="logo">
-			<a href="/"><img src="/img/logo.png" alt="" class="logo-img"></a>
+			<a href="/site"><img src="/img/logo.png" alt="" class="logo-img"></a>
 		</div>
 
 		<ul class="main-menu main-menu-static">
 			<li class="main-menu__item dropdown">
-				<a href="#" class="main-menu__link">Женщинам<span class="icon-caret"></span></a>
+				<a href="#" class="main-menu__link">Женщинам!!!<span class="icon-caret"></span></a>
 				<div class="dropdown-content">
 					<ul class="dropdown-menu">
 						<li class="dropdown-menu__item">

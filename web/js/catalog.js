@@ -197,6 +197,11 @@ $(function () {
         payload.view = $('.filter-list__item.active a').data('type');
 
         //
+        var size = [];
+        $.each($sizeFiltersContainer.find('input[type="checkbox"]:checked'), function(pos, el) {
+            size.push($(el).val());
+        });
+        payload.size = size;
 
         /// сортировка
         payload.sort = {
@@ -206,9 +211,9 @@ $(function () {
 
         payload.kind = _kind;
 
-       /* payload.cost = {};
+        payload.cost = {};
         payload.cost.min = $("#slider-range").slider("values", 0);
-        payload.cost.max = $("#slider-range").slider("values", 1);*/
+        payload.cost.max = $("#slider-range").slider("values", 1);
 
 
         var csrfParam = yii.getCsrfParam();
@@ -434,8 +439,8 @@ $(function () {
 
             loadFn = loadShoeses;
 
-            // $colorItems.on('change', loadFn);
-            // $sizeItems.on('change', loadFn);
+             //$colorItems.on('change', loadFn);
+             $sizeItems.on('change', loadFn);
             break;
 
        case 'short':
@@ -480,6 +485,8 @@ $(function () {
 
     $container.on('click', '.add-cart-item.shirt', function(ev) {
         ev.preventDefault();
+
+
         addShirt($(ev.target).data('id'), 1);
     });
 

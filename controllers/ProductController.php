@@ -383,15 +383,13 @@ class ProductController extends Controller
         }
 
 
-        /*
 
-        TODO finish this block
         $rSize = $this->sanitizeIds($request->post('size'));
-        $query->join('inner join', 'shirt_count', 'shirt.id = shirt_count.shirt_id');
-        $query->andWhere('shirt_count.count > 0');
+        $query->join('inner join', 'shoes_count', 'shoes.id = shoes_count.shoes_id');
+        $query->andWhere('shoes_count.count > 0');
         if (!empty($rSize)) {
-            $query->andWhere(['in', 'shirt_count.shirt_size_id', $rSize]);
-        }*/
+            $query->andWhere(['in', 'shoes_count.shoes_size_id', $rSize]);
+        }
 
         $rCost = $this->sanitizeIds($request->post('cost'));
         if (!empty($rCost['min']) || !empty($rCost['max'])) {

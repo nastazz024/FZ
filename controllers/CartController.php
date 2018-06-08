@@ -225,6 +225,7 @@ class CartController extends Controller
 
     public function actionAdd()
     {
+
         $request = \yii::$app->request;
 
         $session = \yii::$app->session;

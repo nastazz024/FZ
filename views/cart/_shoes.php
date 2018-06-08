@@ -13,7 +13,7 @@
         <div class="cart-list__details">
             <span class="price"><?php echo $shoes->price ?> Br</span>
             <span class="product__details">
-											•
+											<span><?php echo $size->name ?></span> •
                 <!--											<span>--><?php //echo $color->color ?><!--</span> • -->
 											<span><?php echo $item['qty'] ?> шт.</span>
 										</span>
