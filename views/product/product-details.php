@@ -15,8 +15,7 @@ echo '
 					<img src="img/2.jpg">
 				</div> &ndash;&gt;
 				<div class="product__photo_active">				
-					<div class="product__active">
-						<img src="/img/'.$item->image.'"			
+					<div class="product__active">	
 					</div>
 					<div class="product__active d-none">
 								
