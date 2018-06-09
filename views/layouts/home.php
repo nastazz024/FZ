@@ -42,203 +42,41 @@ AppAsset::register($this);
 
 		<div class="dropdown-content dropdown-content--menu">
 			<div class="dropdown-content__item">
-				
-					<h4 class="dropdown-content__title">Магазин</h4>
-					<ul class="dropdown-menu">
-						<li class="dropdown-menu__item">
-							<a href="/catalog/shirt/man" class="dropdown-menu__link">Майки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/short/man" class="dropdown-menu__link">Шорты и брюки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/jacket/man" class="dropdown-menu__link">Куртки и толстовки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/shoes/man" class="dropdown-menu__link">Обувь</a>
-						</li>
-					</ul>
-				
-					<h4 class="dropdown-content__title">Магазин</h4>
-					<ul class="dropdown-menu">
-						<li class="dropdown-menu__item">
-							<a href="/catalog/shirt/woman" class="dropdown-menu__link">Майки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/short/woman" class="dropdown-menu__link">Шорты, брюки, юбки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/jacket/woman" class="dropdown-menu__link">Куртки и толстовки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/shoes/woman" class="dropdown-menu__link">Обувь</a>
-						</li>
-					</ul>
-				
-					<h4 class="dropdown-content__title">Детское</h4>
-					<ul class="dropdown-menu">
-						<li class="dropdown-menu__item">
-							<a href="/catalog/shirt/kids" class="dropdown-menu__link">Майки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/short/kids" class="dropdown-menu__link">Шорты, брюки, юбки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/jacket/kids" class="dropdown-menu__link">Куртки и толстовки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/shoes/kids" class="dropdown-menu__link">Обувь</a>
-						</li>
-					</ul>
-				
-			</div>
-			<div class="dropdown-content__item">
-				
+                <a href="/" ><h4 class="dropdown-content__title">Главная</h4></a>
 
-				<h4 class="dropdown-content__title">Ракетки</h4>
-				<ul class="dropdown-menu">
-					<li class="dropdown-menu__item">
-						<a href="/catalog/racket" class="dropdown-menu__link">Ракетки</a>
-					</li>
-					<li class="dropdown-menu__item">
-						<a href="#" class="dropdown-menu__link">Аксессуары для ракетки</a>
-					</li>
-				</ul>
-				<h4 class="dropdown-content__title">Сумки и аксессуары</h4>
-				<ul class="dropdown-menu">
-					<li class="dropdown-menu__item">
-						<a href="/catalog/bag" class="dropdown-menu__link">Сумки</a>
-					</li>
-					<li class="dropdown-menu__item">
-						<a href="#" class="dropdown-menu__link">Аксессуары</a>
-					</li>
-					
-				</ul>
-				
-			</div>
-			<div class="dropdown-content__item">
-				
-				<!--<h4 class="dropdown-content__title"><span class="text-error">Скидка -30%</span> <br>Акции <br><!--Blogids</h4>-->
-				<!--<div class="hr"></div>-->
+					<h4 class="dropdown-content__title">Магазин</h4>
 
-				<ul class="dropdown-menu">
-					<li class="dropdown-menu__item">
-						<a href="#" class="dropdown-menu__link"><h4 class="dropdown-content__title">Доставка</h4></a>
-					</li>
-					<li class="dropdown-menu__item">
-						<a href="#" class="dropdown-menu__link"><h4 class="dropdown-content__title">Оплата</h4></a>
-					</li>
-					<li class="dropdown-menu__item">
-						<a href="#" class="dropdown-menu__link"><h4 class="dropdown-content__title">Контакты</h4></a>
-					</li>
-					
-				</ul>
+					<h4 class="dropdown-content__title">Мероприятия</h4>
+
+					<h4 class="dropdown-content__title">League</h4>
+
+                    <h4 class="dropdown-content__title">Контакты</h4>
+
+				
 			</div>
-			<!--<div class="dropdown-content__item"></div>-->
-			
+
 
 		</div>
 		<div class="logo">
-			<a href="/site"><img src="/img/logo.png" alt="" class="logo-img"></a>
+			<a href="/"><img src="/img/logo.png" alt="" class="logo-img"></a>
 		</div>
 
 		<ul class="main-menu main-menu-static">
 			<li class="main-menu__item dropdown">
-				<a href="#" class="main-menu__link">Женщинам!!!<span class="icon-caret"></span></a>
-				<div class="dropdown-content">
-					<ul class="dropdown-menu">
-						<li class="dropdown-menu__item">
-							<a href="/catalog/shirt/woman" class="dropdown-menu__link">Майки</a>
-							
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/short/woman" class="dropdown-menu__link">Шорты, брюки, юбки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/jacket/woman" class="dropdown-menu__link">Куртки и толстовки</a>
-						</li>
-                        <li class="dropdown-menu__item">
-                            <a href="/catalog/shoes/woman" class="dropdown-menu__link">Обувь</a>
-                        </li>
-					</ul>
+				<a href="/catalog" class="main-menu__link">Магазин</span></a>
 
-				</div>
 			</li>
 
 			<li class="main-menu__item dropdown">
-				<a href="#" class="main-menu__link">Мужчинам<span class="icon-caret"></span></a>
-				<div class="dropdown-content">
-					<ul class="dropdown-menu">
+				<a href="#" class="main-menu__link">Мероприятия</span></a>
 
-						<li class="dropdown-menu__item">
-							<a href="/catalog/shirt/man" class="dropdown-menu__link">Майки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/short/man" class="dropdown-menu__link">Шорты и брюки</a>
-						</li>
-                        <li class="dropdown-menu__item">
-                            <a href="/catalog/jacket/man" class="dropdown-menu__link">Куртки и толстовки</a>
-                        </li>
-                        <li class="dropdown-menu__item">
-                            <a href="/catalog/shoes/man" class="dropdown-menu__link">Обувь</a>
-                        </li>
-					</ul>
-
-				</div>
 			</li>
 			<li class="main-menu__item dropdown">
-                <a href="#" class="main-menu__link">Детям<span class="icon-caret"></span></a>
-				<div class="dropdown-content">
-					<ul class="dropdown-menu">
-						<li class="dropdown-menu__item">
-							<a href="/catalog/shirt/kids" class="dropdown-menu__link">Майки</a>
-						</li>
-						<li class="dropdown-menu__item">
-							<a href="/catalog/short/kids" class="dropdown-menu__link">Шорты, брюки, юбки</a>
-						</li>
-                        <li class="dropdown-menu__item">
-                            <a href="/catalog/jacket/kids" class="dropdown-menu__link">Куртки и толстовки</a>
-                        </li>
-                        <li class="dropdown-menu__item">
-                            <a href="/catalog/shoes/kids" class="dropdown-menu__link">Обувь</a>
-                        </li>
-					</ul>
+                <a href="#" class="main-menu__link">League</span></a>
 
-				</div>
 			</li>
             <li class="main-menu__item dropdown">
-                <a href="#" class="main-menu__link">Ракетки <span class="icon-caret"></span></a>
-                <div class="dropdown-content">
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-menu__item">
-                            <a href="/catalog/racket" class="dropdown-menu__link">Ракетки</a>
-                        </li>
-                        <li class="dropdown-menu__item">
-                            <a href="#" class="dropdown-menu__link">Аксессуары для ракетки</a>
-                        </li>
-
-                    </ul>
-
-
-                </div>
-            </li>
-            <li class="main-menu__item dropdown">
-                <a href="#" class="main-menu__link">Сумки и аксессуары<span class="icon-caret"></span></a>
-                <div class="dropdown-content">
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-menu__item">
-                            <a href="/catalog/bag" class="dropdown-menu__link">Сумки</a>
-                        </li>
-                        <li class="dropdown-menu__item">
-                            <a href="#" class="dropdown-menu__link">Аксессуары</a>
-                        </li>
-
-                    </ul>
-
-                </div>
-            </li>
-            <li class="main-menu__item dropdown">
-                <a href="/catalog/shuttle" class="main-menu__link">Воланы</a>
+                <a href="#" class="main-menu__link">Контакты </span></a>
 
             </li>
 

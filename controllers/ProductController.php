@@ -164,6 +164,8 @@ class ProductController extends Controller
         $sizes = null;
         switch ($request->get('type')) {
             case 'shirt':
+            case 'short':
+            case 'jacket':
                 $model = self::getShirtModel();
                 $item = $model::findOne($request->get('id'));
                 $sizes = $item->getSizes();
@@ -171,19 +173,23 @@ class ProductController extends Controller
                 $categories = self::getShirtCategories();
                 break;
 
-            case 'short':
-                break;
-
-            case 'jacket':
-                break;
-
             case 'shoes':
+                $model = self::getShoesModel();
+                $item = $model::findOne($request->get('id'));
+                $sizes = $item->getShoes();
+                $categories = self::getShoesCategories();
                 break;
 
             case 'shuttle':
+                $model = self::getShuttleModel();
+                $item = $model::findOne($request->get('id'));
+
                 break;
 
             case 'bag':
+                $model = self::getShirtModel();
+                $item = $model::findOne($request->get('id'));
+                $sizes = $item->getSizes();
                 break;
 
             case 'racket':
@@ -285,7 +291,8 @@ class ProductController extends Controller
         $request = \yii::$app->request;
 
         $racketModel = self::getRacketModel();
-
+        $racketHole = self::getRacketHole();
+        $racketBalance = self::getRacketHole();
         $query = $racketModel::find();
         $query->where('1=1');
 
@@ -315,6 +322,16 @@ class ProductController extends Controller
 
         // print_r($query->createCommand()->getRawSql());
 
+        $rCost = $this->sanitizeIds($request->post('cost'));
+        if (!empty($rCost['min']) || !empty($rCost['max'])) {
+            if (!isset($rCost['min'])) {
+                $rCost['min'] = 0;
+            }
+            if (!isset($rCost['max'])) {
+                $rCost['max'] = PHP_INT_MAX;
+            }
+            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        }
         $products = $query->all();
 
 

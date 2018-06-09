@@ -98,6 +98,15 @@ $config = [
         'shortColor' => [
             'class' => 'app\Models\ShortColor'
         ],
+
+        'racketHole' => [
+            'class' => 'app\Models\RacketHole'
+        ],
+
+        'racketBalance' => [
+            'class' => 'app\Models\RacketBalance'
+        ],
+
         'shortSize' => [
             'class' => 'app\Models\ShortSize'
         ],
@@ -115,6 +124,10 @@ $config = [
 
         'bag' => [
             'class' => 'app\Models\Bag'
+        ],
+
+        'bagSize' => [
+            'class' => 'app\Models\BagSize'
         ],
 
         'shoesCategory' => [

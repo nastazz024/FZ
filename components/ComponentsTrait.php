@@ -18,6 +18,7 @@ trait ComponentsTrait
         return \yii::$app->get('shuttle');
     }
 
+
     /**
      * @return \app\models\ShirtColor|object
      * @throws \yii\base\InvalidConfigException
@@ -26,6 +27,25 @@ trait ComponentsTrait
     {
         return \yii::$app->get('shirtColor');
     }
+
+    /**
+     * @return \app\models\RacketHole|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getRacketHoleModel()
+    {
+        return \yii::$app->get('racketHole');
+    }
+
+    /**
+     * @return \app\models\RacketBalance|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getRacketBalanceModel()
+    {
+        return \yii::$app->get('racketBalance');
+    }
+
 
 
     /**
@@ -89,6 +109,15 @@ trait ComponentsTrait
     public static function getBagModel()
     {
         return \yii::$app->get('bag');
+    }
+
+    /**
+     * @return \app\models\BagSize|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getBagSizeModel()
+    {
+        return \yii::$app->get('bagSize');
     }
 
     /**
@@ -368,6 +397,8 @@ trait ComponentsTrait
         return \yii::$app->get('jacketColor');
     }
 
+
+
     /**
      * @return \app\models\JacketSize|object
      * @throws \yii\base\InvalidConfigException
@@ -396,6 +427,36 @@ trait ComponentsTrait
         $list = [];
 
         foreach (self::getJacketColorModel()->find()->orderBy('color')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\RacketHole[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getRacketHole()
+    {
+        $list = [];
+
+        foreach (self::getRacketHoleModel()->find()->orderBy('hole')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    /**
+     * @return \app\models\RacketBalance[]
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getRacketBalance()
+    {
+        $list = [];
+
+        foreach (self::getRacketBalanceModel()->find()->orderBy('balance')->all() as $item) {
             $list[$item->id] = $item;
         }
 

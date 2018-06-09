@@ -116,8 +116,8 @@
                 <div class="accordion__body" style="display: none;">
 
                     <div id="slider-range"></div>
-                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                    <input type="text" id="amount1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="text" id="amount" readonly style="margin-top:5px; float:left; width:30px; border:0; color:#7d7d7d; font-weight:bold;">
+                    <input type="text" id="amount1" readonly style="margin-top:5px; float:right; width:30px; border:0; color:#7d7d7d; font-weight:bold;">
 
                 </div>
 

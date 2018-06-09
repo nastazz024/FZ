@@ -12,14 +12,10 @@
                 <span class="icon-sliders"></span>
                 <span class="sr-only">Фильтр</span>
             </button>
-            <?php /*
-						$query = "SELECT COUNT(*) as row_count FROM `product` WHERE category='1'";
-						$result = mysql_query($query);
-
-						$max = mysql_fetch_array($result);
+            <?php /*count($item);
 						echo '
-						<span class="filter__title">Найдено товаров: '.$max['row_count'].' </span>'
-                   */ ?>
+						<span class="filter__title">Найдено товаров: '.$item['row'].' </span>'*/
+                   ?>
         </div>
         <div class="filter-content">
             <span class="filter__title">Сортировать по:</span>
@@ -58,20 +54,20 @@
                 </div>
                 <div class="accordion__body">
                     <ul class="check-list" id="racket-filter">
-                        <!--<li class="check-list__item">
-                            <input type="checkbox" class="styler" id="check-list1">
-                            <label for="check-list1" class="check-list__text">Черный</label>
-                        </li>-->
-
-
+                        <?php
+                        /** @var \app\models\RacketBalance $pcModel */
+                        $pcModel = \yii::$app->get('racketBalance');
+                        foreach ($pcModel::find()->orderBy('balance')->all() as $item) {
+                            ?>
                             <li class="check-list__item">
-                                <input type="checkbox" class="styler" id="check-list"
-                                       value="">
-                                <label for="check-list"
-                                       class="check-list__text"></label>
+                                <input type="checkbox" class="styler" id="check-list<?php echo $item->id ?>"
+                                       value="<?php echo $item->id ?>">
+                                <label for="check-list<?php echo $item->id ?>"
+                                       class="check-list__text"><?php echo $item->balance ?></label>
                             </li>
-
-
+                            <?php
+                        }
+                        ?>
 
                     </ul>
 
@@ -85,12 +81,21 @@
                 <div class="accordion__body" id="racket-filter">
                     <ul class="check-list check-list--column ">
 
-                            <li class="check-list__item">
-                                <input type="checkbox" class="styler" id="check-list_"
-                                       value="">
-                                <label for="check-list_"
-                                       class="check-list__text"></label>
-                            </li>
+
+                                    <?php
+                                    /** @var \app\models\RacketHole $pcModel */
+                                    $pcModel = \yii::$app->get('racketHole');
+                                    foreach ($pcModel::find()->orderBy('hole')->all() as $item) {
+                                    ?>
+                        <li class="check-list__item">
+                            <input type="checkbox" class="styler" id="check-list_<?php echo $item->id ?>"
+                                   value="<?php echo $item->id ?>">
+                            <label for="check-list_<?php echo $item->id ?>"
+                                   class="check-list__text"><?php echo $item->hole ?></label>
+                        </li>
+                        <?php
+                        }
+                        ?>
 
 
 
@@ -103,8 +108,8 @@
                 <div class="accordion__body" style="display: none;">
 
                     <div id="slider-range"></div>
-                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                    <input type="text" id="amount1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="text" id="amount" readonly style="margin-top:5px; float:left; width:30px; border:0; color:#7d7d7d; font-weight:bold;">
+                    <input type="text" id="amount1" readonly style="margin-top:5px; float:right; width:30px; border:0; color:#7d7d7d; font-weight:bold;">
 
                 </div>
 

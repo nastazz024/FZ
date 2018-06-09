@@ -1,8 +1,6 @@
 <?php
 
 
-//                            $color = $colors[(int)$item['color']];
-// $colors
 ?>
 <li class="cart-list__item">
     <div class="cart-list__img">

@@ -103,6 +103,10 @@ $(function () {
     };
 
     var loadRackets = function () {
+        var $balanceFiltersContainer = $('#size-filter');
+        var $balanceItems = $balanceFiltersContainer.find('input[type="checkbox"]'); /// bad naming
+        var $holeFiltersContainer = $('#size-filter');
+        var $holeItems = $balanceFiltersContainer.find('input[type="checkbox"]'); /// bad naming
         var payload = {};
 
         // сбор данных фильтра
@@ -110,6 +114,18 @@ $(function () {
         payload.view = $('.filter-list__item.active a').data('type');
 
         //
+        // todo filter by size
+        var balance = [];
+        $.each($balanceFiltersContainer.find('input[type="checkbox"]:checked'), function(pos, el) {
+            balance.push($(el).val());
+        });
+        payload.balance = balance;
+
+        var hole = [];
+        $.each($holeFiltersContainer.find('input[type="checkbox"]:checked'), function(pos, el) {
+            hole.push($(el).val());
+        });
+        payload.balance = hole;
 
         /// сортировка
         payload.sort = {
@@ -132,6 +148,8 @@ $(function () {
     };
 
     var loadBags = function () {
+        var $sizeFiltersContainer = $('#size-filter');
+        var $sizeItems = $sizeFiltersContainer.find('input[type="checkbox"]'); /// bad naming
         var payload = {};
 
         // сбор данных фильтра
@@ -146,7 +164,12 @@ $(function () {
             dir: $('.menu__sort.active').find('.arrow-down.gray').length ? 'desc' : 'asc'
         };
 
-        payload.kind = _kind;
+        // todo filter by size
+        var size = [];
+        $.each($sizeFiltersContainer.find('input[type="checkbox"]:checked'), function(pos, el) {
+            size.push($(el).val());
+        });
+        payload.size = size;
 
         payload.cost = {};
         payload.cost.min = $("#slider-range").slider("values", 0);
@@ -420,15 +443,16 @@ $(function () {
             break;
 
         case 'racket':
-            var $colorFiltersContainer = $('#colors-filter');
-            var $sizeFiltersContainer = $('#size-filter');
-            var $colorItems = $colorFiltersContainer.find('input[type="checkbox"]');
-            var $sizeItems = $sizeFiltersContainer.find('input[type="checkbox"]'); /// bad naming
 
+            var $balanceFiltersContainer = $('#size-filter');
+            var $balanceItems = $balanceFiltersContainer.find('input[type="checkbox"]'); /// bad naming
+            var $holeFiltersContainer = $('#size-filter');
+            var $holeItems = $holeFiltersContainer.find('input[type="checkbox"]'); /// bad naming
             loadFn = loadRackets;
 
-            $colorItems.on('change', loadFn);
-            $sizeItems.on('change', loadFn);
+
+            $balanceItems.on('change', loadFn);
+            $holeItems.on('change', loadFn);
             break;
 
         case 'shoes':

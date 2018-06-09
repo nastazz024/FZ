@@ -7,27 +7,27 @@
 
 
 echo '
-    <section id="card" class="card">
-		<div class="container">
-			<!--<div class="product d-flex">
+    <section id="carddet" class="carddet">
+		<div class="containerdet">
+			<div class="productdet det-flex">
 				&lt;!&ndash; <div class="product__photo">
 					<img src="img/1.jpg">
 					<img src="img/2.jpg">
 				</div> &ndash;&gt;
 				<div class="product__photo_active">				
 					<div class="product__active">
-						<img src="img/1.jpg">			
+						<img src="/img/'.$item->image.'"			
 					</div>
 					<div class="product__active d-none">
-						<img src="img/2.jpg">			
+								
 					</div>					
 				</div>
 				<div class="product__description">
-					<h2 class="product__title">
-						Футболка
+					<h2 class="productdet__title">
+						'.$item->name.'
 					</h2>
 					<p class="product__price">
-						59 р
+						'.$item->price.' руб.
 					</p>
 					<div class="product__size">
 						<div class="product__name">
@@ -37,6 +37,11 @@ echo '
 							</a>
 						</div>						
 						<ul class="size__list d-flex">	
+						    <li>
+								<a href="#" class="size__item">
+									XS
+								</a>
+							</li>
 							<li>
 								<a href="#" class="size__item">
 									S
@@ -72,83 +77,43 @@ echo '
 						
 					</div>
 				</div>	
-			</div>-->
-			
-			<div id="tabs">
-				<ul class="tab-title">
-					<li><a href="#tabs-1">Описание</a></li>
-					<li><a href="#tabs-2">Характеристики</a></li>
-					<li><a href="#tabs-3">Доставка</a></li>
-					<li><a href="#tabs-4">Отзывы</a></li>
-				</ul>
-				<div id="tabs_container">
-					<div id="tabs-1">
-						<p>
-							'.$item->description .'
-						</p>
-					</div>
-					<div id="tabs-2">
-						<p>
-						    '.$item->description .'	
-						</p>
-					</div>
-					<div id="tabs-3">
-						<p>
-							Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. 
-						</p>
-					</div>
-					
-					<div id="tabs-4">
-						<p>
-							Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. 
-						</p>
-						<div class="comment">
-							<a href="#" class="comment__rules">
-								Правила оформления отзывов
-							</a>						
-							<button class="comment__btn">
-								Добавить отзыв
-							</button>
-						</div>
-					</div>
-				</div>
-			</div> 
-
-			<div id="accordion">
-				<h3 class="tab-title">Описание</h3>
-				<div id="tabs_container">
-					<p>
-						Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris.
-					</p>
-				</div>
-				<h3 class="tab-title">Характеристики</h3>
-				<div id="tabs_container">
-					<p>
-						Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris.
-					</p>
-				</div>
-				<h3 class="tab-title">Доставка</h3>
-				<div id="tabs_container">
-					<p>
-						Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris.
-					</p>
-				</div>
-				
-				<h3 class="tab-title">Отзывы</h3>
-				<div id="tabs_container">
-					<p>
-						Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris.
-					</p>
-					<div class="comment">
-						<a href="#" class="comment__rules">
-							Правила оформления отзывов
-						</a>						
-						<button class="comment__btn">
-							Добавить отзыв
-						</button>
-					</div>
-				</div>
 			</div>
+			
+			<div class="tabdet">
+    <!-- Кнопка-переключатель и название первого таба -->
+    <input type="radio" name="tabdet" id="tab-first" checked >
+    <label for="tab-first">
+        <p>Описание</p>
+    </label>
+    <!-- Кнопка-переключатель и название второго таба -->
+    <input type="radio" name="tabdet" id="tab-second">
+    <label for="tab-second">
+        <p>Доставка</p>
+    </label>
+    <!-- Вывод контента наших табов -->
+    <div id="tab-content-1" class="tab-content">
+        <p>
+           '.$item->description.'
+        </p>
+    </div> <!-- #tab-content-1 -->
+    <div id="tab-content-2" class="tab-content">
+    <p><strong>ОПЛАТА</strong></p>
+<p>Оплата наличными.</p>
+<br>
+<p><strong>ДОСТАВКА ПО МИНСКУ</strong></p>
+<p>1. СРОК ДОСТАВКИ</p>
+<p>Доставка по Минску осуществляется в течение дня с момента поступления и обработки заказа</p>
+
+<p>2. СТОИМОСТЬ ДОСТАВКИ ПО МИНСКУ – 8Р.</p>
+<p>3. САМОВЫВОЗ – БЕСПЛАТНО</p>
+<p>Из офиса: ул. Пархоменко, 3, подъезд 1, Минск, Беларусь</p>
+<br>
+<p><strong>ДОСТАВКА ПО БЕЛАРУСИ</strong></p>
+<p>1. СТОИМОСТЬ ДОСТАВКИ ПО РБ КАК ПРАВИЛО –  10Р.</p>
+<p>2. СРОКИ ДОСТАВКИ ПО БЕЛАРУСИ</p>
+<p>Доставка в города Беларуси осуществляется Белпочтой. Отправка заказа осуществляется в течение 24 часов с момента оплаты заказа. Время заказа в пути около 12 часов в зависимости от Вашего местоположения.</p></p>   </div> <!-- #tab-content-2 -->
+</div>
+</div>
 		</div >	
 	</div>
 </section>

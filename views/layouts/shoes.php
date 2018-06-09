@@ -12,14 +12,12 @@
                 <span class="icon-sliders"></span>
                 <span class="sr-only">Фильтр</span>
             </button>
-            <?php /*
-						$query = "SELECT COUNT(*) as row_count FROM `product` WHERE category='1'";
-						$result = mysql_query($query);
-
-						$max = mysql_fetch_array($result);
+            <?php
+            /*$product = Product::findAll([]);
+            $count=count($product);
 						echo '
-						<span class="filter__title">Найдено товаров: '.$max['row_count'].' </span>'
-                   */ ?>
+						<span class="filter__title">Найдено товаров: '.$max['product'].' </span>'*/
+                   ?>
         </div>
         <div class="filter-content">
             <span class="filter__title">Сортировать по:</span>
@@ -87,8 +85,8 @@
                 <div class="accordion__body" style="display: none;">
 
                     <div id="slider-range"></div>
-                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                    <input type="text" id="amount1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="text" id="amount" readonly style="margin-top:5px; float:left; width:30px; border:0; color:#7d7d7d; font-weight:bold;">
+                    <input type="text" id="amount1" readonly style="margin-top:5px; float:right; width:30px; border:0; color:#7d7d7d; font-weight:bold;">
 
                 </div>
 

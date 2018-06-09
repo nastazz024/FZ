@@ -4,6 +4,6 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
-class RacketWeight extends ActiveRecord
+class BagSize extends ActiveRecord
 {
 }

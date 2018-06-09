@@ -5,7 +5,7 @@
     <span class="category"><?php echo \yii::$app->get('request')->get('kind') ?></span>
     <h1 class="header-inner__title">Сумки</h1>
 </section>
-<div class="tab-wrap">
+<section class="tab-wrap">
     <div class="filter">
         <div class="filter-sidebar">
             <button class="toggle-filter">
@@ -52,45 +52,32 @@
     <div class="box-main">
         <aside class="sidebar">
             <div class="accordion">
-                <div class="accordion__head open">
-
-                </div>
-                <div class="accordion__body">
-                    <ul class="check-list" id="colors-filter">
-                        <!--<li class="check-list__item">
-                            <input type="checkbox" class="styler" id="check-list1">
-                            <label for="check-list1" class="check-list__text">Черный</label>
-                        </li>-->
 
 
-                            <li class="check-list__item">
-                                <input type="checkbox" class="styler" id="check-list"
-                                       value="">
-                                <label for="check-list"
-                                       class="check-list__text"></label>
-                            </li>
-
-
-
-                    </ul>
-
-                </div>
 
                 <div class="accordion__head">
-                    <h5 class="accordion__title">Размер</h5>
+                    <h5 class="accordion__title">Количество</h5>
                     <span class="icon-minus"></span>
                 </div>
 
                 <div class="accordion__body" id="size-filter">
                     <ul class="check-list check-list--column ">
-                        
+                        <?php
+                        /*@var \app\models\BagSize $psModel */
+                        $psModel = \yii::$app->get('bagSize');
+                        foreach ($psModel::find()->orderBy('norder', 'asc')->all() as $item) {
+                            // if $kind == 'man' && $item->name == 'XS'   continue;
+                            ?>
                             <li class="check-list__item">
-                                <input type="checkbox" class="styler" id="check-list_"
-                                       value="">
-                                <label for="check-list_"
-                                       class="check-list__text"></label>
+                                <input type="checkbox" class="styler" id="check-list_<?php echo $item->id ?>"
+                                       value="<?php echo $item->id ?>">
+                                <label for="check-list_<?php echo $item->id ?>"
+                                       class="check-list__text"><?php echo $item->name ?></label>
                             </li>
+                            <?php
+                        }
 
+                        ?>
 
 
                     </ul>
@@ -102,8 +89,8 @@
                 <div class="accordion__body" style="display: none;">
 
                     <div id="slider-range"></div>
-                    <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                    <input type="text" id="amount1" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                    <input type="text" id="amount" readonly style="margin-top:5px; float:left; width:30px; border:0; color:#7d7d7d; font-weight:bold;">
+                    <input type="text" id="amount1" readonly style="margin-top:5px; float:right; width:30px; border:0; color:#7d7d7d; font-weight:bold;">
 
                 </div>
 
@@ -117,5 +104,5 @@
 
         </div>
 
-    </div>
+                            </div>
 <?php $this->endContent(); ?>
