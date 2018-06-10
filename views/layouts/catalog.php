@@ -214,7 +214,7 @@ AppAsset::register($this);
                             <a href="/catalog/racket" class="dropdown-menu__link">Ракетки</a>
                         </li>
                         <li class="dropdown-menu__item">
-                            <a href="#" class="dropdown-menu__link">Аксессуары для ракетки</a>
+                            <a href="/catalog/racket_accs" class="dropdown-menu__link">Аксессуары для ракетки</a>
                         </li>
 
                     </ul>
@@ -230,7 +230,7 @@ AppAsset::register($this);
                             <a href="/catalog/bag" class="dropdown-menu__link">Сумки</a>
                         </li>
                         <li class="dropdown-menu__item">
-                            <a href="#" class="dropdown-menu__link">Аксессуары</a>
+                            <a href="/catalog/accs" class="dropdown-menu__link">Аксессуары</a>
                         </li>
 
                     </ul>

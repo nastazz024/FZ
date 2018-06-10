@@ -9,12 +9,9 @@
 echo '
     <section id="carddet" class="carddet">
 		<div class="containerdet">
-			<div class="productdet det-flex">
-				&lt;!&ndash; <div class="product__photo">
-					<img src="img/1.jpg">
-					<img src="img/2.jpg">
-				</div> &ndash;&gt;
-				<div class="product__photo_active">				
+			
+				<div class="product__photo_active" style="float: left;">	
+							<img src="/img/'.$item->image.'" style="width: 310px">
 					<div class="product__active">	
 					</div>
 					<div class="product__active d-none">
@@ -38,46 +35,22 @@ echo '
 						<ul class="size__list d-flex">	
 						    <li>
 								<a href="#" class="size__item">
-									XS
+									
 								</a>
 							</li>
-							<li>
-								<a href="#" class="size__item">
-									S
-								</a>
-							</li>
-							<li>
-								<a href="#" class="size__item">
-									M
-								</a>
-							</li>
-							<li>
-								<a href="#" class="size__item">
-									L
-								</a>
-							</li>
-							<li>
-								<a href="#" class="size__item">
-									XL
-								</a>
-							</li>
-							<li>
-								<a href="#" class="size__item">
-									XXL
-								</a>
-							</li>							
+										
 						</ul>				
 
 					</div>
 					<div class="basketp">
-						<button type="submit" class="basket__btn">
+						<button type="submit" class="basket__btn" '.$item->id.'>
 							Добавить в корзину
 						</button>
 						
 					</div>
 				</div>	
 			</div>
-			
+			<div style="clear: both;"></div>
 			<div class="tabdet">
     <!-- Кнопка-переключатель и название первого таба -->
     <input type="radio" name="tabdet" id="tab-first" checked >

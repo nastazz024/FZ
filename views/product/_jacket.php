@@ -18,13 +18,12 @@
 
     </div>
     <div class="product__card">
-        <select class="styler jq-selectbox__select">
-            <option value="">Размер</option>
-            <option value="">S</option>
-            <option value="">L</option>
-            <option value="">M</option>
-        </select>
-        <a href="#" class="btn add-cart-item shirt" data-id='.$jacket->id.'>В корзину</a>
+        <select class="styler jq-selectbox__select">';
+            foreach ($jacket->getSizes() as $size) {
+                echo sprintf('<option value="%d">%s</option>', $size->id, $size->name);
+            }
+       echo ' </select>
+        <a href="#" class="btn add-cart-item jacket" data-id='.$jacket->id.'>В корзину</a>
         <br>
 
     </div>

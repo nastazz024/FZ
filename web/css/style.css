@@ -1312,7 +1312,7 @@ span { display: inline-block; }
 }
 
 .product__photo_active {
-  width: 100%;
+  width: auto;
 }
 
 .product__photo_active img {
@@ -1321,7 +1321,7 @@ span { display: inline-block; }
 
 
 .product__description {
-  width: 450px;
+ float: right;
   margin-left: 90px;
 }
 

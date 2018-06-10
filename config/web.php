@@ -95,6 +95,14 @@ $config = [
             'class' => 'app\Models\Short'
         ],
 
+        'racket_accs' => [
+            'class' => 'app\Models\Racket_accs'
+        ],
+
+        'accs' => [
+            'class' => 'app\Models\accs'
+        ],
+
         'shortColor' => [
             'class' => 'app\Models\ShortColor'
         ],

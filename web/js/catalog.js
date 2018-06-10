@@ -103,10 +103,8 @@ $(function () {
     };
 
     var loadRackets = function () {
-        var $balanceFiltersContainer = $('#size-filter');
-        var $balanceItems = $balanceFiltersContainer.find('input[type="checkbox"]'); /// bad naming
-        var $holeFiltersContainer = $('#size-filter');
-        var $holeItems = $balanceFiltersContainer.find('input[type="checkbox"]'); /// bad naming
+        var $balanceFiltersContainer = $('#balance-filter');
+        var $holeFiltersContainer = $('#hole-filter');
         var payload = {};
 
         // сбор данных фильтра
@@ -125,7 +123,7 @@ $(function () {
         $.each($holeFiltersContainer.find('input[type="checkbox"]:checked'), function(pos, el) {
             hole.push($(el).val());
         });
-        payload.balance = hole;
+        payload.hole = hole;
 
         /// сортировка
         payload.sort = {
@@ -146,6 +144,67 @@ $(function () {
             $container.html(resp);
         });
     };
+
+    var loadRackets_accs = function () {
+        var payload = {};
+
+        // сбор данных фильтра
+        //вид
+        payload.view = $('.filter-list__item.active a').data('type');
+
+
+
+        /// сортировка
+        payload.sort = {
+            field: $('.menu__sort.active').data('type'),
+            dir: $('.menu__sort.active').find('.arrow-down.gray').length ? 'desc' : 'asc'
+        };
+
+        payload.kind = _kind;
+
+        payload.cost = {};
+        payload.cost.min = $("#slider-range").slider("values", 0);
+        payload.cost.max = $("#slider-range").slider("values", 1);
+
+
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
+        $.post('/product/rackets_accs', payload, function(resp) {
+            $container.html(resp);
+        });
+    };
+
+
+    var loadAccss = function () {
+        var payload = {};
+
+        // сбор данных фильтра
+        //вид
+        payload.view = $('.filter-list__item.active a').data('type');
+
+
+
+        /// сортировка
+        payload.sort = {
+            field: $('.menu__sort.active').data('type'),
+            dir: $('.menu__sort.active').find('.arrow-down.gray').length ? 'desc' : 'asc'
+        };
+
+        payload.kind = _kind;
+
+        payload.cost = {};
+        payload.cost.min = $("#slider-range").slider("values", 0);
+        payload.cost.max = $("#slider-range").slider("values", 1);
+
+
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
+        $.post('/product/accss', payload, function(resp) {
+            $container.html(resp);
+        });
+    };
+
+
 
     var loadBags = function () {
         var $sizeFiltersContainer = $('#size-filter');
@@ -332,13 +391,43 @@ $(function () {
         });
     };
 
-    var addRacket = function(id) {
+    var addRacket = function(id,balance,hole) {
         var payload = {};
         var csrfParam = yii.getCsrfParam();
         payload[csrfParam] = yii.getCsrfToken();
 
         payload.id = id;
         payload.type = 'racket';
+        payload.hole = hole;
+        payload.balance = balance;
+
+        $.post('/cart/add', payload, function(resp) {
+            $cart.html(resp);
+        });
+
+    };
+
+    var addRacket_accs = function(id) {
+        var payload = {};
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
+
+        payload.id = id;
+        payload.type = 'racket_accs';
+
+        $.post('/cart/add', payload, function(resp) {
+            $cart.html(resp);
+        });
+
+    };
+
+    var addAccs = function(id) {
+        var payload = {};
+        var csrfParam = yii.getCsrfParam();
+        payload[csrfParam] = yii.getCsrfToken();
+
+        payload.id = id;
+        payload.type = 'accs';
 
         $.post('/cart/add', payload, function(resp) {
             $cart.html(resp);
@@ -360,13 +449,14 @@ $(function () {
 
     };
 
-    var addShort = function(id) {
+    var addShort = function(id, size) {
         var payload = {};
         var csrfParam = yii.getCsrfParam();
         payload[csrfParam] = yii.getCsrfToken();
 
         payload.id = id;
         payload.type = 'short';
+        payload.size = size;
 
         $.post('/cart/add', payload, function(resp) {
             $cart.html(resp);
@@ -375,13 +465,15 @@ $(function () {
     };
 
 
-    var addShoes = function(id) {
+    var addShoes = function(id,size) {
         var payload = {};
         var csrfParam = yii.getCsrfParam();
         payload[csrfParam] = yii.getCsrfToken();
 
         payload.id = id;
         payload.type = 'shoes';
+
+        payload.size = size;
 
         $.post('/cart/add', payload, function(resp) {
             $cart.html(resp);
@@ -396,7 +488,7 @@ $(function () {
         payload.id = id;
         payload.type = 'bag';
 
-        $.post('/cart/add', payload, function(resp) {
+            $.post('/cart/add', payload, function(resp) {
             $cart.html(resp);
         });
 
@@ -444,15 +536,25 @@ $(function () {
 
         case 'racket':
 
-            var $balanceFiltersContainer = $('#size-filter');
+            var $balanceFiltersContainer = $('#balance-filter');
             var $balanceItems = $balanceFiltersContainer.find('input[type="checkbox"]'); /// bad naming
-            var $holeFiltersContainer = $('#size-filter');
+            var $holeFiltersContainer = $('#hole-filter');
             var $holeItems = $holeFiltersContainer.find('input[type="checkbox"]'); /// bad naming
             loadFn = loadRackets;
 
 
             $balanceItems.on('change', loadFn);
             $holeItems.on('change', loadFn);
+            break;
+
+        case 'racket_accs':
+
+            loadFn = loadRackets_accs;
+            break;
+
+        case 'accs':
+
+            loadFn = loadAccss;
             break;
 
         case 'shoes':
@@ -486,6 +588,10 @@ $(function () {
             break;
 
         case 'bag':
+            var $holeFiltersContainer = $('#hole-filter');
+            var $balanceFiltersContainer = $('#balance-filter');
+            var $holeItems = $holeFiltersContainer.find('input[type="checkbox"]');
+            var $balanceItems = $balanceFiltersContainer.find('input[type="checkbox"]');
             loadFn = loadBags;
 
             break;
@@ -511,7 +617,7 @@ $(function () {
         ev.preventDefault();
 
 
-        addShirt($(ev.target).data('id'), 1);
+        addShirt($(ev.target).data('id'), $(ev.target).parent().find('select').val());
     });
 
     $container.on('click', '.add-cart-item.racket', function(ev) {
@@ -529,19 +635,24 @@ $(function () {
         addShuttle($(ev.target).data('id'));
     });
 
+    $container.on('click', '.add-cart-item.racket', function(ev) {
+        ev.preventDefault();
+        addRacket($(ev.target).data('id'));
+    });
+
     $container.on('click', '.add-cart-item.jacket', function(ev) {
         ev.preventDefault();
-        addJacket($(ev.target).data('id'));
+        addJacket($(ev.target).data('id'), $(ev.target).parent().find('select').val());
     });
 
     $container.on('click', '.add-cart-item.short', function(ev) {
         ev.preventDefault();
-        addShort($(ev.target).data('id'));
+        addShort($(ev.target).data('id'), $(ev.target).parent().find('select').val());
     });
 
     $container.on('click', '.add-cart-item.shoes', function(ev) {
         ev.preventDefault();
-        addShoes($(ev.target).data('id'));
+        addShoes($(ev.target).data('id'), $(ev.target).parent().find('select').val());
     });
 
     $cart.on('click', '.js-remove-cart', function(ev) {

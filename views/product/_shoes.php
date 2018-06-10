@@ -13,12 +13,11 @@
         <span class="price">'.$shoes->price.' руб.</span>
     </div>
     <div class="product__card">
-        <select class="styler jq-selectbox__select">
-            <option value="">Размер</option>
-            <option value="">S</option>
-            <option value="">L</option>
-            <option value="">M</option>
-        </select>
+        <select class="styler jq-selectbox__select">';
+            foreach ($shoes->getSizes() as $size) {
+             echo sprintf('<option value="%d">%s</option>', $size->id, $size->name);
+    }
+       echo' </select>
         <a href="#" class="btn add-cart-item shoes" data-id='.$shoes->id.'>В корзину</a>
         <br>
     </div>

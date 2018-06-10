@@ -19,11 +19,11 @@
     </div>
     <div class="product__card">
         <select class="styler jq-selectbox__select">
-            <option value="">Размер</option>
-            <option value="">S</option>
-            <option value="">L</option>
-            <option value="">M</option>
-        </select>
+            <option value="">Размер</option>';
+           foreach ($shirt->getSizes() as $size) {
+               echo sprintf('<option value="%d">%s</option>', $size->id, $size->name);
+           }
+       echo' </select>
         <a href="#" class="btn add-cart-item short" data-id='.$short->id.'>В корзину</a>
         <br>
 

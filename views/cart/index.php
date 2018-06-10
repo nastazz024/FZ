@@ -43,6 +43,7 @@ $total = 0;
                                 case 'racket':
                                     echo $this->render('_racket', [
                                         'racket' => $rackets[$item['id']],
+                                        '' => isset($sizes[(int)$item['size']]) ? $sizes[(int)$item['size']] : $sizePlaceholder,
                                         'item' => $item,
                                         'key' => $key,
                                     ]);
@@ -60,6 +61,22 @@ $total = 0;
                                 case 'shuttle':
                                     echo $this->render('_shuttle', [
                                         'shuttle' => $shuttles[$item['id']],
+                                        'item' => $item,
+                                        'key' => $key,
+                                    ]);
+                                    break;
+
+                                case 'racket_accs':
+                                    echo $this->render('_racket_accs', [
+                                        'racket_accs' => $rackets_accs[$item['id']],
+                                        'item' => $item,
+                                        'key' => $key,
+                                    ]);
+                                    break;
+
+                                case 'accs':
+                                    echo $this->render('_accs', [
+                                        'accs' => $accss[$item['id']],
                                         'item' => $item,
                                         'key' => $key,
                                     ]);

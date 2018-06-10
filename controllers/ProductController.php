@@ -176,7 +176,7 @@ class ProductController extends Controller
             case 'shoes':
                 $model = self::getShoesModel();
                 $item = $model::findOne($request->get('id'));
-                $sizes = $item->getShoes();
+                $sizes = $item->getSizes();
                 $categories = self::getShoesCategories();
                 break;
 
@@ -194,6 +194,16 @@ class ProductController extends Controller
 
             case 'racket':
                 $model = self::getRacketModel();
+                $item = $model::findOne($request->get('id'));
+                break;
+
+            case 'racket_accs':
+                $model = self::getRacket_accsModel();
+                $item = $model::findOne($request->get('id'));
+                break;
+
+            case 'accs':
+                $model = self::getAccsModel();
                 $item = $model::findOne($request->get('id'));
                 break;
         }
@@ -297,16 +307,23 @@ class ProductController extends Controller
         $query->where('1=1');
 
 
-        $rCost = $this->sanitizeIds($request->post('cost'));
-        if (!empty($rCost['min']) || !empty($rCost['max'])) {
-            if (!isset($rCost['min'])) {
-                $rCost['min'] = 0;
-            }
-            if (!isset($rCost['max'])) {
-                $rCost['max'] = PHP_INT_MAX;
-            }
-            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        // TODO rename
+        $rSize = $this->sanitizeIds($request->post('balance'));
+        $query->join('inner join', 'racket_count', 'racket.id = racket_count.racket_id');
+        $query->andWhere('racket_count.count > 0');
+        if (!empty($rSize)) {
+            $query->andWhere(['in', 'racket_count.racket_balance_id', $rSize]);
         }
+
+        /*$rSize = $this->sanitizeIds($request->post('hole'));
+        $query->join('inner join', 'racket_hole', 'racket.id = racket_hole.hole');
+        $query->andWhere('racket_hole.hole > 0');
+        if (!empty($rSize)) {
+            $query->andWhere(['in', 'racket_hole.hole', $rSize]);
+        }*/
+
+
+
 
         $sort = [];
         $rSort = $request->post('sort');
@@ -342,6 +359,92 @@ class ProductController extends Controller
     }
 
 
+    public function actionRackets_accs()
+    {
+        $request = \yii::$app->request;
+
+        $racket_accsModel = self::getRacket_accsModel();
+        $query = $racket_accsModel::find();
+        $query->where('1=1');
+
+
+        $sort = [];
+        $rSort = $request->post('sort');
+        if ($rSort && is_array($rSort) && !empty($rSort['field']) && isset($rSort['dir'])) {
+            /// todo check values
+            // format "<field> <asc|desc>"
+            $sort[$rSort['field']] = (strtolower($rSort['dir']) == 'asc' ? SORT_ASC : SORT_DESC);
+        }
+        if (!isset($sort['name'])) {
+            $sort['name'] = 'asc';
+        }
+        $query->orderby($sort);
+
+        // print_r($query->createCommand()->getRawSql());
+
+        $rCost = $this->sanitizeIds($request->post('cost'));
+        if (!empty($rCost['min']) || !empty($rCost['max'])) {
+            if (!isset($rCost['min'])) {
+                $rCost['min'] = 0;
+            }
+            if (!isset($rCost['max'])) {
+                $rCost['max'] = PHP_INT_MAX;
+            }
+            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        }
+        $products = $query->all();
+
+
+        return $this->renderAjax('//product/_rackets_accs', [
+            'rackets_accs' => $products,
+            'view' => $request->post('view', 'grid'),
+        ]);
+    }
+
+
+
+    public function actionAccss()
+    {
+        $request = \yii::$app->request;
+
+        $accsModel = self::getAccsModel();
+        $query = $accsModel::find();
+        $query->where('1=1');
+
+
+        $sort = [];
+        $rSort = $request->post('sort');
+        if ($rSort && is_array($rSort) && !empty($rSort['field']) && isset($rSort['dir'])) {
+            /// todo check values
+            // format "<field> <asc|desc>"
+            $sort[$rSort['field']] = (strtolower($rSort['dir']) == 'asc' ? SORT_ASC : SORT_DESC);
+        }
+        if (!isset($sort['name'])) {
+            $sort['name'] = 'asc';
+        }
+        $query->orderby($sort);
+
+        // print_r($query->createCommand()->getRawSql());
+
+        $rCost = $this->sanitizeIds($request->post('cost'));
+        if (!empty($rCost['min']) || !empty($rCost['max'])) {
+            if (!isset($rCost['min'])) {
+                $rCost['min'] = 0;
+            }
+            if (!isset($rCost['max'])) {
+                $rCost['max'] = PHP_INT_MAX;
+            }
+            $query->andWhere(['between', 'price', $rCost['min'], $rCost['max']]);
+        }
+        $products = $query->all();
+
+
+        return $this->renderAjax('//product/_accss', [
+            'accss' => $products,
+            'view' => $request->post('view', 'grid'),
+        ]);
+    }
+
     public function actionBags()
     {
         $request = \yii::$app->request;
@@ -351,6 +454,12 @@ class ProductController extends Controller
         $query = $bagModel::find();
         $query->where('1=1');
 
+       /* $rSize = $this->sanitizeIds($request->post('bag'));
+        $query->join('inner join', 'bag_count', 'bag.id = bag_count.bag_id');
+        $query->andWhere('bag_count.count > 0');
+        if (!empty($rSize)) {
+            $query->andWhere(['in', 'bag_count.bag_size_id', $rSize]);
+        }*/
 
         $rCost = $this->sanitizeIds($request->post('cost'));
         if (!empty($rCost['min']) || !empty($rCost['max'])) {

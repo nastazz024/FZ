@@ -58,6 +58,8 @@ class CartController extends Controller
         $racketIds = [];
         $shortIds = [];
         $shoesIds = [];
+        $racket_accsIds = [];
+        $accsIds = [];
         $jacketIds = [];
         $bagIds = [];
         $shuttleIds = [];
@@ -73,6 +75,14 @@ class CartController extends Controller
 
                 case 'racket':
                     $racketIds[] = (int)$item['id'];
+                    break;
+
+                case 'racket_accs':
+                    $racket_accsIds[] = (int)$item['id'];
+                    break;
+
+                case 'accs':
+                    $accsIds[] = (int)$item['id'];
                     break;
 
                 case 'shuttle':
@@ -99,6 +109,8 @@ class CartController extends Controller
 
         $shirts = $this->readObjects($shirtIds, self::getShirtModel());
         $rackets = $this->readObjects($racketIds, self::getRacketModel());
+        $rackets_accs = $this->readObjects($racket_accsIds, self::getRacket_accsModel());
+        $accss = $this->readObjects($accsIds, self::getAccsModel());
         $shorts = $this->readObjects($shortIds, self::getShortModel());
         $shuttles = $this->readObjects($shuttleIds, self::getShuttleModel());
         $jackets = $this->readObjects($jacketIds, self::getJacketModel());
@@ -111,6 +123,9 @@ class CartController extends Controller
                 'items' => $session['list'],
                 'shirts' => $shirts,
                 'rackets' => $rackets,
+                'rackets_accs' => $rackets_accs,
+                'accss' => $accss,
+                'jackets' => $jackets,
                 'shorts' => $shorts,
                 'colors' => $colors,
                 'shuttles' => $shuttles,
@@ -139,6 +154,8 @@ class CartController extends Controller
         $shirtIds = [];
         $shortIds = [];
         $racketIds = [];
+        $racket_accsIds = [];
+        $accsIds = [];
         $shoesIds = [];
         $shuttleIds = [];
         $bagIds = [];
@@ -155,6 +172,14 @@ class CartController extends Controller
 
                 case 'racket':
                     $racketIds[] = (int)$item['id'];
+                    break;
+
+                case 'racket_accs':
+                    $racket_accsIds[] = (int)$item['id'];
+                    break;
+
+                case 'accs':
+                    $accsIds[] = (int)$item['id'];
                     break;
 
                 case 'shoes':
@@ -181,9 +206,11 @@ class CartController extends Controller
         $shirts = $this->readObjects($shirtIds, self::getShirtModel());
         $shorts = $this->readObjects($shortIds, self::getShortModel());
         $rackets = $this->readObjects($racketIds, self::getRacketModel());
+        $rackets_accs = $this->readObjects($racket_accsIds, self::getRacket_accsModel());
+        $accss = $this->readObjects($accsIds, self::getAccsModel());
         $shoeses = $this->readObjects($shoesIds, self::getShoesModel());
         $jackets = $this->readObjects($jacketIds, self::getJacketModel());
-        $bags = $this->readObjects($bagIds, self::getBsgModel());
+        $bags = $this->readObjects($bagIds, self::getBagModel());
         $shuttles = $this->readObjects($shuttleIds, self::getShuttleModel());
 //        echo '<pre>'; print_r($session['list']); exit;
 
@@ -197,6 +224,8 @@ class CartController extends Controller
                 'jackets' => $jackets,
                 'shuttles' => $shuttles,
                 'rackets' => $rackets,
+                'rackets_accs' => $rackets_accs,
+                'accss' => $accss,
                 'shoeses' => $shoeses,
                 'colors' => $colors,
                 'categories' => $categories,
@@ -252,17 +281,20 @@ class CartController extends Controller
             case 'shirt':
             case 'short':
             case 'shoes':
-            case 'shuttle':
             case 'bag':
             case 'jacket':
                 $size = $request->post('size');
                 if (empty($size)) {
-                    return 'empty size';
+                    // just render cart without processing bad item
+                    return $this->actionIndex();
                 }
                 $key = $type . '.' . $id . '.' . $size;
                 break;
 
             case 'racket':
+            case 'racket_accs':
+            case 'accs':
+            case 'shuttle':
             default:
                 $key = $type . '.' . $id;
         }
@@ -283,7 +315,6 @@ class CartController extends Controller
             case 'short':
             case 'jacket':
             case 'shoes':
-            case 'shuttle':
             case 'bag':
                 $list[$key]['size'] = $size;
                 break;

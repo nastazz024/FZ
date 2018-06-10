@@ -13,9 +13,28 @@ trait ComponentsTrait
         return \yii::$app->get('shirt');
     }
 
+
+    /**
+     * @return \app\models\Accs|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getAccsModel()
+    {
+        return \yii::$app->get('accs');
+    }
+
     public static function getShuttleModel()
     {
         return \yii::$app->get('shuttle');
+    }
+
+    /**
+     * @return \app\models\Racket_accs|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getRacket_accsModel()
+    {
+        return \yii::$app->get('racket_accs');
     }
 
 
