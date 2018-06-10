@@ -151,87 +151,19 @@ class CartController extends Controller
             $session['list'] = [];
         }
 
-        $shirtIds = [];
-        $shortIds = [];
-        $racketIds = [];
-        $racket_accsIds = [];
-        $accsIds = [];
-        $shoesIds = [];
-        $shuttleIds = [];
-        $bagIds = [];
-        $jacketIds = [];
-        foreach ($session['list'] as $item) {
-            switch ($item['type']) {
-                case 'shirt':
-                $shirtIds[] = (int)$item['id'];
-                break;
 
-                case 'short':
-                    $shortIds[] = (int)$item['id'];
-                    break;
-
-                case 'racket':
-                    $racketIds[] = (int)$item['id'];
-                    break;
-
-                case 'racket_accs':
-                    $racket_accsIds[] = (int)$item['id'];
-                    break;
-
-                case 'accs':
-                    $accsIds[] = (int)$item['id'];
-                    break;
-
-                case 'shoes':
-                    $shoesIds[] = (int)$item['id'];
-                    break;
-                case 'bag':
-                    $bagIds[] = (int)$item['id'];
-                    break;
-
-                case 'shuttle':
-                    $shuttleIds[] = (int)$item['id'];
-                    break;
-                case 'jacket':
-                    $jacketIds[] = (int)$item['id'];
-                    break;
-            }
-        }
-
-        $colors = self::getShirtColors();
-        $categories = self::getShirtCategories();
-        $sizes = self::getShirtSizes();
-        $categorie = self::getShortCategories();
-
-        $shirts = $this->readObjects($shirtIds, self::getShirtModel());
-        $shorts = $this->readObjects($shortIds, self::getShortModel());
-        $rackets = $this->readObjects($racketIds, self::getRacketModel());
-        $rackets_accs = $this->readObjects($racket_accsIds, self::getRacket_accsModel());
-        $accss = $this->readObjects($accsIds, self::getAccsModel());
-        $shoeses = $this->readObjects($shoesIds, self::getShoesModel());
-        $jackets = $this->readObjects($jacketIds, self::getJacketModel());
-        $bags = $this->readObjects($bagIds, self::getBagModel());
-        $shuttles = $this->readObjects($shuttleIds, self::getShuttleModel());
 //        echo '<pre>'; print_r($session['list']); exit;
 
         $this->layout = 'catalog';
 
         return $this->render('confirm', [
                 'items' => $session['list'],
-                'shirts' => $shirts,
-                'shorts' => $shorts,
-                'bags' => $bags,
-                'jackets' => $jackets,
-                'shuttles' => $shuttles,
-                'rackets' => $rackets,
-                'rackets_accs' => $rackets_accs,
-                'accss' => $accss,
-                'shoeses' => $shoeses,
-                'colors' => $colors,
-                'categories' => $categories,
-                'sizes' => $sizes,
+                'user' => Yii::$app->user->identity,
+
             ]
         );
+
+
     }
 
     public function actionComplete()

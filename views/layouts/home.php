@@ -97,25 +97,7 @@ AppAsset::register($this);
 			
 			</li>
 			<li class="profile-menu__item dropdown dropdown--right dropdown--white">
-				<a href="#" class="profile-menu__link"><span class="icon-user"></span></a>
-				<div class="dropdown-content">
-					<ul class="user-menu">
-						<li class="user-menu__item">
-							<a href="#" class="user-menu__link"><span class="icon-user"></span>Профиль</a>
-						</li>
-						
-						<li class="user-menu__item">
-							<a href="#" class="user-menu__link"><span class="icon-basket"></span>Мои заказы</a>
-						</li>
-						<li class="user-menu__item">
-							<a href="#" class="user-menu__link"><span class="icon-gear"></span>Настройки</a>
-						</li>
-						<li class="user-menu__item">
-							<a href="#" class="user-menu__link"><span class="icon-power"></span>Выйти</a>
-						</li>
-					</ul>
-					
-				</div>
+                <?php echo $this->render('//partial/user-menu') ?>
 			</li>
 		</ul>
 	</header>

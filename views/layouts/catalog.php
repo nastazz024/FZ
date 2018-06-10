@@ -13,6 +13,10 @@ use app\assets\AppAsset;
 use yii\widgets\Menu;
 
 AppAsset::register($this);
+
+
+/** @var User $identity */
+$identity = Yii::$app->user->identity;
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -245,21 +249,21 @@ AppAsset::register($this);
 			
 		</ul>
 
-        <div class="search">
+<!--        <div class="search">
             <form action="#">
                 <input type="text" class="form-control search__input" placeholder="Поиск" />
                 <input type="submit" value="&#xe90b;" class="search__button"/>
             </form>
 		</div>
 
-		
+		-->
 		
 		<ul class="profile-menu">
 			<li class="profile-menu__item dropdown dropdown--right dropdown--white" id="cart-container">
 			
 			</li>
 			<li class="profile-menu__item dropdown dropdown--right dropdown--white">
-				<a href="#" class="profile-menu__link"><span class="icon-user"></span></a>
+				<!--<a href="#" class="profile-menu__link"><span class="icon-user"></span></a>
 				<div class="dropdown-content">
 					<ul class="user-menu">
 						<li class="user-menu__item">
@@ -277,7 +281,8 @@ AppAsset::register($this);
 						</li>
 					</ul>
 					
-				</div>
+				</div>-->
+                <?php echo $this->render('//partial/user-menu') ?>
 			</li>
 		</ul>
 	</header>

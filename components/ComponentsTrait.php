@@ -2,8 +2,19 @@
 
 namespace app\components;
 
+use app\models\User;
+
 trait ComponentsTrait
 {
+    /**
+     * @return User|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getUserModel()
+    {
+        return new User();
+    }
+
     /**
      * @return \app\models\Shirt|object
      * @throws \yii\base\InvalidConfigException

@@ -2,7 +2,7 @@
 
 echo '
     <div class="product">
-									<h2 class="product__title"><a href="#">'. $shirt->name .'</a></h2>
+									<h2 class="product__title"><a href="#">'. $shirt->name .'s</a></h2>
 									<div class="product__img">
 										<img src="/img/'.$shirt->image .'" alt="">
 										<p class="description">'.$shirt->description .'!!!</p>
