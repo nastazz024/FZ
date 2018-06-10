@@ -60,11 +60,18 @@ $config = [
                     'route' => 'product/product-details',
                     'defaults' => [],
                 ],
+
                 [
                     'pattern' => '',
                     'route' => 'site/index',
                     'defaults' => ['layout' => 'shirt', 'kind' => 'man'],
                 ],
+
+                [
+                    'pattern' => 'league',
+                    'route' => 'site/league',
+                ],
+
             ],
         ],
 

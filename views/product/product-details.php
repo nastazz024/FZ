@@ -1,17 +1,10 @@
-<?php
 
 
-//if (!empty($sizes)) {
-//    ///
-//}
-
-
-echo '
     <section id="carddet" class="carddet">
 		<div class="containerdet">
 			
 				<div class="product__photo_active" style="float: left;">	
-							<img src="/img/'.$item->image.'" style="width: 310px">
+							<img src="/img/<?php echo $item->image ?>" style="width: 310px">
 					<div class="product__active">	
 					</div>
 					<div class="product__active d-none">
@@ -20,10 +13,10 @@ echo '
 				</div>
 				<div class="product__description">
 					<h2 class="productdet__title">
-						'.$item->name.'
+						<?php echo $item->name ?>
 					</h2>
 					<p class="product__price">
-						'.$item->price.' руб.
+						<?php echo $item->price ?> руб.
 					</p>
 					<div class="product__size">
 						<div class="product__name">
@@ -31,19 +24,23 @@ echo '
 							<a href="#">
 								Таблица размеров
 							</a>
-						</div>						
-						<ul class="size__list d-flex">	
+						</div>
+                        <?php
+
+                        if (!empty($sizes)) { ?>
+						<ul class="size__list d-flex">
+                            <?php foreach ($sizes as $size) { ?>
 						    <li>
 								<a href="#" class="size__item">
-									
+									<?php echo $size->name ?>
 								</a>
 							</li>
-										
+                            <?php } ?>
 						</ul>				
-
+                    <?php } ?>
 					</div>
 					<div class="basketp">
-						<button type="submit" class="basket__btn" '.$item->id.'>
+						<button type="submit" class="basket__btn" <?php echo $item->id ?>>
 							Добавить в корзину
 						</button>
 						
@@ -65,7 +62,7 @@ echo '
     <!-- Вывод контента наших табов -->
     <div id="tab-content-1" class="tab-content">
         <p>
-           '.$item->description.'
+    <?php echo  $item->description ?>
         </p>
     </div> <!-- #tab-content-1 -->
     <div id="tab-content-2" class="tab-content">
@@ -90,4 +87,3 @@ echo '
 	</div>
 </section>
                                         
-                                     ' ;

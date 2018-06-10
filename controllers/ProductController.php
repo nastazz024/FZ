@@ -162,53 +162,58 @@ class ProductController extends Controller
         $colors = null;
         $categories = null;
         $sizes = null;
+        $model = null;
         switch ($request->get('type')) {
             case 'shirt':
-            case 'short':
-            case 'jacket':
                 $model = self::getShirtModel();
-                $item = $model::findOne($request->get('id'));
-                $sizes = $item->getSizes();
                 $colors = self::getShirtColors();
                 $categories = self::getShirtCategories();
                 break;
 
+            case 'short':
+                $model = self::getShortModel();
+                $categories = self::getShortCategories();
+                break;
+
+            case 'jacket':
+                $model = self::getJacketModel();
+                $categories = self::getJacketCategories();
+                break;
+
             case 'shoes':
                 $model = self::getShoesModel();
-                $item = $model::findOne($request->get('id'));
-                $sizes = $item->getSizes();
                 $categories = self::getShoesCategories();
                 break;
 
             case 'shuttle':
                 $model = self::getShuttleModel();
-                $item = $model::findOne($request->get('id'));
-
                 break;
 
             case 'bag':
                 $model = self::getShirtModel();
-                $item = $model::findOne($request->get('id'));
-                $sizes = $item->getSizes();
                 break;
 
             case 'racket':
                 $model = self::getRacketModel();
-                $item = $model::findOne($request->get('id'));
                 break;
 
             case 'racket_accs':
                 $model = self::getRacket_accsModel();
-                $item = $model::findOne($request->get('id'));
                 break;
 
             case 'accs':
                 $model = self::getAccsModel();
-                $item = $model::findOne($request->get('id'));
                 break;
         }
 
+        if (!$model) {
+            return 'UNKNOWN PRODUCT MODEL';
+        }
 
+        $item = $model::findOne($request->get('id'));
+        if (method_exists($item, 'getSizes')) {
+            $sizes = $item->getSizes();
+        }
 
         $this->layout = 'catalog';
         return $this->render('//product/product-details', [
@@ -315,12 +320,11 @@ class ProductController extends Controller
             $query->andWhere(['in', 'racket_count.racket_balance_id', $rSize]);
         }
 
-        /*$rSize = $this->sanitizeIds($request->post('hole'));
-        $query->join('inner join', 'racket_hole', 'racket.id = racket_hole.hole');
-        $query->andWhere('racket_hole.hole > 0');
+        $rSize = $this->sanitizeIds($request->post('hole'));
+//        $query->join('inner join', 'racket_hole', 'racket_hole.id = racket.hole_id');
         if (!empty($rSize)) {
-            $query->andWhere(['in', 'racket_hole.hole', $rSize]);
-        }*/
+            $query->andWhere(['in', 'racket.hole_id', $rSize]);
+        }
 
 
 
@@ -454,12 +458,12 @@ class ProductController extends Controller
         $query = $bagModel::find();
         $query->where('1=1');
 
-       /* $rSize = $this->sanitizeIds($request->post('bag'));
+        $rSize = $this->sanitizeIds($request->post('size'));
         $query->join('inner join', 'bag_count', 'bag.id = bag_count.bag_id');
         $query->andWhere('bag_count.count > 0');
         if (!empty($rSize)) {
             $query->andWhere(['in', 'bag_count.bag_size_id', $rSize]);
-        }*/
+        }
 
         $rCost = $this->sanitizeIds($request->post('cost'));
         if (!empty($rCost['min']) || !empty($rCost['max'])) {

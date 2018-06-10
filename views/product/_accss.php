@@ -2,8 +2,8 @@
 <?php
 
 foreach ($accss as $accs) {
-    echo $this->render('/product/_accss', [
-        'accss' => $accss,
+    echo $this->render('/product/_accs', [
+        'accs' => $accs,
         'view' => $view,
         ]);
 }

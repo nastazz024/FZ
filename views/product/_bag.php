@@ -32,7 +32,7 @@ else { echo '
 										<p class="description racket">'.$bag->description .'</p>
 										<div class="product__card">
 											
-											<a href="#" class="btn add-cart-item racket" data-id='.$bag->id.' >В корзину</a>
+											<a href="#" class="btn add-cart-item bag" data-id='.$bag->id.' >В корзину</a>
 											</div>
 										</div>
 										<div class="product__footer">

@@ -20,7 +20,7 @@
     <div class="product__card">
         <select class="styler jq-selectbox__select">
             <option value="">Размер</option>';
-           foreach ($shirt->getSizes() as $size) {
+           foreach ($short->getSizes() as $size) {
                echo sprintf('<option value="%d">%s</option>', $size->id, $size->name);
            }
        echo' </select>

@@ -86,6 +86,18 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionLeague()
+    {
+        $request = \yii::$app->request;
+        $this->layout = 'home';
+        return $this->render('league');
+    }
+
+    /**
      * Displays about page.
      *
      * @return string

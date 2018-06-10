@@ -189,6 +189,28 @@ trait ComponentsTrait
         return $list;
     }
 
+    public static function getShortSizes()
+    {
+        $list = [];
+
+        foreach (self::getShortSizeModel()->find()->orderBy('norder')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
+    public static function getBagSizes()
+    {
+        $list = [];
+
+        foreach (self::getBagSizeModel()->find()->orderBy('norder')->all() as $item) {
+            $list[$item->id] = $item;
+        }
+
+        return $list;
+    }
+
     /**
      * @return \app\models\ShoesSize[]
      * @throws \yii\base\InvalidConfigException

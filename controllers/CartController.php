@@ -117,7 +117,7 @@ class CartController extends Controller
         $bags = $this->readObjects($bagIds, self::getBagModel());
         $shoeses = $this->readObjects($shoesIds, self::getShoesModel());
 
-//        echo '<pre>'; print_r($session['list']); exit;
+        //echo '<pre>'; print_r($session['list']); exit;
 
         return $this->renderPartial('index', [
                 'items' => $session['list'],
@@ -281,7 +281,6 @@ class CartController extends Controller
             case 'shirt':
             case 'short':
             case 'shoes':
-            case 'bag':
             case 'jacket':
                 $size = $request->post('size');
                 if (empty($size)) {
@@ -294,6 +293,7 @@ class CartController extends Controller
             case 'racket':
             case 'racket_accs':
             case 'accs':
+            case 'bag':
             case 'shuttle':
             default:
                 $key = $type . '.' . $id;
@@ -315,7 +315,6 @@ class CartController extends Controller
             case 'short':
             case 'jacket':
             case 'shoes':
-            case 'bag':
                 $list[$key]['size'] = $size;
                 break;
         }

@@ -43,7 +43,7 @@ else { echo '
 
 
     echo '</select>
-											<a href="#" class="btn add-cart-item shirt" data-id='.$jacket->id.' >В корзину</a>
+											<a href="#" class="btn add-cart-item jacket" data-id='.$jacket->id.' >В корзину</a>
 											</div>
 										</div>
 										<div class="product__footer">
