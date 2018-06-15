@@ -3,10 +3,11 @@
 ?>
 <li class="cart-list__item">
     <div class="cart-list__img">
-        <a href="#"><img src="/img/<?php echo $product->image?>" alt=""></a>
+        <?php $img = isset($message) ? $message->embed($images[$key]) : '/img/' . $product->image ?>
+        <a href="#"><img src="<?php echo $img; ?>" alt=""></a>
     </div>
     <div class="cart-list__info">
-        <h6 class="product__title"><a href="/details/<?php echo $item['type'] . '/' . $product->id ?>"><?php echo $product->name ?></a></h6>
+        <h6 class="product__title"><a href="http://fz/details/<?php echo $item['type'] . '/' . $product->id ?>"><?php echo $product->name ?></a></h6>
         <div class="cart-list__details">
             <span class="price"><?php echo $product->price ?> Br</span>
             <span class="product__details">

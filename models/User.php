@@ -91,8 +91,8 @@ class User extends ActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
-            if ($this->isNewRecord) {
-                $this->auth_key = \Yii::$app->security->generateRandomString();
+            if ($this->isNewRecord && empty($this->password)) {
+                $this->password = $this->hashAuthKey(\Yii::$app->security->generateRandomString());
             }
             return true;
         }
@@ -102,8 +102,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['name', 'email', 'phone'], 'required', 'message' => 'Заполните обязательные поля'],
-            // the email attribute should be a valid email address
+            [['login', 'name', 'email', 'phone', 'password'], 'required', 'message' => 'Заполните обязательные поля'],
+            ['login', 'unique', 'message' => 'Такой логин уже зарегистирован'],
+            ['email', 'unique', 'message' => 'Такой email уже зарегистирован'],
+            ['phone', 'unique', 'message' => 'Такой телефон уже зарегистирован'],
             ['email', 'email', 'message' => 'Ошибка в поле Email'],
         ];
     }

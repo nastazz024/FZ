@@ -189,16 +189,7 @@ trait ComponentsTrait
         return $list;
     }
 
-    public static function getShuttleSizes()
-    {
-        $list = [];
 
-        foreach (self::getShuttleSizeModel()->find()->orderBy('norder')->all() as $item) {
-            $list[$item->id] = $item;
-        }
-
-        return $list;
-    }
 
     public static function getShortSizes()
     {
@@ -354,21 +345,6 @@ trait ComponentsTrait
         $list = [];
 
         foreach (self::getShortColorModel()->find()->orderBy('color')->all() as $item) {
-            $list[$item->id] = $item;
-        }
-
-        return $list;
-    }
-
-    /**
-     * @return \app\models\ShortSize[]
-     * @throws \yii\base\InvalidConfigException
-     */
-    public static function getSize()
-    {
-        $list = [];
-
-        foreach (self::getShortSizeModel()->find()->orderBy('norder')->all() as $item) {
             $list[$item->id] = $item;
         }
 

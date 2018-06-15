@@ -68,11 +68,11 @@ AppAsset::register($this);
 			</li>
 
 			<li class="main-menu__item dropdown">
-				<a href="#" class="main-menu__link">Мероприятия</span></a>
+				<a href="/event" class="main-menu__link">Мероприятия</span></a>
 
 			</li>
 			<li class="main-menu__item dropdown">
-                <a href="#" class="main-menu__link">League</span></a>
+                <a href="/league" class="main-menu__link">League</span></a>
 
 			</li>
             <li class="main-menu__item dropdown">

@@ -107,4 +107,12 @@ class SiteController extends Controller
         return $this->render('about');
     }
 
+    public function actionEvent()
+    {
+        $request = \yii::$app->request;
+        $this->layout = 'home';
+        return $this->render('event');
+    }
+
+
 }

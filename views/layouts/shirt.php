@@ -3,7 +3,7 @@
 
 
     <span class="category"><?php echo \yii::$app->get('request')->get('kind') ?></span>
-    <h1 class="header-inner__title">ОДЕЖДА</h1>
+    <h1 class="header-inner__title">Майки</h1>
 </section>
 <div class="tab-wrap">
     <div class="filter">

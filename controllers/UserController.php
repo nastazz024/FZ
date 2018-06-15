@@ -60,16 +60,46 @@ class UserController extends Controller
 
         $model = self::getUserModel();
 
-        $identity = $model->findIdentityByLogin($request->post('username'));
-        if ($identity && $identity->validateAuthKey($request->post('password'))) {
-            Yii::$app->user->login($identity);
-            $this->redirect('/');
-        }
+        $act = $request->post('act');
+        switch ($act) {
+            case 'login':
+                $identity = $model->findIdentityByLogin($request->post('username'));
+                if ($identity && $identity->validateAuthKey($request->post('password'))) {
+                    Yii::$app->user->login($identity);
+                    $this->redirect('/');
+                    return;
+                }
+                return $this->render('login', [
+                    'username' => $request->post('username'),
+                    'message' => 'Неверный логин или пароль',
+                    'act' => $act,
+                ]);
+                break;
 
-        return $this->render('login', [
-            'username' => $request->post('username'),
-            'message' => 'Неверный логин или пароль',
-        ]);
+            case 'register':
+                $data = $request->post();
+
+                $model->setAttributes($data);
+                $model->setAttribute('password', isset($data['password']) ? $data['password'] : '');
+                if ($model->validate()) {
+                    $model->setAttribute('password', $model->hashAuthKey($model->password));
+                    $model->save();
+                    Yii::$app->user->login($model);
+                    $this->redirect('/');
+                    return;
+                }
+
+                return $this->render('login', [
+                    'login' => $request->post('login'),
+                    'name' => $request->post('name'),
+                    'email' => $request->post('email'),
+                    'phone' => $request->post('phone'),
+                    'message' => 'Невозможно создать пользователя',
+                    'errors' => $model->getErrors(),
+                    'act' => $act,
+                ]);
+                break;
+        }
     }
 
 
@@ -125,14 +155,11 @@ class UserController extends Controller
             }
         }
 
-
-
         return $this->render('profile', [
             'user' => $identity,
             'message' => $message,
             'errors' => $errors,
         ]);
     }
-
 
 }

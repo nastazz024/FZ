@@ -4,11 +4,47 @@
 use app\components\ComponentsTrait;
 
 $total = 0;
+foreach ($items as $key => $item) {
+    switch ($item['type']) {
+        case 'shirt':
+            $item_ = $shirts[$item['id']];
+            break;
 
+        case 'racket':
+            $item_ = $rackets[$item['id']];
+            break;
 
-///  все размерв маек
-/// $product->sizes
+        case 'jacket':
+            $item_ = $jackets[$item['id']];
+            break;
 
+        case 'shoes':
+            $item_ = $shoeses[$item['id']];
+            break;
+
+        case 'shuttle':
+            $item_ = $shuttles[$item['id']];
+            break;
+
+        case 'racket_accs':
+            $item_ = $rackets_accs[$item['id']];
+            break;
+
+        case 'accs':
+            $item_ = $accss[$item['id']];
+            break;
+
+        case 'short':
+            $item_ = $shorts[$item['id']];
+            break;
+
+        case 'bag':
+            $item_ = $bags[$item['id']];
+            break;
+    }
+
+    $total += $item_->price * $item['qty'];
+}
 ?>
 
 
@@ -17,7 +53,7 @@ $total = 0;
 						<span class="icon-bag"></span>
 						<span class="badge"><?php echo count($items); ?></span>
 					</span>
-					<span class="b-price">165 руб.</span>
+					<span class="b-price"><?php echo $total ?> Br</span>
 				</a>
 				<div class="dropdown-content">
 					<div class="cart">
@@ -43,9 +79,7 @@ $total = 0;
                                     $sizes = ComponentsTrait::getShoesSizes();
                                     break;
 
-                                case 'shuttle':
-                                    $sizes = ComponentsTrait::getShuttleSizes();
-                                    break;
+
                                 case 'short':
                                     $sizes = ComponentsTrait::getShortSizes();
                                     break;
@@ -148,7 +182,7 @@ $total = 0;
 						<div class="cart-footer">
 							<span class="total">Итого</span>
 							<span class="price"><?php echo $total ?> руб.</span>
-							<a href="#" class="btn">Оформить</a>
+							<a href="/cart/confirm" class="btn">Оформить</a>
 						</div>
 					</div>
 				</div>

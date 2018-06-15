@@ -27,7 +27,11 @@ $identity = Yii::$app->user->identity;
 <?php } else { ?>
     <div class="dropdown-content">
         <ul class="user-menu">
-            <a href="/user/login" class="user-menu__link"><span class="icon-power"></span>Войти</a>
+            <a href="/user/login" class="user-menu__link "><span class="icon-power"></span> Войти</a>
+            </li>
+        </ul>
+        <ul class="user-menu">
+            <a href="/user/login" class="user-menu__link"><span class="icon-power"></span>Регистрация</a>
             </li>
         </ul>
 

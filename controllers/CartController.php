@@ -168,7 +168,182 @@ class CartController extends Controller
 
     public function actionComplete()
     {
-            /// todo send email
+        $request = \yii::$app->request;
+
+        $session = \yii::$app->session;
+        if (!$session->isActive) {
+            $session->open();
+        }
+
+        if (!isset($session['list'])) {
+            $this->redirect('/');
+            return;
+        }
+
+
+        $data = $request->post();
+        $list = $session['list'];
+
+
+        $imgs = [];
+        foreach ($list as $key => $item) {
+            switch ($item['type']) {
+                case 'shirt':
+                    $model = ComponentsTrait::getShirtModel();
+                    break;
+
+                case 'short':
+                    $model = ComponentsTrait::getShortModel();
+                    break;
+
+                case 'jacket':
+                    $model = ComponentsTrait::getJacketModel();
+                    break;
+
+                case 'shoes':
+                    $model = ComponentsTrait::getShoesModel();
+                    break;
+
+                case 'shuttle':
+                    $model = ComponentsTrait::getShuttleModel();
+                    break;
+
+                case 'bag':
+                    $model = ComponentsTrait::getShirtModel();
+                    break;
+
+                case 'racket':
+                    $model = ComponentsTrait::getRacketModel();
+                    break;
+
+                case 'racket_accs':
+                    $model = ComponentsTrait::getRacket_accsModel();
+                    break;
+
+                case 'accs':
+                    $model = ComponentsTrait::getAccsModel();
+                    break;
+            }
+
+            if (!$model) {
+                continue;
+            }
+            $product = $model::findOne($item['id']);
+            $imgs[$key] = yii::getAlias('@app') . '/web/img/'  . $product->image;
+        }
+
+        //imageFileName' => '/path/to/image.jpg
+
+        $v = Yii::$app->mailer->compose('@app/mail/confirm', array_merge(
+            $data,
+            ['images' => $imgs],
+            [
+                'items' => $list,
+            ]
+        ))
+            ->setFrom('anastasiya24051998@mail.ru')
+            ->setTo($data['email'])
+            ->setBcc(Yii::$app->params['adminEmail'])
+            ->setSubject('Заказ!')
+            ->send();
+
+
+//        print_r($data);
+//        print_r($list);
+
+        if ($v) {
+            $session['list'] = [];
+
+            foreach ($list as $key => $item) {
+                if (empty($item['size'])) {
+                    continue;
+                }
+                switch ($item['type']) {
+                    case 'shirt':
+                        $model = ComponentsTrait::getShirtModel();
+                        break;
+
+                    case 'short':
+                        $model = ComponentsTrait::getShortModel();
+                        break;
+
+                    case 'jacket':
+                        $model = ComponentsTrait::getJacketModel();
+                        break;
+
+                    case 'shoes':
+                        $model = ComponentsTrait::getShoesModel();
+                        break;
+
+                    case 'shuttle':
+                        $model = ComponentsTrait::getShuttleModel();
+                        break;
+
+                    case 'bag':
+                        $model = ComponentsTrait::getShirtModel();
+                        break;
+
+                    case 'racket':
+                        $model = ComponentsTrait::getRacketModel();
+                        break;
+
+                    case 'racket_accs':
+                        $model = ComponentsTrait::getRacket_accsModel();
+                        break;
+
+                    case 'accs':
+                        $model = ComponentsTrait::getAccsModel();
+                        break;
+                }
+
+                if (!$model) {
+                    continue;
+                }
+
+                $product = $model::findOne($item['id']);
+                if (method_exists($product, 'decreaseSizeCount')) {
+                    $product->decreaseSizeCount($item['size']);
+                }
+            }
+
+            return $this->render('thank-you', [
+                ]
+            );
+
+        }
+
+        $this->redirect('/cart/confirm/');
+    }
+
+    public function actionThankYou()
+    {
+        $this->layout = 'home';
+    }
+
+    public function actionEmailTest()
+    {
+        $this->layout = '@app/mail/layouts/html';
+
+        return $this->render('@app/mail/confirm', [
+            'name' => 'name',
+            'email' => 'email@example.com',
+            'phone' => '123456',
+            'address' => 'address',
+            'comment' => 'comment',
+            'items' => [
+                'i1' => [
+                    'type' => 'shirt',
+                    'id' => 1,
+                    'qty' => 1,
+                    'size' => 3
+                ], 'i2' => [
+                    'type' => 'shirt',
+                    'id' => 4,
+                    'qty' => 2,
+                    'size' => 5
+                ],
+            ],
+        ]);
     }
 
     public function actionClear()

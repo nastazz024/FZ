@@ -4,12 +4,14 @@ namespace app\models;
 
 use app\components\ComponentsTrait;
 use yii\db\ActiveRecord;
+use yii\db\Connection;
 
 class Shirt extends ActiveRecord
 {
     use ComponentsTrait;
+
     /**
-     * @return \yii\db\ActiveQuery
+     * @return \yii\db\ActiveRecord[]
      */
     public function getSizes()
     {
@@ -23,6 +25,19 @@ class Shirt extends ActiveRecord
         $query->andWhere('shirt_count.shirt_id = ' . $this->id);
 
         return $query->all();
+    }
+
+    /**
+     * @param int $id
+     */
+    public function decreaseSizeCount($id)
+    {
+        /** @var Connection $db */
+        $db = \Yii::$app->db;
+
+        $db->createCommand('update shirt_count set count=count-1 
+where shirt_count.shirt_size_id = :i1 and shirt_count.shirt_id=:i2', ['i1' => $id, 'i2' => $this->id])
+            ->execute();
     }
 
 }
