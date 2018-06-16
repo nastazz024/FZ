@@ -2,7 +2,6 @@
     <section class="header-inner" style="background-image: url('/img/menu-banner_2.jpg');">
 
 
-        <span class="category"><?php echo \yii::$app->get('request')->get('kind') ?></span>
         <h1 class="header-inner__title">ВОЛАНЫ</h1>
     </section>
     <div class="tab-wrap">

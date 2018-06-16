@@ -318,6 +318,7 @@ class CartController extends Controller
     public function actionThankYou()
     {
         $this->layout = 'home';
+        return $this->render('thank-you');
     }
 
     public function actionEmailTest()

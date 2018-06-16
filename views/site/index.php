@@ -1,5 +1,5 @@
 <?php
-$this->registerCssFile('@web/css/style.css');?>
+$this->registerCssFile('@web/css/slider.css');?>
 <div id="slider">
     <div class="slides">
         <div class="slider">

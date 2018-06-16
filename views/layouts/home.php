@@ -44,13 +44,13 @@ AppAsset::register($this);
 			<div class="dropdown-content__item">
                 <a href="/" ><h4 class="dropdown-content__title">Главная</h4></a>
 
-					<h4 class="dropdown-content__title">Магазин</h4>
+                <a href="/catalog" ><h4 class="dropdown-content__title">Магазин</h4></a>
 
-					<h4 class="dropdown-content__title">Мероприятия</h4>
+                <a href="/event" ><h4 class="dropdown-content__title">Мероприятия</h4></a>
 
-					<h4 class="dropdown-content__title">League</h4>
+                <a href="/league" ><h4 class="dropdown-content__title">League</h4></a>
 
-                    <h4 class="dropdown-content__title">Контакты</h4>
+                <a href="/" ><h4 class="dropdown-content__title">Контакты</h4></a>
 
 				
 			</div>

@@ -1,10 +1,16 @@
 .cart-confirm .cart-list__item {
-    display: block;
+
 }
 .cart-confirm  .cartz-list__item {
     display: block;
 }
 
+.cart-list__imgc{
+    width:7vw;
+}
+
+.cart-list__infoc {/* -webkit-box-flex: 1; *//* -webkit-flex: 1; */-ms-flex: 1;flex: 1; margin-left: 2vw}
+.cart-list__infoc .product__title { margin-bottom: 10px; }
 .cart-confirm .cartz-list__item{
     width: 50vw;
     margin-left: 25%;

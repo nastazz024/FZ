@@ -118,26 +118,12 @@ $identity = Yii::$app->user->identity;
 					</li>
 					
 				</ul>
-				
-			</div>
-			<div class="dropdown-content__item">
-				
-				<!--<h4 class="dropdown-content__title"><span class="text-error">Скидка -30%</span> <br>Акции <br><!--Blogids</h4>-->
-				<!--<div class="hr"></div>-->
 
-				<ul class="dropdown-menu">
-					<li class="dropdown-menu__item">
-						<a href="#" class="dropdown-menu__link"><h4 class="dropdown-content__title">Доставка</h4></a>
-					</li>
-					<li class="dropdown-menu__item">
-						<a href="#" class="dropdown-menu__link"><h4 class="dropdown-content__title">Оплата</h4></a>
-					</li>
-					<li class="dropdown-menu__item">
-						<a href="#" class="dropdown-menu__link"><h4 class="dropdown-content__title">Контакты</h4></a>
-					</li>
-					
-				</ul>
+                <a href="/catalog/shuttle" ><h4 class="dropdown-content__title">Воланы</h4></a>
+
+				
 			</div>
+
 			<!--<div class="dropdown-content__item"></div>-->
 			
 

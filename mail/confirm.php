@@ -1,8 +1,8 @@
+Привет, <?php echo $name ?> бла бла бла
+<br/>
 <?php
 
 use app\components\ComponentsTrait;
-
-$this->registerCssFile('@web/css/confirm.css');
 
 $total = 0;
 $model = null;
@@ -53,11 +53,9 @@ foreach ($items as $key => $item) {
 }
 
 ?>
-<p class="confirm">Оформление заказа</p>
-<div class="cart-confirm">
-
-
-    <ul class="cartz-list__item">
+<p>Оформление заказа</p>
+<div>
+    <ul>
         <?php
         foreach ($items as $key => $item) {
             $colors = null;
@@ -119,71 +117,24 @@ foreach ($items as $key => $item) {
             }
 
 
-            echo $this->render('_confirm-item', [
+            echo $this->render('_order-item', [
                 'item' => $item,
                 'size' => $size,
                 'product' => $product,
                 'colors' => $colors,
                 'categories' => $categories,
                 'key' => $key,
+                'images' => $images,
+                'message' => isset($message) ? $message : null,
             ]);
 
 
         } ?>
     </ul>
-    <div class="cartz-footer">
-        <span class="total">Итого</span>
-        <span class="price"><?php echo $total ?> руб.</span>
-    </div>
-    <?php
-
-    /** @var \app\models\User $identity */
-    $identity = Yii::$app->user->identity;
-    ?>
-
-        <div class="contact">
-            <form method="post" action="/cart/complete">
-                <fieldset>
-                    <div class="row">
-                        <section class="col col-2">
-                            <label class="input">
-                                <i class="fa fa-append fa-user"></i>
-                                <input name="name" type="text" placeholder="Имя" required value="<?php echo $identity ? $identity->name : '' ?>"/>
-                            </label>
-                        </section>
-                        <section class="col col-2">
-                            <label class="input">
-                                <i class="fa fa-append fa-envelope-o"></i>
-                                <input name="email" type="email" placeholder="E-mail" required value="<?php echo $identity ? $identity->email : '' ?>"/>
-                            </label>
-                        </section>
-                    </div>
-                    <section>
-                        <label class="input">
-                            <i class="fa fa-append fa-tag"></i>
-                            <input name="phone" type="text" placeholder="Телефон" required value="<?php echo $identity ? $identity->phone : '' ?>"/>
-                        </label>
-                    </section>
-                    <section>
-                        <div class="checkboxes">
-                                                <label class="input">
-                            <i class="fa fa-append fa-tag"></i>
-                            <input name="address" type="email" placeholder="Адрес доставки" required value=""/>
-                        </label>
-                    </section>
-                    <section>
-                        <label class="textarea">
-                            <i class="fa fa-append fa-comment"></i>
-                            <textarea rows="4" placeholder="Комментарий" name="comment"></textarea>
-                        </label>
-                    </section>
-                    <input type="checkbox" name="genre" id="comedy" value="comedy" />
-                    <a href="#" class="button btn" onclick="$('form').submit(); return false;">Оформить</a>
-                </fieldset>
-                <input type="hidden" name="<?=Yii::$app->request->csrfParam?>"
-                       value="<?=Yii::$app->request->csrfToken?>"/>
-            </form>
-        </div>
 
 
-</div>
+
+    ваш комментарий:
+    <br/>
+
+    <?php echo $comment ?>

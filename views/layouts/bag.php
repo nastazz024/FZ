@@ -2,7 +2,6 @@
 <section class="header-inner" style="background-image: url('/img/bag_menu_1.jpg');">
 
 
-    <span class="category"><?php echo \yii::$app->get('request')->get('kind') ?></span>
     <h1 class="header-inner__title">Сумки</h1>
 </section>
 <section class="tab-wrap">

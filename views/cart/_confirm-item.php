@@ -2,10 +2,10 @@
 
 ?>
 <li class="cart-list__item">
-    <div class="cart-list__img">
+    <div class="cart-list__imgc">
         <a href="#"><img src="/img/<?php echo $product->image?>" alt=""></a>
     </div>
-    <div class="cart-list__info">
+    <div class="cart-list__infoc">
         <h6 class="product__title"><a href="/details/<?php echo $item['type'] . '/' . $product->id ?>"><?php echo $product->name ?></a></h6>
         <div class="cart-list__details">
             <span class="price"><?php echo $product->price ?> Br</span>
