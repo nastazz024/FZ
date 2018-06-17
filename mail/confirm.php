@@ -1,4 +1,6 @@
-Привет, <?php echo $name ?> бла бла бла
+Здравствуйте, <?php echo $name ?>, вы сделали заказ на сайте fz-forza.by.
+<br/>
+В ближайшее время с вами свяжется менеджер.
 <br/>
 <?php
 
@@ -53,9 +55,10 @@ foreach ($items as $key => $item) {
 }
 
 ?>
-<p>Оформление заказа</p>
+<p>Заказ:</p>
 <div>
     <ul>
+
         <?php
         foreach ($items as $key => $item) {
             $colors = null;
@@ -130,11 +133,20 @@ foreach ($items as $key => $item) {
 
 
         } ?>
-    </ul>
+    </ul><br>
+   Адрес:
+    <?php echo $address?>
+<br>
+    Телефон:
+    <?php echo $phone?>
+
+    <br>
+    Email:
+    <?php echo $email?>
 
 
+    <br>
+    Комментарий:
 
-    ваш комментарий:
-    <br/>
 
-    <?php echo $comment ?>
+    <?php echo $comment ?><br/>
