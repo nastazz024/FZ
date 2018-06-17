@@ -229,7 +229,8 @@ class CartController extends Controller
                 continue;
             }
             $product = $model::findOne($item['id']);
-            $imgs[$key] = yii::getAlias('@app') . '/web/img/'  . $product->image;
+         //  $imgs[$key] = realpath(yii::getAlias('@app')) . '/fz-forza.by/img/'  . $product->image;
+           $imgs[$key] = realpath(yii::getAlias('@app')) . '/web/img/'  . $product->image;
         }
 
         //imageFileName' => '/path/to/image.jpg

@@ -143,7 +143,7 @@ class UserController extends Controller
                     if (!$identity->validateAuthKey($request->post('current'))) {
                         $errors['current'] = ['Неверный пароль'];
                     } else {
-                        if (empty($request->post('new')) || empty($request->post('repeat'))
+                        if ($request->post('new') == '' || $request->post('repeat') == ''
                             || $request->post('new') != $request->post('repeat')) {
                             $errors['repeat'] = ['Пароли не совпадают'];
                         } else {

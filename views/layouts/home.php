@@ -27,18 +27,15 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
-<script>
-    var _layout = '<?php echo \yii::$app->get('request')->get('layout') ?>';
-    var _kind = '<?php echo \yii::$app->get('request')->get('kind') ?>';
-</script>
+
 <?php $this->beginBody() ?>
-<div class="main-wrapper">
+
 
     <header class="header">
 		<button class="toggle-menu">
 			<span class="icon icon-menu"></span>
 		</button>
-		
+
 
 		<div class="dropdown-content dropdown-content--menu">
 			<div class="dropdown-content__item">
@@ -50,9 +47,9 @@ AppAsset::register($this);
 
                 <a href="/league" ><h4 class="dropdown-content__title">League</h4></a>
 
-                <a href="/" ><h4 class="dropdown-content__title">Контакты</h4></a>
+                <a href="/contact" ><h4 class="dropdown-content__title">Контакты</h4></a>
 
-				
+
 			</div>
 
 
@@ -76,11 +73,11 @@ AppAsset::register($this);
 
 			</li>
             <li class="main-menu__item dropdown">
-                <a href="#" class="main-menu__link">Контакты </span></a>
+                <a href="/contact" class="main-menu__link">Контакты </span></a>
 
             </li>
 
-			
+
 		</ul>
 
         <div class="search">
@@ -90,11 +87,11 @@ AppAsset::register($this);
             </form>
 		</div>
 
-		
-		
+
+
 		<ul class="profile-menu">
 			<li class="profile-menu__item dropdown dropdown--right dropdown--white" id="cart-container">
-			
+
 			</li>
 			<li class="profile-menu__item dropdown dropdown--right dropdown--white">
                 <?php echo $this->render('//partial/user-menu') ?>
@@ -112,7 +109,7 @@ AppAsset::register($this);
 
     </footer>
 
-</div>
+
 
 <?php $this->endBody() ?>
 

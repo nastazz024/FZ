@@ -77,6 +77,11 @@ $config = [
                 ],
 
                 [
+                    'pattern' => 'contact',
+                    'route' => 'site/contact',
+                ],
+
+                [
                     'pattern' => 'event',
                     'route' => 'site/event',
                 ],
@@ -115,7 +120,7 @@ $config = [
         ],
 
         'accs' => [
-            'class' => 'app\Models\accs'
+            'class' => 'app\Models\Accs'
         ],
 
         'shortColor' => [

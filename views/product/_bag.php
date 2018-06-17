@@ -29,7 +29,7 @@ else { echo '
 									<h2 class="product__title"><a href="/details/bag/'.$bag->id.'">'. $bag->name .'</a></h2>
 									<div class="product__img">
 										<img src="/img/'.$bag->image .'" alt="">
-										<p class="description racket">'.$bag->description .'</p>
+										<p class="description bag">'.$bag->description .'</p>
 										<div class="product__card">
 											
 											<a href="#" class="btn add-cart-item bag" data-id='.$bag->id.' >В корзину</a>

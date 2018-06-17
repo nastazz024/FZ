@@ -2,8 +2,12 @@
 <section class="header-inner" style="background-image: url('/img/header-inner.png');">
 
 
-    <span class="category"><?php echo $this->render('//partial/subtitle');?></span>
-    <h1 class="header-inner__title">Шорты и брюки<?php echo $suff ?></h1>
+    <span class="category"><?php
+        $suff = '';
+       if (\yii::$app->get('request')->get('kind') == 'woman') {
+         $suff = ' и юбки'; }
+        ?></span>
+    <h1 class="header-inner__title">Шорты, брюки<?php echo $suff ?></h1>
 </section>
 <div class="tab-wrap">
     <div class="filter">

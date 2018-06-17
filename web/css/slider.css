@@ -1,4 +1,23 @@
 
+.slider-body {
+  font-size: 62.5%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+
+}
+.slider-body *, .slider-body *:before, .slider-body *:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.slider-body svg {
+  display: block;
+  overflow: visible;
+}
+
+
 
 .slider-container {
   position: relative;

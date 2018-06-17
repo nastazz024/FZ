@@ -98,6 +98,19 @@ class SiteController extends Controller
     }
 
     /**
+     * Displays homepage.
+     *
+     * @return string
+     */
+    public function actionContact()
+    {
+        $request = \yii::$app->request;
+        $this->layout = 'home';
+        return $this->render('contact');
+    }
+
+
+    /**
      * Displays about page.
      *
      * @return string
@@ -115,4 +128,9 @@ class SiteController extends Controller
     }
 
 
+    public function actionError()
+    {
+        $this->layout = 'home';
+        return $this->render('error');
+    }
 }

@@ -12,7 +12,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Products;
 
-class ContactsController extends Controller
+class ContactController extends Controller
 {
 
     /**

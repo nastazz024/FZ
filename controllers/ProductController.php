@@ -190,7 +190,7 @@ class ProductController extends Controller
                 break;
 
             case 'bag':
-                $model = self::getShirtModel();
+                $model = self::getBagModel();
                 break;
 
             case 'racket':

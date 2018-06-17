@@ -2430,3 +2430,13 @@ form .button:hover {
   height: 100%;
   z-index: 9999;
 }
+.title{
+  margin-top: 2vw;
+  text-align: center;
+  font-size: 30px;
+}
+.left{
+  text-align: center;
+  font-size: 20px;
+}
+
