@@ -8,7 +8,7 @@
     <div class="cart-list__infoc">
         <h6 class="product__title"><a href="/details/<?php echo $item['type'] . '/' . $product->id ?>"><?php echo $product->name ?></a></h6>
         <div class="cart-list__details">
-            <span class="price"><?php echo $product->price ?> Br</span>
+            <span class="price"><?php echo $product->price ?> руб.</span>
             <span class="product__details">
                 <?php  if (!empty($size)) { ?>
 											<span><?php echo $size->name ?></span> •

@@ -306,19 +306,11 @@ class CartController extends Controller
                 }
             }
 
-            return $this->render('thank-you', [
-                ]
-            );
-
+            $this->redirect('/catalog#thank-you');
+            return;
         }
 
         $this->redirect('/cart/confirm/');
-    }
-
-    public function actionThankYou()
-    {
-        $this->layout = 'home';
-        return $this->render('thank-you');
     }
 
     public function actionEmailTest()

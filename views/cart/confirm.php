@@ -4,6 +4,17 @@ use app\components\ComponentsTrait;
 
 $this->registerCssFile('@web/css/confirm.css');
 
+if (empty($items)) { ?>
+
+
+    <p class="confirm">Корзина пуста!</p>
+
+
+    <?php
+    return;
+}
+
+
 $total = 0;
 $model = null;
 foreach ($items as $key => $item) {
@@ -187,3 +198,13 @@ foreach ($items as $key => $item) {
 
 
 </div>
+<?php
+$script = <<<SCR
+var \$cart = $('#cart-container');
+        \$cart.on('click', '.js-remove-cart', function (ev) {
+            ev.preventDefault();
+            window.location.reload();
+        });
+SCR;
+
+$this->registerJs($script, yii\web\View::POS_READY);

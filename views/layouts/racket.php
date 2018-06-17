@@ -11,10 +11,7 @@
                 <span class="icon-sliders"></span>
                 <span class="sr-only">Фильтр</span>
             </button>
-            <?php /*count($item);
-						echo '
-						<span class="filter__title">Найдено товаров: '.$item['row'].' </span>'*/
-                   ?>
+            <span class="filter__title">Найдено товаров: <span id="pr_cnt"></span> </span>
         </div>
         <div class="filter-content">
             <span class="filter__title">Сортировать по:</span>

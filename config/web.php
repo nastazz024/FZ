@@ -13,6 +13,16 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'language' => 'en-US',
+            'i18n' => [
+                'translations' => [
+                    'app*' => [
+                        'class' => 'yii\i18n\PhpMessageSource',
+                        'basePath' => '@app/messages',
+                        'sourceLanguage' => 'ru-RU',
+                    ],
+                ],
+            ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'HpLkA8wZOoobZwtT_W3RlYsPnCochPuj',
@@ -149,10 +159,6 @@ $config = [
 
         'shoesSize' => [
             'class' => 'app\Models\ShoesSize'
-        ],
-
-        'racketBalance' => [
-            'class' => 'app\Models\RacketBalance'
         ],
 
         'jacket' => [

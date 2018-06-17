@@ -1,4 +1,5 @@
-
+<input type="hidden" id="prd_type" value="<?php echo $type ?>"/>
+<input type="hidden" id="prd_id" value="<?php echo $item->id ?>"/>
 
     <section id="carddet" class="carddet">
 		<div class="containerdet">
@@ -18,6 +19,9 @@
 					<p class="product__price">
 						<?php echo $item->price ?> руб.
 					</p>
+                    <?php
+
+                    if (!empty($sizes)) { ?>
 					<div class="product__size">
 						<div class="product__name">
 							Выберите размер	                     
@@ -25,20 +29,18 @@
 								Таблица размеров
 							</a>
 						</div>
-                        <?php
 
-                        if (!empty($sizes)) { ?>
 						<ul class="size__list d-flex">
                             <?php foreach ($sizes as $size) { ?>
-						    <li>
-								<a href="#" class="size__item">
-									<?php echo $size->name ?>
-								</a>
-							</li>
+                                <li>
+                                    <a href="#" class="size__item" data-id="<?php echo $size->id ?>">
+                                        <?php echo $size->name ?>
+                                    </a>
+                                </li>
                             <?php } ?>
 						</ul>				
-                    <?php } ?>
 					</div>
+                    <?php } ?>
 					<div class="basketp">
 						<button type="submit" class="basket__btn" <?php echo $item->id ?>>
 							Добавить в корзину
@@ -62,7 +64,7 @@
     <!-- Вывод контента наших табов -->
     <div id="tab-content-1" class="tab-content">
         <p>
-    <?php echo  $item->description ?>
+    <?php echo  $item->full_description ?>
         </p>
     </div> <!-- #tab-content-1 -->
     <div id="tab-content-2" class="tab-content">

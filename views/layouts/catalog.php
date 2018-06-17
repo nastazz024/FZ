@@ -285,6 +285,11 @@ $identity = Yii::$app->user->identity;
 
 </div>
 
+<?php echo $this->render('//partial/thank-you'); ?>
+<script type="text/html" id="preloader">
+<?php echo $this->render('//partial/preloader'); ?>
+</script>
+
 <?php $this->endBody() ?>
 
 

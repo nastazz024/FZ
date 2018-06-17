@@ -9,7 +9,7 @@
     <div class="cart-list__info">
         <h6 class="product__title"><a href="#"><?php echo $racket->name ?></a></h6>
         <div class="cart-list__details">
-            <span class="price"><?php echo $racket->price ?> Br</span>
+            <span class="price"><?php echo $racket->price ?> руб.</span>
             <span class="product__details">
 											•
                 <!--											<span>--><?php //echo $color->color ?><!--</span> • -->

@@ -53,7 +53,7 @@ foreach ($items as $key => $item) {
 						<span class="icon-bag"></span>
 						<span class="badge"><?php echo count($items); ?></span>
 					</span>
-					<span class="b-price"><?php echo $total ?> Br</span>
+					<span class="b-price"><?php echo $total ?> руб.</span>
 				</a>
 				<div class="dropdown-content">
 					<div class="cart">

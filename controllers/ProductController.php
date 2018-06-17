@@ -221,6 +221,7 @@ class ProductController extends Controller
             'colors' => $colors,
             'categories' => $categories,
             'sizes' => $sizes,
+            'type' => $request->get('type'),
         ]);
     }
 

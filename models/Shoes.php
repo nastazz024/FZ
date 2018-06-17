@@ -26,4 +26,17 @@ class Shoes extends ActiveRecord
         return $query->all();
     }
 
+    /**
+     * @param int $id
+     */
+    public function decreaseSizeCount($id)
+    {
+        /** @var Connection $db */
+        $db = \Yii::$app->db;
+
+        $db->createCommand('update shoes_count set count=count-1 
+where shoes_count.shoes_size_id = :i1 and shoes_count.shoes_id=:i2', ['i1' => $id, 'i2' => $this->id])
+            ->execute();
+    }
+
 }

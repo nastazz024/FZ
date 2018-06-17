@@ -42,6 +42,7 @@ class AppAsset extends AssetBundle
 		"js/jquery.formstyler.min.js",
         "js/custom.js",
         "js/catalog.js",
+        "js/slider.js",
     ];
 
     public $depends = [

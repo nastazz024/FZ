@@ -25,4 +25,16 @@ class Short extends ActiveRecord
         return $query->all();
     }
 
+    /**
+     * @param int $id
+     */
+    public function decreaseSizeCount($id)
+    {
+        /** @var Connection $db */
+        $db = \Yii::$app->db;
+
+        $db->createCommand('update short_count set count=count-1 
+where short_count.short_size_id = :i1 and short_count.short_id=:i2', ['i1' => $id, 'i2' => $this->id])
+            ->execute();
+    }
 }

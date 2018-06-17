@@ -1,8 +1,9 @@
 <?php $this->beginContent('@app/views/layouts/catalog.php'); ?>
-<section class="header-inner" style="background-image: url('/img/header-inner.png');">
+
+    <section class="header-inner" style="background-image: url('/img/header-inner.png');">
 
 
-    <span class="category"><?php echo \yii::$app->get('request')->get('kind') ?></span>
+    <span class="category"><?php echo $this->render('//partial/subtitle');?></span>
     <h1 class="header-inner__title">Майки</h1>
 </section>
 <div class="tab-wrap">
@@ -12,14 +13,7 @@
                 <span class="icon-sliders"></span>
                 <span class="sr-only">Фильтр</span>
             </button>
-            <?php /*
-						$query = "SELECT COUNT(*) as row_count FROM `product` WHERE category='1'";
-						$result = mysql_query($query);
-
-						$max = mysql_fetch_array($result);
-						echo '
-						<span class="filter__title">Найдено товаров: '.$max['row_count'].' </span>'
-                   */ ?>
+           <span class="filter__title">Найдено товаров: <span id="pr_cnt"></span> </span>
         </div>
         <div class="filter-content">
             <span class="filter__title">Сортировать по:</span>

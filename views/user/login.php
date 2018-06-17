@@ -1,9 +1,10 @@
-<?
+<?php
 
 $this->registerCssFile('@web/css/login.css');
 if (!isset($act)) {
     $act = 'login';
 }
+
 //print_r($errors);
 ?>
 <div class="login-page">
