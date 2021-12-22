@@ -18,10 +18,6 @@ use yii\web\Request;
 
 class TournamentController extends Controller
 {
-    /**
-     * @var Request
-     */
-    protected $request;
 
     public function init()
     {
