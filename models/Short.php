@@ -3,11 +3,14 @@
 namespace app\models;
 
 use app\components\ComponentsTrait;
+use app\components\ManageableTrait;
 use yii\db\ActiveRecord;
 
 class Short extends ActiveRecord
 {
     use ComponentsTrait;
+    use ManageableTrait;
+
     /**
      * @return \yii\db\ActiveQuery
      */

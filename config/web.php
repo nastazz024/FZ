@@ -85,6 +85,34 @@ $config = [
                     'pattern' => 'event',
                     'route' => 'site/event',
                 ],
+
+
+                // tournament
+                [
+                    'pattern' => 'tournament',
+                    'route' => '404',
+                ],
+                [
+                    'pattern' => 'admin/tournaments',
+                    'route' => 'tournament',
+                ],
+                [
+                    'pattern' => 'admin/tournaments/<action>',
+                    'route' => 'tournament/<action>',
+                ],
+                [
+                    'pattern' => 'admin/tournament/<action>',
+                    'route' => 'tournament/<action>',
+                ],
+
+                [
+                    'pattern' => 'player',
+                    'route' => '404',
+                ],
+                [
+                    'pattern' => 'admin/players',
+                    'route' => 'player',
+                ],
             ],
         ],
 
@@ -98,6 +126,9 @@ $config = [
         ],
         'shirtSize' => [
             'class' => 'app\Models\ShirtSize'
+        ],
+        'shirtCount' => [
+            'class' => 'app\Models\ShirtCount'
         ],
         'shirtCategory' => [
             'class' => 'app\Models\ShirtCategory'
@@ -115,8 +146,8 @@ $config = [
             'class' => 'app\Models\Short'
         ],
 
-        'racket_accs' => [
-            'class' => 'app\Models\Racket_accs'
+        'racketAccs' => [
+            'class' => 'app\Models\RacketAccs'
         ],
 
         'accs' => [
@@ -152,6 +183,9 @@ $config = [
 
         'bag' => [
             'class' => 'app\Models\Bag'
+        ],
+        'bagCount' => [
+            'class' => 'app\Models\BagCount'
         ],
 
         'bagSize' => [
@@ -195,7 +229,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
 

@@ -49,6 +49,8 @@ AppAsset::register($this);
 
                 <a href="/contact" ><h4 class="dropdown-content__title">Контакты</h4></a>
 
+                <a href="/tour" ><h4 class="dropdown-content__title">Результаты</h4></a>
+
 
 			</div>
 
@@ -74,6 +76,10 @@ AppAsset::register($this);
 			</li>
             <li class="main-menu__item dropdown">
                 <a href="/contact" class="main-menu__link">Контакты </span></a>
+
+            </li>
+            <li class="main-menu__item dropdown">
+                <a href="/tour" ><h4 class="main-menu__link">Результаты</h4></a>
 
             </li>
 

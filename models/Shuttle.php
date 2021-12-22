@@ -2,10 +2,13 @@
 
 namespace app\models;
 
+use app\components\ManageableTrait;
 use yii\db\ActiveRecord;
 
 class Shuttle extends ActiveRecord
 {
+    use ManageableTrait;
+
     public function decreaseSizeCount()
     {
         /** @var Connection $db */

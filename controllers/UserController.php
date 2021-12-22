@@ -43,7 +43,7 @@ class UserController extends Controller
         ];
     }
 
-	public function actionLogin()
+    public function actionLogin()
     {
         $this->layout = 'home';
 
@@ -103,7 +103,7 @@ class UserController extends Controller
     }
 
 
-	public function actionLogout()
+    public function actionLogout()
     {
         Yii::$app->user->logout(true);
         $this->redirect('/user/login');
@@ -111,7 +111,7 @@ class UserController extends Controller
 
 
 
-	public function actionProfile()
+    public function actionProfile()
     {
         $this->layout = 'home';
 

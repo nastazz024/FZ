@@ -40,12 +40,12 @@ trait ComponentsTrait
     }
 
     /**
-     * @return \app\models\Racket_accs|object
+     * @return \app\models\RacketAccs|object
      * @throws \yii\base\InvalidConfigException
      */
-    public static function getRacket_accsModel()
+    public static function getRacketAccsModel()
     {
-        return \yii::$app->get('racket_accs');
+        return \yii::$app->get('racketAccs');
     }
 
 
@@ -148,6 +148,15 @@ trait ComponentsTrait
     public static function getBagSizeModel()
     {
         return \yii::$app->get('bagSize');
+    }
+
+    /**
+     * @return \app\models\BagCount|object
+     * @throws \yii\base\InvalidConfigException
+     */
+    public static function getBagCountModel()
+    {
+        return \yii::$app->get('bagCount');
     }
 
     /**

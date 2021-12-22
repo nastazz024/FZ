@@ -109,7 +109,7 @@ class CartController extends Controller
 
         $shirts = $this->readObjects($shirtIds, self::getShirtModel());
         $rackets = $this->readObjects($racketIds, self::getRacketModel());
-        $rackets_accs = $this->readObjects($racket_accsIds, self::getRacket_accsModel());
+        $rackets_accs = $this->readObjects($racket_accsIds, self::getRacketAccsModel());
         $accss = $this->readObjects($accsIds, self::getAccsModel());
         $shorts = $this->readObjects($shortIds, self::getShortModel());
         $shuttles = $this->readObjects($shuttleIds, self::getShuttleModel());
@@ -217,7 +217,7 @@ class CartController extends Controller
                     break;
 
                 case 'racket_accs':
-                    $model = ComponentsTrait::getRacket_accsModel();
+                    $model = ComponentsTrait::getRacketAccsModel();
                     break;
 
                 case 'accs':
@@ -289,7 +289,7 @@ class CartController extends Controller
                         break;
 
                     case 'racket_accs':
-                        $model = ComponentsTrait::getRacket_accsModel();
+                        $model = ComponentsTrait::getRacketAccsModel();
                         break;
 
                     case 'accs':

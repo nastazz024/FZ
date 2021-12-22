@@ -48,7 +48,7 @@ foreach ($items as $key => $item) {
             break;
 
         case 'racket_accs':
-            $model = ComponentsTrait::getRacket_accsModel();
+            $model = ComponentsTrait::getRacketAccsModel();
             break;
 
         case 'accs':
@@ -111,7 +111,7 @@ foreach ($items as $key => $item) {
                     break;
 
                 case 'racket_accs':
-                    $model = ComponentsTrait::getRacket_accsModel();
+                    $model = ComponentsTrait::getRacketAccsModel();
                     break;
 
                 case 'accs':

@@ -2,10 +2,13 @@
 
 namespace app\models;
 
+use app\components\ManageableTrait;
 use yii\db\ActiveRecord;
 
 class Racket extends ActiveRecord
 {
+    use ManageableTrait;
+
     /**
      * @param int $id
      */

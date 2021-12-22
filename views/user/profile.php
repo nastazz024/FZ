@@ -63,3 +63,16 @@ if (!empty($message)) { ?>
            value="<?=Yii::$app->request->csrfToken?>"/>
     <input type="hidden" class="input2"  name="act" value="password" />
 </form>
+
+<?php
+
+if ($user->is_admin) {
+?>
+    <br/><br/>
+    <hr/>
+    <br/><br/>
+<p class="profile"><a href="/admin">ADMIN</a></p>
+    <br/><br/>
+
+    <?php
+}

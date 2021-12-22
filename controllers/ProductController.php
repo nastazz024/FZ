@@ -198,7 +198,7 @@ class ProductController extends Controller
                 break;
 
             case 'racket_accs':
-                $model = self::getRacket_accsModel();
+                $model = self::getRacketAccsModel();
                 break;
 
             case 'accs':
@@ -368,7 +368,7 @@ class ProductController extends Controller
     {
         $request = \yii::$app->request;
 
-        $racket_accsModel = self::getRacket_accsModel();
+        $racket_accsModel = self::getRacketAccsModel();
         $query = $racket_accsModel::find();
         $query->where('1=1');
 

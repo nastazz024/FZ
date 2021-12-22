@@ -3,10 +3,76 @@
 namespace app\models;
 
 use app\components\ComponentsTrait;
+use app\components\ManageableTrait;
 use yii\db\ActiveRecord;
 
 class Bag extends ActiveRecord
 {
+    use ManageableTrait;
+
+    public function getSearchFields()
+    {
+        return [
+            'text' => [
+                'type' => 'text',
+                'fields' => ['name', 'description'],
+            ]
+        ];
+    }
+
+    public function getShowFields()
+    {
+        return [
+            [
+                'field' => 'image',
+                'type' => 'image',
+            ],
+            [
+                'field' => 'name',
+                'title' => 'Название',
+                'sortable' => true,
+            ]
+
+        ];
+    }
+
+    public function getEditFields()
+    {
+        return [
+            [
+                'field' => 'name',
+                'title' => 'Название',
+            ],
+            [
+                'field' => 'description',
+                'title' => 'Описание',
+                'type' => 'text',
+            ],
+            [
+                'field' => 'full_description',
+                'title' => 'Полное описание',
+                'type' => 'text',
+            ],
+            [
+                'field' => 'image',
+                'title' => 'Картинка',
+                'type' => 'image',
+            ],
+            [
+                'field' => 'price',
+                'title' => 'Цена',
+            ]
+        ];
+    }
+
+    public function getCountOptions()
+    {
+        return [
+            'model' => ['bagCount' => ['bag_id', 'bag_size_id']],
+            'list' => ['model' => ['bagSize' => 'name']],
+        ];
+    }
+
     /**
      * @param int $id
      */
