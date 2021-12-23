@@ -15,10 +15,6 @@ use yii\web\Request;
  */
 class PlayerController extends Controller
 {
-    /**
-     * @var Request
-     */
-    protected $request;
 
     public function init()
     {
