@@ -64,7 +64,7 @@ class UserController extends Controller
         switch ($act) {
             case 'login':
                 $identity = $model->findIdentityByLogin($request->post('username'));
-                if ($identity && $identity->validateAuthKey($request->post('password'))) {
+                if ($identity && $identity->validateAuthKey($model->hashAuthKey($request->post('password')))) {
                     Yii::$app->user->login($identity);
                     $this->redirect('/');
                     return;
