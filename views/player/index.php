@@ -7,15 +7,17 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PlayerSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Players';
+$this->title = 'Игроки';
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 <div class="player-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Create Player', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Новый', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

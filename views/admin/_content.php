@@ -19,18 +19,17 @@ $form = \yii\widgets\ActiveForm::begin(['options' => ['enctype' => 'multipart/fo
 <input type="hidden" name="m" value="<?= $m ?>"/>
 <input type="hidden" name="<?= Yii::$app->request->csrfParam ?>"
        value="<?= Yii::$app->request->csrfToken ?>"/>
-<table>
+
     <?php
     foreach ($model->getEditFields() as $params) {
         ?>
-        <tr>
-            <td><?= $params['title'] ?? '' ?></td>
-            <td>
+        <div class="form-group">
+            <label for="<?= $params['field'] ?>"><?= $params['title'] ?? '' ?></label>
                 <?php
                 $val = htmlspecialchars($item->{$params['field']});
                 switch ($params['type'] ?? '') {
                     case 'list':
-                        echo "<select name='{$params['field']}'>";
+                        echo "<select id='{$params['field']}' name='{$params['field']}' class='form-control'>";
 //                    echo "<option value=''>";
                         foreach ($model->getSearchListOptions($params) as $id => $t) {
                             $s = $val == $id ? 'selected' : '';
@@ -40,7 +39,7 @@ $form = \yii\widgets\ActiveForm::begin(['options' => ['enctype' => 'multipart/fo
                         break;
 
                     case 'text':
-                        echo "<textarea name='{$params['field']}'>{$val}</textarea>";
+                        echo "<textarea id='{$params['field']}' name='{$params['field']}' class='form-control'>{$val}</textarea>";
                         break;
 
                     case 'image':
@@ -53,11 +52,10 @@ $form = \yii\widgets\ActiveForm::begin(['options' => ['enctype' => 'multipart/fo
                         break;
 
                     default:
-                        echo "<input type='text' name='{$params['field']}' value='{$val}'/>";
+                        echo "<input id='{$params['field']}' type='text' name='{$params['field']}' value='{$val}' class='form-control'/>";
                 }
                 ?>
-            </td>
-        </tr>
+        </div>
         <?php
     }
 
@@ -72,44 +70,39 @@ $form = \yii\widgets\ActiveForm::begin(['options' => ['enctype' => 'multipart/fo
             $counts = $model->getCounts($cntOpt, $item->id);
 //            print_r($counts); exit;
             ?>
-            <tr>
-                <td>&nbsp;</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <table class="small">
+<div class="form-group">
+    Наличие
+    <br/>
+
+    <table class="small">
                         <?php
                         foreach ($countList as $cntKey => $cntName) {
                             $cnt = $counts[$cntKey] ?? 0;
                             echo "<tr>
 <td>{$cntName}</td>
-<td><input name='counts[{$cntKey}]' value='{$cnt}'/></td>
+<td><input name='counts[{$cntKey}]' value='{$cnt}' style='width: 100px;'/></td>
 </tr>
 ";
                         } ?>
                     </table>
-                </td>
-            </tr>
+</div>
             <?php
         }
     }
     ?>
 
-</table>
+
 <br/>
 <br/>
-<input type="submit" value="Сохранить"/>
-<br/>
-<input type="reset" value="Отменить"/>
+<input type="submit" value="Сохранить" class="btn btn-primary"/>
+
+<input type="reset" value="Сбросить" class="btn btn-info"/>
 <?php
 if ($item->id) { ?>
-
     <br/>
     <br/>
     <br/>
-    <input type="button" data-action="del" class="remove" value="Удалить"/>
+    <input type="button" data-action="del" class="btn btn-danger" value="Удалить"/>
     <?php
 } ?>
 <?php

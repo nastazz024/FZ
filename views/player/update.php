@@ -5,10 +5,16 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Player */
 
-$this->title = 'Update Player: ' . $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Players', 'url' => ['index']];
+$this->title = 'Обновить: ' . $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Игроки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Новый';
+
+echo \yii\widgets\Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    'homeLink' => false,
+]);
+
 ?>
 <div class="player-update">
 

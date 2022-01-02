@@ -5,9 +5,15 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tournament */
 
-$this->title = 'Create Tournament';
-$this->params['breadcrumbs'][] = ['label' => 'Tournaments', 'url' => ['index']];
+$this->title = 'Новое';
+$this->params['breadcrumbs'][] = ['label' => 'Соревнования', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+echo \yii\widgets\Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    'homeLink' => false,
+]);
+
 ?>
 <div class="tournament-create">
 

@@ -19,25 +19,32 @@ class GenTournamentController extends Controller
     public function actionIndex()
     {
         $t = new Tournament();
-        $t->name = $this->getWords(mt_rand(1, 5), 5, 10);
+        $t->name = 'Турнир №' . mt_rand(1, 99999);
 
         $dt = new \DateTime();
-        $dt->setDate(mt_rand(2010, date('Y')), mt_rand(1, 12),  mt_rand(1, 31));
+        $dt->setDate(mt_rand(2010, date('Y')), mt_rand(1, 12), mt_rand(1, 31));
         $t->date_start = $dt->format('Y-m-d');
 
         $dt->modify('+ ' . mt_rand(1, 5) . ' days');
         $t->date_end = $dt->format('Y-m-d');
 
-        $classes = ['SD','SC','SB','DD','DC','DB','XC','WS','MS','XB'];
+        $classes = ['SD', 'SC', 'SB', 'DD', 'DC', 'DB', 'XC', 'WS', 'MS', 'XB', 'XD'];
+
+        $c = mt_rand(0, count($classes) - 3);
+        for ($i = 0; $i < $c; $i++) {
+            unset($classes[mt_rand(0, count($classes) - 1)]);
+            $classes = array_values($classes);
+        }
+
         $t->classes = implode(',', $classes);
 
         $v = $t->save();
 
-       if (!$v) {
+        if (!$v) {
             print_r($t->getErrors());
-       } else {
-           echo "\n" . $t->id;
-       }
+        } else {
+            echo "\n" . $t->id;
+        }
         echo "\ndone\n";
     }
 

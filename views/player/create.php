@@ -5,9 +5,16 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Player */
 
-$this->title = 'Create Player';
-$this->params['breadcrumbs'][] = ['label' => 'Players', 'url' => ['index']];
+$this->title = 'Новый';
+$this->params['breadcrumbs'][] = ['label' => 'Игроки', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
+
+echo \yii\widgets\Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    'homeLink' => false,
+]);
+
 ?>
 <div class="player-create">
 

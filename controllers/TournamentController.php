@@ -234,6 +234,31 @@ class TournamentController extends Controller
                     }
                     break;
 
+                case 'draw-add-olymp':
+                    $tour = $this->findModel($tid);
+                    $class = $this->request->post('class');
+
+                    $draw = new Draws();
+                    $draw->tournament_id = $tour->id;
+                    $draw->class = $this->request->post('class');
+                    $draw->winners_count = 0;
+                    $draw->matches_count = 3;
+                    $draw->type = 'olymp';
+                    $draw->completed = 0;
+                    $draw->save();
+
+                    $tPlayers = TournamentPlayers::find()
+                        ->where(['tournament_id' => $tid])
+                        ->andWhere(['class' => $class])
+                        ->all();
+                    foreach ($tPlayers as $player) {
+                        $buf = new DrawPlayers();
+                        $buf->draw_id = $draw->id;
+                        $buf->player_id = $player->id;
+                        $buf->save();
+                    }
+                    break;
+
                 case 'draw-remove':
                     $this->clearDraws($tid, $this->request->post('class'));
                     break;
@@ -393,7 +418,7 @@ class TournamentController extends Controller
             switch ($this->request->post('act')) {
                 case 'set-olymp-score':
                     /** @var DrawPlayers[] $players */
-                    $players = $draw->getDrawPlayers()->all();
+//                    $players = $draw->getDrawPlayers()->all();
                     $nscores = $this->request->post('nscore');
 
                     $pl1 = DrawPlayers::findOne($this->request->post('dr_pl_id1'));
@@ -440,6 +465,13 @@ class TournamentController extends Controller
                     foreach ($scores as $score) {
                         $score->save();
                     }
+
+                    $wData = $draw->getOlympWinner();
+                    if (!empty($wData['player'])) {
+                        $draw->completed = 1;
+                        $draw->save();
+                    }
+
                     break;
 
             }

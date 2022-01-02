@@ -145,6 +145,7 @@ class Draws extends \yii\db\ActiveRecord
         }
 
         $extScores = [];
+        $playersPoints = 0;
         foreach ($drawMatches as $extdraw) {
             $id1 = $drPlayersIds[$extdraw->draw_player1]->player_id;
             $id2 = $drPlayersIds[$extdraw->draw_player2]->player_id;
@@ -179,6 +180,14 @@ class Draws extends \yii\db\ActiveRecord
             } else {
                 //
             }
+            $playersPoints += $extScores[$id1]['win_point'];
+            $playersPoints += $extScores[$id1]['loose_point'];
+            $playersPoints += $extScores[$id2]['win_point'];
+            $playersPoints += $extScores[$id2]['loose_point'];
+        }
+
+        if ($playersPoints === 0) {
+            return [];
         }
 
         uasort($extScores, function($a, $b) {
@@ -226,34 +235,66 @@ class Draws extends \yii\db\ActiveRecord
         $data = [];
 
         for ($roundInd = 0; $roundInd < $roundCnt; $roundInd++) {
+            $fullPlayerCnt = pow(2, $roundCnt - $roundInd);
+            $byeCnt = $fullPlayerCnt - count($drPlayers);
+
             $data[$roundInd] = [];
             $buf = [];
 
             $winners = [];
-            for ($drPlInd = 0; $drPlInd < count($drPlayers); $drPlInd += 2) {
+            $i = 0;
+            for ($drPlInd = 0; $drPlInd < count($drPlayers); $drPlInd += 1) {
                 $buf['dr_player1'] = $drPlayers[$drPlInd];
                 $buf['dr_player2'] = null;
 
-                if (isset($drPlayers[$drPlInd + 1])) {
+                if ($buf['dr_player1'] == null) {
+                    continue;
+                }
+
+                if ($roundInd === 0 && $byeCnt > 0 && $i % 2 === 0) {
+                    $buf['matches'] = null;
+                    $buf['winner']['player'] = $buf['dr_player1']->player;
+                    $buf['winner']['bye'] = true;
+//                    $drPlInd++; //
+                    $byeCnt--;
+
+                } else if (isset($drPlayers[$drPlInd + 1])) {
                     $buf['dr_player2'] = $drPlayers[$drPlInd + 1];
                     $buf['matches'] = $this->getDrawPlayersMatches($buf['dr_player1'], $buf['dr_player2']);
                     $wins = $this->calcWinners($buf['matches']);
                     $buf['winner'] = reset($wins);
 
-                } else {
-//                    $buf['winner']['player'] = $buf['dr_player1']->getPlayer()->one();
-//                    $buf['matches'] = [];
+                    $drPlInd++; //
                 }
+
                 if (!empty($buf['winner'])) {
                     $winners[] = $drPlayerByPlayer[$buf['winner']['player']->id];
+                } else {
+                    $winners[] = null;
                 }
 
                 $data[$roundInd][] = $buf;
+                $i++;
             }
-
+//            echo '<pre>'; print_r($winners); echo '</pre>'; exit;
             $drPlayers = $winners;
         }
-
+//        echo '<pre>'; print_r($data); echo '</pre>';
         return $data;
+    }
+
+    public function getOlympWinner()
+    {
+        $oData = $this->getOlympData();
+        /** @var DrawPlayers[] $drPlayers */
+        $drPlayersCnt = $this->getDrawPlayers()->orderBy('id')->count();
+
+        $roundCnt = ceil(log($drPlayersCnt, 2));
+
+        if (isset($oData[$roundCnt-1][0]['winner'])) {
+            return $oData[$roundCnt-1][0]['winner'];
+        }
+
+        return null;
     }
 }

@@ -1,3 +1,7 @@
+.main.main {
+    margin: 20px;
+}
+
 .clear {
     clear: both;
 }
@@ -5,7 +9,6 @@
 input[type="button"], input[type="submit"], input[type="reset"] {
     visibility: visible !important;
 }
-
 
 
 .main-menu.main-menu-static {
@@ -83,49 +86,58 @@ input[type=button].remove {
 .tournament-players form.fbtn {
     display: inline;
 }
+
 .tournament-players .tour_players {
     margin: 20px 0;
     float: left;
     width: 40%;
+    border: 1px solid;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: #8080800d;
+}
+
+.tournament-players .tour_players.t_big {
+    margin-bottom: 50px;
+}
+
+
+.tour_players h2 {
+    background-color: #0000ff24;
+    border-radius: 15px;
+    width: 90px;
+    padding: 20px;
 }
 
 .tournament-players .tour_draws {
-    margin: 20px 0;
     float: right;
     width: 59%;
 }
 
-.draws-score {
 
-}
-
-.draws-score table.draw-score {
+table.draw-score {
     margin: 10px;
 }
 
-.draws-score table.draw-score th {
-    max-width: 100px;
+table.draw-score th {
+    max-width: 130px;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 
-.draws-score table.draw-score th, .draws-score table.draw-score td {
-    padding: 7px;
-    margin: 7px;
+table.draw-score th, table.draw-score td {
+    padding: 9px !important;
+    margin: 9px !important;
 }
 
-.draws-score table.draw-score.olymp td {
+table.draw-score.olymp td {
     vertical-align: middle;
 }
 
 
-.draws-score table.draw-score td input {
+.draw-score  input.score {
     border: 1px solid gray;
     width: 50px;
 }
-
-
-
-
 

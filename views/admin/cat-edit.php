@@ -17,9 +17,9 @@ try {
 
 ?>
 
-<div class="admin-shop-container">
+<div class="row">
 
-    <div class="admin-shop-modules">
+    <div class="admin-shop-modules- col-md-2">
         <?= $this->render('/admin/_menu', [
             'm' => $m,
             'model' => $model,
@@ -39,7 +39,7 @@ try {
         }
 
         if ($item) { ?>
-            <div class="admin-shop-content">
+            <div class="admin-shop-content- col-md-10">
                 <?= $this->render('/admin/_content', [
                     'm' => $m,
                     'model' => $model,

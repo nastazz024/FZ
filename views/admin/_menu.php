@@ -41,11 +41,11 @@ uasort($list, function ($a, $b) {
 });
 ?>
 
-<ul>
+<ul class="nav nav-pills nav-stacked">
 
     <?php
     foreach ($list as $key => $item) { ?>
-        <li <?= ($m == $key ? 'class="active"' : '') ?>>
+        <li role="presentation" <?= ($m == $key ? 'class="active"' : '') ?>>
             <a href="/admin/shop/?m=<?= $key ?>"><?= $item['title'] ?></a>
         </li>
     <?php }
