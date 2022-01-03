@@ -165,7 +165,7 @@ $occupiedClasses = array_unique($occupiedClasses);
                                             //                        echo '<pre>'; print_r($winners); echo '</pre>';
                                             $x = 1;
                                             foreach ($winners as $winner) {
-                                                if (!$winner || $winner['player']) {
+                                                if (!$winner || !$winner['player']) {
                                                     continue;
                                                 }
                                                 echo $winner['player']->name;
