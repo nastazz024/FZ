@@ -45,7 +45,7 @@ foreach ($columns as $ind => $params) {
      switch (true) {
          case ($p['field'] ?? false) && (($p['type'] ?? false) == 'image'):
              $f = $item->{$p['field']};
-             echo "<td class='{$class}'><img src='/img/{$f}'/></td>";
+             echo "<td class='{$class} col-md-3'><img src='/img/{$f}' style='width: fit-content'/></td>";
              break;
 
          case ($p['field'] ?? false) && ($p['model'] ?? false):

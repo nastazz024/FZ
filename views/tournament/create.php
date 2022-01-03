@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tournament */
 
-$this->title = 'Create Tournament';
-$this->params['breadcrumbs'][] = ['label' => 'Tournaments', 'url' => ['index']];
+$this->title = 'Создать новый турнир';
+$this->params['breadcrumbs'][] = ['label' => 'Турниры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tournament-create">

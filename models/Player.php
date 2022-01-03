@@ -41,9 +41,9 @@ class Player extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'bdate' => 'Bdate',
+            'id' => 'Номер',
+            'name' => 'ФИО',
+            'bdate' => 'Дата рождения',
         ];
     }
 

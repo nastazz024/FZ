@@ -46,11 +46,11 @@ class Tournament extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'date_start' => 'Date Start',
-            'date_end' => 'Date End',
-            'description' => 'Description',
-            'classes' => 'Classes',
+            'name' => 'Название',
+            'date_start' => 'Дата начала',
+            'date_end' => 'Дата завершения',
+            'description' => 'Описание',
+            'classes' => 'Категории',
         ];
     }
 

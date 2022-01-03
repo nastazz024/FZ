@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Player */
 
-$this->title = 'Create Player';
+$this->title = 'Добавить участника';
 $this->params['breadcrumbs'][] = ['label' => 'Players', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
