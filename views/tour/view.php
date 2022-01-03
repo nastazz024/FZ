@@ -224,7 +224,11 @@ if ($currType === 'group') {
                                 $grDic = 'ABCDEFGHJKLMNOPQRST';
 
                                 foreach ($classDraws as $clDraw) {
-                                    $winners = $clDraw->sortGroupPlayersByScore();
+                                    try {
+                                        $winners = $clDraw->sortGroupPlayersByScore();
+                                    } catch (\Exception $e) {
+                                        continue;
+                                    }
 //            echo '<pre>'; print_r($winners); echo '</pre>'; //exit;
                                     $extScores = [];
                                     /** @var DrawPlayersMatches[] $extdraws */
