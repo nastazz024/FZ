@@ -118,6 +118,9 @@ $occupiedClasses = array_unique($occupiedClasses);
                                         foreach ($pls as $pl) {
                                             /** @var \app\models\Player $buf */
                                             $buf = $pl->getPlayer()->one();
+                                            if (!$buf) {
+                                                continue;
+                                            }
 //                        echo $buf->id . ' - ';
                                             echo "<th>" . $buf->name . '</th>';
                                             $drPls[$pl->id] = $buf;
