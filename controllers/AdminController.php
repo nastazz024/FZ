@@ -31,6 +31,9 @@ class AdminController extends Controller
                         'allow' => true,
                         'matchCallback' => function ($rule, $action) {
                             $user = \Yii::$app->getUser()->identity;
+                            if (!$user) {
+                                return false;
+                            }
                             return $user->is_admin > 0;
                         }
                     ],
