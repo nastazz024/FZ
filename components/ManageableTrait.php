@@ -106,7 +106,7 @@ trait ManageableTrait
     {
         $query = $this::find()
             ->orderBy($orderBy)
-            ->limit(10)
+            ->limit(100)
         ;
 
         foreach ($this->getSearchFields() as $key => $params) {

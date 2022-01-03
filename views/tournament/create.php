@@ -8,6 +8,12 @@ use yii\helpers\Html;
 $this->title = 'Создать новый турнир';
 $this->params['breadcrumbs'][] = ['label' => 'Турниры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+echo \yii\widgets\Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    'homeLink' => false,
+]);
+
 ?>
 <div class="tournament-create">
 

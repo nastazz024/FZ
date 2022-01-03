@@ -8,6 +8,13 @@ use yii\helpers\Html;
 $this->title = 'Добавить участника';
 $this->params['breadcrumbs'][] = ['label' => 'Players', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+\yii\web\YiiAsset::register($this);
+
+echo \yii\widgets\Breadcrumbs::widget([
+    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+    'homeLink' => false,
+]);
+
 ?>
 <div class="player-create">
 

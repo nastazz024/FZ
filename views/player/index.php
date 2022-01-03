@@ -9,6 +9,8 @@ use yii\grid\GridView;
 
 $this->title = 'Участники';
 $this->params['breadcrumbs'][] = $this->title;
+
+
 ?>
 <div class="player-index">
 

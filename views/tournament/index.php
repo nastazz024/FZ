@@ -7,9 +7,11 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\TournamentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Турниры';
+$this->title = 'Соревнования';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
+
 <div class="tournament-index">
 
     <h1><?= Html::encode($this->title) ?></h1>

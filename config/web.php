@@ -86,8 +86,13 @@ $config = [
                     'route' => 'site/event',
                 ],
 
+                [
+                    'pattern' => 'tour/view/<id:\d+>',
+                    'route' => 'tour/view',
+                ],
 
-                // tournament
+
+                // admin tournament
                 [
                     'pattern' => 'tournament',
                     'route' => '404',
@@ -138,12 +143,19 @@ $config = [
             'class' => 'app\Models\Racket'
         ],
 
+        'racketCount' => [
+            'class' => 'app\Models\RacketCount'
+        ],
+
         'shuttle' => [
             'class' => 'app\Models\Shuttle'
         ],
 
         'short' => [
             'class' => 'app\Models\Short'
+        ],
+        'shortCount' => [
+            'class' => 'app\Models\ShortCount'
         ],
 
         'racketAccs' => [
@@ -179,6 +191,10 @@ $config = [
 
         'shoes' => [
             'class' => 'app\Models\Shoes'
+        ],
+
+        'shoesCount' => [
+            'class' => 'app\Models\ShoesCount'
         ],
 
         'bag' => [

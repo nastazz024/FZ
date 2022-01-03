@@ -16,6 +16,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'bdate')->textInput() ?>
 
+    <?= $form->field($model, 'gender')->dropDownList(['m' => 'М', 'w' => 'Ж']) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>

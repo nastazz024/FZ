@@ -16,9 +16,9 @@ try {
 
 ?>
 
-<div class="admin-shop-container">
+<div class="row">
 
-    <div class="admin-shop-modules">
+    <div class="col-md-2">
         <?= $this->render('/admin/_menu', [
             'm' => $m,
             'model' => $model,
@@ -30,19 +30,21 @@ try {
 
     if ($model) {
         ?>
-        <div class="admin-shop-form">
+    <div class="col-md-10">
+        <div class="admin-shop-form- row">
             <?= $this->render('/admin/_form', [
                 'm' => $m,
                 'model' => $model,
             ]); ?>
         </div>
-
-        <div class="admin-shop-list">
+<hr/>
+        <div class="admin-shop-list- row">
             <?= $this->render('/admin/_list', [
                 'm' => $m,
                 'model' => $model,
             ]); ?>
         </div>
+     </div>
     <?php
     } ?>
 </div>

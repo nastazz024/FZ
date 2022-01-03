@@ -8,7 +8,7 @@ if (!$model) {
 $columns = $model->getShowFields();
 
 ?>
-<table>
+<table class="table table-striped table-bordered">
     <tr>
         <?php
         $relModels = [];
@@ -24,7 +24,9 @@ foreach ($columns as $ind => $params) {
     echo "<th>{$params['title']}</th>";
 }
  echo "<th>
-<a href='/admin/cat-edit/?m={$m}'>new</a>
+<a href='/admin/cat-edit/?m={$m}'>
+<span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>
+</a>
 </th>";
 ?>
         </tr>
@@ -51,18 +53,20 @@ foreach ($columns as $ind => $params) {
          case ($p['field'] ?? false) && ($p['model'] ?? false):
              $f = $item->{$p['field']};
              $f =  $relModels[$p['field']][$f];
-             echo "<td class='{$class}'>{$f}</td>";
+             echo "<td class='{$class}-'>{$f}</td>";
              break;
 
          case $p['field'] ?? false:
              $f = $item->{$p['field']};
-             echo "<td class='{$class}'>{$f}</td>";
+             echo "<td class='{$class}-'>{$f}</td>";
              break;
      }
 
  }
   echo "<td>
-<a href='/admin/cat-edit/?m={$m}&id={$item->id}'>edit</a>
+<a href='/admin/cat-edit/?m={$m}&id={$item->id}'>
+<span class=\"glyphicon glyphicon-pencil\" aria-hidden=\"true\"></span>
+</a>
 <!--<a href='/admin/cat-edit/?m={$m}&id={$item->id}&act=del' data-del-confim='true'>delete</a>-->
 </td>";
 

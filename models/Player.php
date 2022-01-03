@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property string $name
  * @property string $bdate
+ * @property string $gender
  *
  * @property DrawPlayers[] $tDrawPlayers
  */
@@ -31,7 +32,7 @@ class Player extends \yii\db\ActiveRecord
         return [
             [['name', 'bdate'], 'required'],
             [['name'], 'string', 'max' => 100],
-            [['bdate'], 'safe'],
+            [['bdate', 'gender'], 'safe'],
         ];
     }
 
@@ -41,18 +42,19 @@ class Player extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'Номер',
+            'id' => 'ID',
             'name' => 'ФИО',
-            'bdate' => 'Дата рождения',
+            'bdate' => 'Дата Рождения',
+            'gender' => 'Пол',
         ];
     }
 
     /**
      * Gets query for [[TDrawPlayers]].
      *
-     * @return \yii\db\ActiveQuery|DrawPlayersQuery
+     * @return \yii\db\ActiveQuery
      */
-    public function getTDrawPlayers()
+    public function getDrawPlayers()
     {
         return $this->hasMany(DrawPlayers::className(), ['player_id' => 'id']);
     }

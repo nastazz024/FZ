@@ -62,24 +62,24 @@ AppAsset::register($this);
 
 		<ul class="main-menu main-menu-static">
 			<li class="main-menu__item dropdown">
-				<a href="/catalog" class="main-menu__link">Магазин</span></a>
+				<a href="/catalog" class="main-menu__link">Магазин</a>
 
 			</li>
 
 			<li class="main-menu__item dropdown">
-				<a href="/event" class="main-menu__link">Мероприятия</span></a>
+				<a href="/event" class="main-menu__link">Мероприятия</a>
 
 			</li>
 			<li class="main-menu__item dropdown">
-                <a href="/league" class="main-menu__link">League</span></a>
+                <a href="/league" class="main-menu__link">League</a>
 
 			</li>
             <li class="main-menu__item dropdown">
-                <a href="/contact" class="main-menu__link">Контакты </span></a>
+                <a href="/contact" class="main-menu__link">Контакты</a>
 
             </li>
             <li class="main-menu__item dropdown">
-                <a href="/tour" ><h4 class="main-menu__link">Результаты</h4></a>
+                <a href="/tour" class="main-menu__link">Результаты</a>
 
             </li>
 

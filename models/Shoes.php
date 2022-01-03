@@ -11,6 +11,93 @@ class Shoes extends ActiveRecord
     use ComponentsTrait;
     use ManageableTrait;
 
+
+    public function getSearchFields()
+    {
+        return [
+            'text' => [
+                'type' => 'text',
+                'fields' => ['name', 'description'],
+            ],
+            'cat' => [
+                'type' => 'list',
+                'model' => ['shoesCategory' => 'category'],
+                'field' => 'category',
+            ],
+        ];
+    }
+
+    public function getShowFields()
+    {
+        return [
+            [
+                'field' => 'image',
+                'type' => 'image',
+            ],
+            [
+                'field' => 'name',
+                'title' => 'Название',
+                'sortable' => true,
+            ],
+            [
+                'field' => 'price',
+                'title' => 'Цена',
+                'sortable' => true,
+            ],
+            [
+                'field' => 'category',
+                'title' => 'Категория',
+                'model' => ['shoesCategory' => 'category'],
+            ],
+        ];
+    }
+
+    public function getEditFields()
+    {
+        return [
+            [
+                'field' => 'name',
+                'title' => 'Название',
+            ],
+            [
+                'field' => 'description',
+                'title' => 'Описание',
+                'type' => 'text',
+            ],
+            [
+                'field' => 'full_description',
+                'title' => 'Полное описание',
+                'type' => 'text',
+            ],
+            [
+                'field' => 'image',
+                'title' => 'Картинка',
+                'type' => 'image',
+            ],
+            [
+                'field' => 'price',
+                'title' => 'Цена',
+            ],
+            [
+                'type' => 'list',
+                'field' => 'category',
+                'title' => 'Категория',
+                'model' => ['shoesCategory' => 'category'],
+            ],
+
+        ];
+    }
+
+    public function getCountOptions()
+    {
+        return [
+            'model' => ['shoesCount' => ['shoes_id', 'shoes_size_id']],
+            'list' => ['model' => ['shoesSize' => 'name']],
+        ];
+    }
+
+
+
     /**
      * @return \yii\db\ActiveQuery
      */

@@ -3,126 +3,84 @@
 use yii\helpers\Html;
 use app\assets\AppAsset;
 
-AppAsset::register($this);
-$this->title = 'Contact';
+\app\assets\TourAsset::register($this);
+$this->title = 'Соревнования';
+
+
+/** @var string $dateFrom */
+/** @var string $dateTo */
+
+
+if (empty($dateFrom)) {
+    $dateFrom = date('Y-m-d', strtotime('-1 month'));
+}
+if (empty($dateTo)) {
+    $dateTo = date('Y-m-d', strtotime('now'));
+}
+
+$maxDate = date('Y-m-d');
+
+
+$tours = \app\models\Tournament::getCompletedByDates($dateFrom, $dateTo);
+
 
 ?>
 
-   <section class="drawer">
-    <section id="contact" class="secondary-page">
-      <div class="general">
-           <!--Google Maps-->
-            <div id="map_container">
-			    <div id="map_canvas"></div>
-		    </div>
-          <div class="container">
-           <div class="content-link col-md-12">
-                  <div id="contact_form" class="top-score-title col-md-9 align-center">
-                    <h3>Обратная <span>связь</span></h3>
-                                <form method="post">
-                                    
-                                    <div class="name">
-                                        <label for="name">* Имя:</label><div class="clear"></div>
-                                        <input id="name" name="name" type="text" placeholder="Иван" required=""/>
-                                    </div>
-                                    <div class="email">
-                                        <label for="email">* Электронная почта:</label><div class="clear"></div>
-                                        <input id="email" name="email" type="text" placeholder="example@domain.com" required=""/>
-                                    </div>
-                                    <div class="message">
-                                        <label for="message"> Сообщение:</label>
-                                        <textarea name="messagetext" class="txt-area" id="message" cols="30" rows="4"></textarea>
-                                    </div>
-                                    
-                                    <div id="loader">
-                                        <input type="submit" value="Отправить"/>
-                                    </div>
-                                    <p class="success">Your message has been sent successfully.</p>
-                                    <p class="error">E-mail must be valid and message must be longer than 20 characters.</p>
-                                  </form>
-                              </div>
-                     <div id="info-company" class="top-score-title col-md-3 align-center">
-                        <h3>Информация</h3>
-                        <div class="col-md-12">
-                          <p><i class="fa fa-phone"></i>+375 29 562-95-48 </p>
-                          <p><i class="fa fa-envelope-o"></i>fz@info.com </p>
-                          <p><i class="fa fa-globe"></i>пр-т Независимости, 196</p>
-                          <p><i class="fa fa-map-marker"></i>Беларусь, Минск</p>
-                        </div>            
-                    </div>
-                </div>
-                </div>
-                </div>
-                </section>
-                
-    
-    
-    
-</section>
-<!--END MENU-->
-<!-- Button Anchor Top-->
-<script type="text/javascript">
-    /********************************************
-    GOOGLE MAPS
-    ********************************************/
 
-    // The following example creates a marker in Stockholm, Sweden
-    // using a DROP animation. Clicking on the marker will toggle
-    // the animation between a BOUNCE animation and no animation.
-    $(document).ready(function ($) {
-        "use strict";
-        var stockholm = new google.maps.LatLng(53.9507129, 27.7082115);
-        var parliament = new google.maps.LatLng(53.9507129, 27.7082115);
-        var image = 'images/marker.png';
-        var marker;
-        var map;
+<div class="container tour">
+    <div class="row show-grid" style="line-height: 34px;">
+        <form>
+            <div class="col-md-2">
+                Турниры за период:
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="d" value="<?= $dateFrom ?> - <?= $dateTo ?>" class="form-control"/>
+            </div>
+            <div class="col-md-1">
+                <input type="submit" class="btn btn-primary" value="Поиск"/>
+            </div>
+        </form>
+    </div>
 
-        function initialize() {
-            var styleArray = [
-        {
-            featureType: 'all',
-            stylers: [
-            { saturation: -1000 }
-            ]
-        }, {
-            featureType: 'road.arterial',
-            elementType: 'geometry',
-            stylers: [
-            { hue: '#00ffee' },
-            { saturation: -100 },
-            { "lightness": -8 },
-            { "gamma": 1.18 }
-            ]
+    <?php
+    if (count($tours)) { ?>
+        <div class="row show-grid" style="line-height: 34px; margin-left: 0px;">
+            &nbsp;
+        </div>
+
+        <!--        <h3>Турниры за период: --><?//= $dateFrom ?><!-- - --><?//=$dateTo ?><!--</h3>-->
+        <?php
+
+        foreach ($tours as $tour) { ?>
+            <div class="row show-grid" style="line-height: 34px; margin-left: 0px;">
+                <a href="/tour/view/<?= $tour->id ?>"><?= $tour->name ?></a>
+            </div>
+        <?php
         }
-        ];
-            var mapOptions = {
-                zoom: 17,
-                styles: styleArray,
-                center: stockholm
-            };
+    }
+    ?>
 
-            map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-            marker = new google.maps.Marker({
-                map: map,
-                draggable: true,
-                animation: google.maps.Animation.DROP,
-                icon: image,
-                position: parliament
-            });
-            google.maps.event.addListener(marker, 'click', toggleBounce);
-        }
+</div>
 
-        function toggleBounce() {
-
-            if (marker.getAnimation() != null) {
-                marker.setAnimation(null);
-            } else {
-                marker.setAnimation(google.maps.Animation.BOUNCE);
-            }
-        }
-
-        google.maps.event.addDomListener(window, 'load', initialize);
-
+<?php
+$this->registerJs(
+    <<<JS
+    $(function() {
+        $('input[name="d"]').daterangepicker({
+            minYear: 2000,
+            maxDate: "{$maxDate}",
+            locale: {
+                format: 'YYYY-MM-DD'
+            },
+            opens: 'right'
+        }, function(start, end, label) {
+        });
+        
     });
-</script>
+
+JS
+    ,
+    yii\web\View::POS_READY
+);
+?>
