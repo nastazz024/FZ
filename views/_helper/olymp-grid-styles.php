@@ -3,6 +3,10 @@
 /** @var int $oCnt */
 /** @var bool $simple */
 
+if (!isset($simple)) {
+    $simple = false;
+}
+
 $cols = (pow(2, $oCnt) / ($simple ? 1 : 2));
 $rows = ($oCnt + 1);
 ?>
