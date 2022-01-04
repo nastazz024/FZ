@@ -95,7 +95,7 @@ class AdminController extends Controller
                 if ($item) {
                     if (($data['act'] ?? false) == 'del') {
                         $item->delete();
-                        $this->redirect('/admin/?m='  ($data['m'] ?? ''));
+                        $this->redirect('/admin/shop/?m=' . ($data['m'] ?? ''));
                         return;
                     }
 
