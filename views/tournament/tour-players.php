@@ -67,7 +67,7 @@ $occupiedClasses = array_unique($occupiedClasses);
                 }
                 $disabled = in_array($class, $occupiedClasses);
                 ?>
-                <div>
+                <div style="margin-bottom:5px">
                     <form class='fbtn' method='post'>
                         <input type='submit' value='Удалить' " <?= ($disabled ? 'disabled="disabled"' : '') ?>
                         class="btn
@@ -115,8 +115,8 @@ $occupiedClasses = array_unique($occupiedClasses);
                     <input type='hidden' name='<?= Yii::$app->request->csrfParam ?>'
                            value='<?= Yii::$app->request->csrfToken ?>'/>
                     <input type='hidden' name='act' value='draw-remove'/>
-                    <input type='hidden' name='class' value='<?= $class ?>'/>
-                    <input type='hidden' name='tid' value='<?= $model->id ?>'/>
+                    <input class="btn" type='hidden' name='class' value='<?= $class ?>'/>
+                    <input class="btn" type='hidden' name='tid' value='<?= $model->id ?>'/>
                     <?php
                     if (!$disabled) { ?>
                         <input type='submit' value='Удалить' class="btn btn-danger"
@@ -160,9 +160,9 @@ $occupiedClasses = array_unique($occupiedClasses);
                         <input type='hidden' name='act' value='draw-add'/>
                         <input type='hidden' name='class' value='<?= $class ?>'/>
                         <input type='hidden' name='tid' value='<?= $model->id ?>'/>
-                        Введите кол-во групп <input name="cnt" size="1"> <input type='submit' value='Создать'/>
+                        Введите кол-во групп <input class="form-control" style="width: 50px; display:inline" name="cnt" size="1"> <input class="btn" type='submit' value='Создать'/>
                         &nbsp;или&nbsp;
-                        <input type='submit' value='создать сетку'
+                        <input type='submit' class="btn" value='создать сетку'
                                onclick="$(this).parent().find([name=act]).val('draw-add-olymp');"/>
                     </form>
                     <?php
