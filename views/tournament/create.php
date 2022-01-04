@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Tournament */
 
-$this->title = 'Новое';
-$this->params['breadcrumbs'][] = ['label' => 'Соревнования', 'url' => ['index']];
+$this->title = 'Создать новый турнир';
+$this->params['breadcrumbs'][] = ['label' => 'Турниры', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 echo \yii\widgets\Breadcrumbs::widget([

@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Player */
 
-$this->title = 'Новый';
-$this->params['breadcrumbs'][] = ['label' => 'Игроки', 'url' => ['index']];
+$this->title = 'Добавить участника';
+$this->params['breadcrumbs'][] = ['label' => 'Players', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 

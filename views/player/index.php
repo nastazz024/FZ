@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\PlayerSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Игроки';
+$this->title = 'Участники';
 $this->params['breadcrumbs'][] = $this->title;
 
 
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Новый', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить участника', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

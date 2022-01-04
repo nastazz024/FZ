@@ -43,7 +43,7 @@ class Player extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Имя',
+            'name' => 'ФИО',
             'bdate' => 'Дата Рождения',
             'gender' => 'Пол',
         ];
